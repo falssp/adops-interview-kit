@@ -1,7 +1,6 @@
 // © 2025 AdOps Interview Kit — Todos os direitos reservados. Reprodução proibida.
 // ── CONFIG ──────────────────────────────────────────────
 const PLATFORMS = [
-  { id: 'cadastra',     label: 'Daxgo / Cadastra — Prep', icon: '🎯', file: 'data/cadastra.js'     },
   { id: 'amazon',       label: 'Amazon Ads',              icon: '📦', file: 'data/amazon.js'       },
   { id: 'atribuicao',   label: 'Atribuição',              icon: '📐', file: 'data/atribuicao.js'   },
   { id: 'cm360',        label: 'Campaign Manager 360',    icon: '📊', file: 'data/cm360.js'        },
