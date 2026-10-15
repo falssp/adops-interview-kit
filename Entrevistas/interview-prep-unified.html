@@ -1,0 +1,338 @@
+<!doctype html>
+<title>Daxgo / Cadastra — Prep</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg:     #F5F4F1;
+  --surf:   #FFFFFF;
+  --bdr:    #E4E2DB;
+  --fg:     #1A1916;
+  --fg2:    #6A6760;
+  --fg3:    #A09D97;
+  --acc:    #1A52A0;
+  --acc-bg: #EAF1FB;
+  --grn:    #167A45;
+  --grn-bg: #EDF7F2;
+  --warn:   #B85C00;
+  --warn-bg:#FEF3E8;
+  --tag-bg: #F0EEEA;
+  --cad:    #E84534;
+  --cad-bg: #FEF0EE;
+  --t-gmp:        #1B5CCC; --t-gmp-bg:   #EBF0FB;
+  --t-ana:        #0F7756; --t-ana-bg:   #ECFDF5;
+  --t-com:        #7C3AED; --t-com-bg:   #F5F3FF;
+  --t-sit:        #B45309; --t-sit-bg:   #FFFBEB;
+  --t-sal:        #C41E3A; --t-sal-bg:   #FFF1F2;
+  --t-doc:        #5B7FA6; --t-doc-bg:   #EEF3F9;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#111110; --surf:#1A1917; --bdr:#2C2B27;
+  --fg:#EDEBE6; --fg2:#A09D97; --fg3:#615E58;
+  --acc:#5B9CF6; --acc-bg:#0D1E38;
+  --grn:#3ECF7A; --grn-bg:#0C2419;
+  --warn:#F49240; --warn-bg:#2A1700;
+  --tag-bg:#222118; --cad:#F87171; --cad-bg:#2A0A0A;
+  --t-gmp:#5B8DEF; --t-gmp-bg:#1C2540;
+  --t-ana:#34D399; --t-ana-bg:#064E3B;
+  --t-com:#A78BFA; --t-com-bg:#2E1065;
+  --t-sit:#FBBF24; --t-sit-bg:#451A03;
+  --t-sal:#F87171; --t-sal-bg:#450A0A;
+  --t-doc:#7BA7D4; --t-doc-bg:#0F1E30;
+  color-scheme: dark;
+}}
+:root[data-theme="dark"] {
+  --bg:#111110; --surf:#1A1917; --bdr:#2C2B27;
+  --fg:#EDEBE6; --fg2:#A09D97; --fg3:#615E58;
+  --acc:#5B9CF6; --acc-bg:#0D1E38;
+  --grn:#3ECF7A; --grn-bg:#0C2419;
+  --warn:#F49240; --warn-bg:#2A1700;
+  --tag-bg:#222118; --cad:#F87171; --cad-bg:#2A0A0A;
+  --t-gmp:#5B8DEF; --t-gmp-bg:#1C2540;
+  --t-ana:#34D399; --t-ana-bg:#064E3B;
+  --t-com:#A78BFA; --t-com-bg:#2E1065;
+  --t-sit:#FBBF24; --t-sit-bg:#451A03;
+  --t-sal:#F87171; --t-sal-bg:#450A0A;
+  --t-doc:#7BA7D4; --t-doc-bg:#0F1E30;
+  color-scheme: dark;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.65;background:var(--bg);color:var(--fg);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+/* TOP BAR */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--surf);border-bottom:1px solid var(--bdr);z-index:20;padding:0 20px}
+.bar-inner{max-width:860px;margin-inline:auto;display:flex;align-items:center;gap:12px;height:56px}
+.brand{font-size:15px;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:2px 7px;border-radius:20px;background:var(--cad-bg);color:var(--cad);margin-left:5px;vertical-align:middle}
+.search-wrap{flex:1;min-width:0;position:relative}
+.search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--fg3);pointer-events:none}
+#q{width:100%;padding:8px 36px 8px 32px;border:1.5px solid var(--bdr);border-radius:8px;background:var(--surf);color:var(--fg);font-family:inherit;font-size:14px;outline:none;transition:border-color .15s}
+#q:focus{border-color:var(--acc)}
+#q::placeholder{color:var(--fg3)}
+.clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--fg3);cursor:pointer;font-size:16px;line-height:1;padding:2px 4px}
+#count{font-size:12px;color:var(--fg3);white-space:nowrap}
+
+/* FILTERS */
+.filters{max-width:860px;margin-inline:auto;padding:10px 20px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr)}
+.fb{padding:4px 11px;border-radius:20px;border:1.5px solid var(--bdr);background:transparent;color:var(--fg3);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
+.fb:hover{border-color:var(--acc);color:var(--acc)}
+.fb.on{background:var(--acc);border-color:var(--acc);color:#fff}
+
+/* CARDS */
+.feed{max-width:860px;margin-inline:auto;padding:16px 20px 64px;display:flex;flex-direction:column;gap:10px}
+.card{background:var(--surf);border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:var(--acc)}
+.ch{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;cursor:pointer;user-select:none}
+.ctag{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:4px;margin-top:2px}
+.t-gmp         {background:var(--t-gmp-bg);color:var(--t-gmp)}
+.t-analytics   {background:var(--t-ana-bg);color:var(--t-ana)}
+.t-comportamental{background:var(--t-com-bg);color:var(--t-com)}
+.t-situacional {background:var(--t-sit-bg);color:var(--t-sit)}
+.t-salario     {background:var(--t-sal-bg);color:var(--t-sal)}
+.t-doc         {background:var(--t-doc-bg);color:var(--t-doc)}
+.cq{flex:1;min-width:0;font-size:14px;font-weight:600}
+.chev{flex-shrink:0;width:18px;height:18px;color:var(--fg3);transition:transform .2s;margin-top:2px}
+.card.open .chev{transform:rotate(180deg)}
+.cb{display:none;padding:0 16px 16px;border-top:1px solid var(--bdr);padding-top:14px}
+.card.open .cb{display:block}
+
+/* body content inside cards */
+.cb p{margin-bottom:10px;font-size:14px;max-width:65ch}
+.cb p:last-child{margin-bottom:0}
+.cb ul,.cb ol{padding-left:20px;margin-bottom:10px}
+.cb li{margin-bottom:3px;font-size:13px}
+.cb strong{font-weight:600}
+.cb code{font-size:.85em;background:var(--tag-bg);padding:1px 5px;border-radius:3px}
+.cb pre{background:var(--tag-bg);padding:12px;border-radius:6px;overflow-x:auto;font-size:12px;margin-bottom:10px}
+.ans{font-size:14px;line-height:1.7;white-space:pre-wrap}
+.tip{margin-top:10px;padding:8px 12px;background:var(--grn-bg);border-left:3px solid var(--grn);border-radius:0 6px 6px 0;font-size:13px}
+.tip strong{color:var(--grn)}
+.box{border-radius:8px;padding:12px 14px;margin:10px 0;font-size:13px;line-height:1.6}
+.box-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}
+.box.warn{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn)}
+.box.info{background:var(--acc-bg);color:var(--acc);border:1px solid var(--acc)}
+.box.ok{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn)}
+.box.tip2{background:var(--surf);color:var(--fg);border:1px solid var(--bdr)}
+.box strong{color:inherit}
+.steps{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.step{display:flex;gap:10px;align-items:flex-start;font-size:13px}
+.sn{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.sb{flex:1;min-width:0}
+.sb strong{display:block;font-weight:600;margin-bottom:1px}
+.tbl-w{overflow-x:auto;margin-bottom:10px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{background:var(--tag-bg);color:var(--fg2);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:7px 10px;text-align:left;border-bottom:1px solid var(--bdr)}
+td{padding:8px 10px;border-bottom:1px solid var(--bdr);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.green{color:var(--grn);font-weight:600}
+.med{color:var(--warn);font-weight:600}
+.muted{color:var(--fg3)}
+
+/* section headers inside doc cards */
+.doc-h{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--bdr)}
+.doc-h3{font-size:14px;font-weight:600;margin:16px 0 8px}
+
+/* empty */
+.empty{text-align:center;color:var(--fg3);padding:48px;font-size:14px}
+
+/* highlight */
+mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) mark{background:#7C6800;color:#EDEBE6}}
+:root[data-theme="dark"] mark{background:#7C6800;color:#EDEBE6}
+
+@media(max-width:480px){
+  .bar-inner{gap:8px}
+  .brand{font-size:13px}
+  #count{display:none}
+}
+</style>
+
+<div class="bar">
+  <div class="bar-inner">
+    <div class="brand">Daxgo / Cadastra <span class="pill">Prep</span></div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/></svg>
+      <input id="q" type="search" placeholder="Buscar pergunta, tema ou palavra-chave…" autocomplete="off">
+      <button class="clr" id="clr" style="display:none" onclick="clearQ()">✕</button>
+    </div>
+    <span id="count"></span>
+  </div>
+</div>
+
+<div class="filters" id="filters">
+  <button class="fb on" data-f="all">Todas</button>
+  <button class="fb" data-f="gmp">GMP</button>
+  <button class="fb" data-f="analytics">Analytics</button>
+  <button class="fb" data-f="comportamental">Comportamental</button>
+  <button class="fb" data-f="situacional">Situacional</button>
+  <button class="fb" data-f="salario">Salário</button>
+  <button class="fb" data-f="doc">Contexto</button>
+</div>
+
+<div class="feed" id="feed"></div>
+
+<script>
+const ITEMS = [
+  // ── GMP ──
+  { tag:'gmp', q:'Como você descreve sua experiência com o ecossistema GMP?',
+    body:`<div class="ans">Tenho mais de 6 anos de experiência prática com as três principais plataformas do GMP. Minha maior profundidade é no CM360 — trafficking completo, configuração de Floodlights, variáveis customizadas, relatórios de atribuição e governança de taxonomia para grandes contas em agências WPP e Omnicom.\n\nNo DV360 atuei na execução de campanhas programáticas integradas ao CM360. No SA360 meu uso foi mais consultivo: acompanhamento de campanhas de search e integração com CM360 para mensuração unificada.</div><div class="tip"><strong>💡</strong> Mencione que CM360 é o núcleo do seu stack e que DV360 e SA360 estão integrados a ele — mostra visão de ecossistema, não de ferramenta isolada.</div>` },
+  { tag:'gmp', q:'Me fale sobre sua experiência com Floodlights e mensuração.',
+    body:`<div class="ans">Trabalho com Floodlights há mais de 6 anos:\n• Definição de atividades por objetivo (venda, lead, engajamento)\n• Configuração de u-variables para dados transacionais\n• Implementação via GTM e validação com Tag Assistant\n• Troubleshooting de discrepâncias entre CM360 e plataformas de destino\n• Auditoria e governança contínua da arquitetura de tags\n\nNas agências era a referência técnica de Floodlight — qualquer discrepância ou implementação nova passava por mim.</div><div class="tip"><strong>💡</strong> Se perguntarem sobre integração offline: mencione apoio à revisão de arquitetura integrando CM360, GA4 e BigQuery — sem citar empresa ou cliente.</div>` },
+  { tag:'gmp', q:'Qual a diferença entre um Floodlight de venda e um de engajamento?',
+    body:`<div class="ans">Um Floodlight de <strong>venda (transaction)</strong> captura o valor da transação e quantidade — evento com valor financeiro, como uma compra. Você configura Revenue e Quantity.\n\nUm Floodlight de <strong>engajamento (counter)</strong> conta ocorrências sem valor atrelado — cadastro, download, clique em botão. Você escolhe o método de contagem (standard, unique, per session).\n\nNa prática: defino o tipo, as u-variables para dados extras e implemento via GTM com templates nativos do CM360, sempre validando no Tag Assistant antes de subir para produção.</div><div class="tip"><strong>💡</strong> Demonstre que você sabe a diferença de uso de negócio, não só a técnica.</div>` },
+  { tag:'gmp', q:'Como você faria o mapeamento e auditoria de Floodlights com conversões offline?',
+    body:`<div class="steps"><div class="step"><div class="sn">1</div><div class="sb"><strong>Inventário</strong> Exportar lista completa de Floodlight Activities — nome, tipo (Counter/Sales), formato (GTM/tag direta), status (ativo/sem dados 30d).</div></div><div class="step"><div class="sn">2</div><div class="sb"><strong>Validação técnica</strong> Tag Diagnostics do CM360 para erros; verificar Custom Variables (u1, u2...) e deduplication key.</div></div><div class="step"><div class="sn">3</div><div class="sb"><strong>Conversões offline</strong> Mapear fluxo: evento online gera GCLID → CRM captura → venda offline → upload recorrente via SA360 ou API. Sem GCLID no CRM, a integração não funciona.</div></div><div class="step"><div class="sn">4</div><div class="sb"><strong>Entregável</strong> Planilha com status de cada Floodlight, ação recomendada (manter/pausar/recriar) e prioridade.</div></div></div>` },
+  { tag:'gmp', q:'Como você estrutura a governança de taxonomia em uma conta GMP?',
+    body:`<div class="ans">A governança começa antes de subir qualquer campanha:\n\n1. Definir a hierarquia: Advertiser > Campaign > Placement > Ad, com padrão documentado\n2. Criar o naming convention com campos obrigatórios (marca, produto, período, formato, canal, segmentação)\n3. Documentar em guia compartilhado com todos os envolvidos\n4. Criar checklists de QA antes de go-live\n5. Auditar periodicamente para identificar desvios\n\nEm agências de rede isso era crítico — campanhas multi-mercado com dezenas de placements. Um erro de nomenclatura comprometia o relatório inteiro.</div><div class="tip"><strong>💡</strong> Mencione a ferramenta de automação de nomenclatura em Apps Script — exemplo concreto.</div>` },
+  { tag:'gmp', q:'Como estruturar a governança de uma conta GMP do zero para um cliente enterprise?',
+    body:`<p><strong>Estrutura de contas:</strong> espelhar hierarquia entre CM360, DV360 e SA360 — 1 Network/Partner/Manager Account → Advertisers por marca → Campaigns por objetivo.</p><p><strong>Taxonomia:</strong> definir padrão antes de criar qualquer elemento: <code>[Marca]_[Objetivo]_[Canal]_[Formato]_[Data]</code>. Documentar e exigir aprovação para desvios.</p><p><strong>Permissões:</strong> menor privilégio — read-only (cliente), editor (agência), admin (Daxgo/consultor). Auditar a cada trimestre.</p><p><strong>Documentação:</strong> Floodlight map + runbook de operação com SLAs e processos de aprovação.</p>` },
+  { tag:'gmp', q:'Quando o SA360 se justifica frente ao Google Ads nativo?',
+    body:`<p>SA360 se justifica quando o cliente tem complexidade que o Google Ads nativo não resolve:</p><ul><li><strong>Múltiplas engines:</strong> Google Ads + Microsoft Advertising + Yahoo Japan em uma interface</li><li><strong>Smart Bidding cross-conta:</strong> lances otimizados considerando portfólio inteiro, com Floodlight como sinal de conversão unificado</li><li><strong>Inventory Management:</strong> cria e pausa anúncios automaticamente baseado em feed de produto/estoque</li><li><strong>Exportação para BigQuery via Reporting API</strong> — mais granular que o Google Ads nativo</li></ul><p><strong>Quando NÃO vale:</strong> cliente só com Google Ads, budget pequeno e sem necessidade de automação avançada — custo de licença não se justifica.</p>` },
+  { tag:'gmp', q:'Como o Path to Conversion do CM360 apoia decisões de atribuição?',
+    body:`<p>O P2C mostra a sequência de touchpoints antes da conversão — quais canais aparecem no topo, meio e fundo do funil.</p><p><strong>Como usar:</strong> calcular o Assisted Conversion Rate de cada canal. Se Display aparece muito no meio do funil mas recebe pouco crédito no last-click → está sendo subfinanciado. Base para migrar para DDA.</p><div class="box warn"><div class="box-lbl">⚠️ Limitação</div>O P2C só captura touchpoints de ads servidos via CM360 — não vê search orgânico, social fora do GMP nem email. Mencionar isso demonstra maturidade.</div>` },
+  { tag:'gmp', q:'Você tem certificações Google ativas?',
+    body:`<div class="ans">Tenho certificações em CM360 e Google Ads. Algumas estão com a renovação pendente, mas mantenho o conhecimento técnico atualizado no dia a dia.\n\nSe a posição exige certificações ativas, posso revalidá-las rapidamente — o conteúdo não é novidade para mim, é só formalizar.</div><div class="tip"><strong>💡</strong> Seja direto e não tente esconder. Oferecer-se para revalidar mostra proatividade.</div>` },
+  { tag:'gmp', q:'Como conduzir o onboarding de um cliente migrando para o CM360?',
+    body:`<div class="steps"><div class="step"><div class="sn">1</div><div class="sb"><strong>Discovery (sem. 1–2)</strong> Entender setup atual, fluxo de criativos, conversões rastreadas, publishers, dependências.</div></div><div class="step"><div class="sn">2</div><div class="sb"><strong>Setup técnico (sem. 2–4)</strong> Criar estrutura CM360, implementar Floodlights, configurar Custom Variables. Rodar os dois ad servers em paralelo por 2–4 semanas.</div></div><div class="step"><div class="sn">3</div><div class="sb"><strong>Operação assistida (mês 2)</strong> Trafegar primeiras campanhas junto com o time do cliente — não por eles. Treinar em Report Builder e troubleshooting. Estabelecer SLAs.</div></div><div class="step"><div class="sn">4</div><div class="sb"><strong>Handoff (mês 3+)</strong> Documentar runbook e Floodlight map. Desligar ad server antigo após dados estáveis.</div></div></div>` },
+
+  // ── ANALYTICS ──
+  { tag:'analytics', q:'Quais ferramentas de analytics você domina?',
+    body:`<div class="ans">• Google Analytics 4 — análise de comportamento, eventos, conversões e atribuição\n• Looker Studio — dashboards customizados conectados a CM360, GA4 e Sheets\n• CM360 Reports — relatórios avançados de ad serving, path to conversion, atribuição multicanal\n• Google Tag Manager — implementação e gestão de tags, triggers e variáveis\n• BigQuery — leitura de queries e apoio a times de dados em projetos de mensuração\n\nNas agências era responsável pelos templates de relatório mensais em Looker Studio, integrando CM360 com GA4 para mostrar o funil completo.</div><div class="tip"><strong>💡</strong> Não force BigQuery se não for sólido — "leitura e apoio" é honesto e suficiente para esse papel consultivo.</div>` },
+  { tag:'analytics', q:'Como você abordaria uma discrepância entre os números do CM360 e do GA4?',
+    body:`<div class="ans">Primeiro mapeio as possíveis causas em ordem de probabilidade:\n\n1. Diferença de metodologia (last-click vs. impressão-based no CM360)\n2. Latência de dados — CM360 e GA4 processam em janelas diferentes\n3. Filtros aplicados incorretamente\n4. Problema de implementação de tag (GA4 não disparando em certas páginas)\n5. Bloqueadores de ad ou ITP em browsers\n\nMeu processo: criar um período de comparação controlado, checar os totais brutos, isolar a fonte. Se for técnico, resolvo e comunico proativamente com diagnóstico completo.\n\nNa maioria das vezes é metodologia — a discrepância de 10–20% entre CM360 e GA4 é esperada.</div><div class="tip"><strong>💡</strong> Mostrar que discrepância normal existe é mais maduro do que sugerir que os números têm que bater 100%.</div>` },
+  { tag:'analytics', q:'Como integrar CM360/DV360 com GA4 e BigQuery para visão unificada?',
+    body:`<ul><li><strong>Floodlight ↔ GA4:</strong> link via "Linked Accounts" no CM360 — conversões Floodlight ficam visíveis como eventos no GA4</li><li><strong>DV360 ↔ BigQuery:</strong> Data Transfer exporta impression_v2, click_v2, activity_v2 em nível de usuário</li><li><strong>GA4 ↔ BigQuery:</strong> export nativo, tabela diária events_YYYYMMDD</li><li><strong>Unificação:</strong> tabela mestre no BigQuery cruzando GCLID/DCLID entre as fontes → Looker Studio com métricas unificadas</li></ul>` },
+
+  // ── SITUACIONAL ──
+  { tag:'situacional', q:'Como você recomendaria para um cliente qual plataforma GMP usar?',
+    body:`<div class="ans">A recomendação começa com: qual é o objetivo principal e de onde vem o inventário?\n\n• Mensuração unificada + múltiplos canais → CM360 é o hub central\n• Volume de mídia programática relevante + controle de audiências → DV360 integrado ao CM360\n• Search com alto volume + automação de lances → SA360\n\nNa prática a maioria dos clientes com budget relevante acaba num stack combinado. Meu papel é ajudar a entender qual combinação faz sentido — sem vender complexidade desnecessária.</div><div class="tip"><strong>💡</strong> Para o papel consultivo da Daxgo: demonstre que você pensa em solução, não em produto.</div>` },
+  { tag:'situacional', q:'Você está assumindo uma conta em operação com outra agência. Como faz a migração?',
+    body:`<div class="ans">Começo com um audit completo antes de tocar em qualquer coisa:\n\n1. Mapear toda a estrutura: campanhas, placements, anunciantes, Floodlights configurados\n2. Documentar o que existe vs. o que deveria existir segundo boas práticas GMP\n3. Identificar tags com erro ou que pararam de disparar\n4. Entender o histórico de performance\n5. Alinhar com o cliente as prioridades\n\nA migração de conta GMP tem risco real de perda de dados históricos. Regra: nunca deletar nada nas primeiras semanas — arquivar e documentar, sim. Deletar, só com confirmação do cliente e backup.</div><div class="tip"><strong>💡</strong> Demonstrar cautela na migração é sinal de senioridade. Consultores júnior entram reformando tudo; sênior entram mapeando.</div>` },
+  { tag:'situacional', q:'Um cliente reclama que as conversões caíram 40% no mês. Como você investiga?',
+    body:`<div class="ans">Antes de entrar em pânico com o cliente, faço a triagem técnica:\n\n1. Verifico se há quebra de implementação — Floodlight com erro, tag removida do site\n2. Comparo no DebugView do GA4 e no Tag Assistant se os eventos estão chegando\n3. Olho o histórico de mudanças no GTM — alguma publicação recente?\n4. Verifico se houve mudança no funil do site do cliente\n5. Comparo com o período equivalente do ano anterior para sazonalidade\n\nNa maioria dos casos é um dos três primeiros. Se for técnico, resolvo e comunico com diagnóstico completo.</div><div class="tip"><strong>💡</strong> Mostre que você separa problema técnico de problema de negócio.</div>` },
+  { tag:'situacional', q:'Como você equilibra múltiplos clientes com demandas simultâneas?',
+    body:`<div class="ans">Meu sistema de priorização tem três níveis:\n\n1. Urgente e impactando entrega ativa — atendo imediatamente\n2. Prazo combinado com cliente — bloco na agenda, não deixo acumular\n3. Otimizações e melhorias contínuas — executo em janelas reservadas\n\nUso Asana para gestão de demandas e Sheets para controle de status. Em agência cheguei a ter 6 clientes simultâneos com campanhas em diferentes fases — o que salva é documentação e alinhamento proativo.\n\nQuando a capacidade está no limite, comunico antes do prazo, não depois.</div>` },
+
+  // ── COMPORTAMENTAL ──
+  { tag:'comportamental', q:'Por que você quer trabalhar na Daxgo?',
+    body:`<div class="ans">O que me atrai na Daxgo é o papel de ponte entre o time Google e as agências — exige tanto domínio técnico quanto visão estratégica para recomendar a solução certa para cada cliente.\n\nNas agências sempre fui o ponto de referência técnica para decisões de stack. Só que esse papel era exercido dentro de um único cliente. Na Daxgo isso se torna a função principal, com múltiplos clientes e com o respaldo de parceria certificada Google.\n\nAlém disso, o modelo remoto e o formato consultivo — mais próximo de recomendação e estratégia do que de execução operacional pura — é exatamente o que estou buscando.</div><div class="tip"><strong>💡</strong> Conecte sua experiência passada ao papel específico da Daxgo: ponte Google ↔ agência.</div>` },
+  { tag:'comportamental', q:'Por que você está saindo da StormX?',
+    body:`<div class="ans">Estou em um momento de busca por um novo desafio. Na StormX tive a oportunidade de trabalhar diretamente com a Unilever Brasil em projetos de ad ops e automação, o que foi muito rico. Mas quero dar um passo em direção a um papel com mais profundidade no ecossistema GMP e com exposição a projetos mais consultivos — que é exatamente o que a Daxgo oferece.</div><div class="tip"><strong>💡</strong> Foque no positivo da mudança, não no negativo do atual.</div>` },
+  { tag:'comportamental', q:'Fale de um erro que você cometeu em uma campanha e como resolveu.',
+    body:`<div class="ans">Em um projeto em agência, fiz upload de um criativo com a URL de clique apontando para o ambiente de homologação em vez de produção. A campanha ficou ao vivo por algumas horas antes de alguém notar pela performance abaixo do esperado.\n\nAo identificar, pausei imediatamente os ads afetados, fiz a correção e reativei. Comuniquei ao cliente proativamente com o diagnóstico completo — duração do problema, estimativa de cliques afetados e ação tomada.\n\nA partir disso, adicionei ao meu checklist de QA uma etapa específica de validação de URL em ambiente de produção antes de qualquer go-live.</div><div class="tip"><strong>💡</strong> Toda resposta sobre erro precisa ter: o que aconteceu, o que você fez, e o que mudou depois. Nunca termine no problema.</div>` },
+  { tag:'comportamental', q:'Você se considera mais operacional ou mais estratégico?',
+    body:`<div class="ans">Os dois — e essa combinação é o que torna um especialista GMP realmente útil.\n\nTenho base operacional forte: sei executar trafficking complexo, configurar Floodlights, fazer QA e resolver discrepâncias. Mas o que mais me interessa é usar esses dados para chegar a recomendações que impactam o negócio — otimização de lances, revisão de janela de atribuição, identificação de segmentos que performam acima da média.\n\nO papel consultivo da Daxgo é exatamente essa combinação.</div><div class="tip"><strong>💡</strong> Para o papel da Daxgo — consultivo — mostrar que você consegue fazer os dois é a resposta certa.</div>` },
+
+  // ── SALÁRIO ──
+  { tag:'salario', q:'Qual é a sua pretensão salarial?',
+    body:`<div class="ans">Estou buscando uma faixa próxima de R$ 10.000. Considerando o pacote de benefícios — VA+VR, auxílio home office, saúde e PLR — acredito que o total faz sentido para um papel consultivo com essa profundidade técnica em GMP.\n\nEstou aberto a conversar sobre o pacote completo e o plano de crescimento, e encontrar um ponto que faça sentido para os dois lados.</div><div class="tip"><strong>💡</strong> Com VA 1050 + auxílio home 300 + saúde + PLR, o teto de R$10k na base já é competitivo. Não abra mão fácil — mas se precisar ceder, foque em garantir revisão em 6 meses.</div>` },
+  { tag:'salario', q:'Esse valor está acima do nosso range. O que te faria aceitar menos?',
+    body:`<div class="ans">Entendo. Considerando o pacote completo — VA+VR, auxílio home office, saúde e PLR — consigo avaliar o total. O que precisaria é de clareza sobre o plano de carreira e uma revisão programada em 6 meses com base em resultado.\n\nSe o range de vocês é X, seria possível compartilhá-lo? Prefiro tomar uma decisão com informação real do que negociar às cegas.</div><div class="tip"><strong>💡</strong> Você já sabe o pacote de benefícios deles — use isso. Avaliar o total demonstra maturidade.</div>` },
+
+  // ── CONTEXTO (DOC) ──
+  { tag:'doc', q:'Sobre a vaga e a empresa — Daxgo / Cadastra',
+    body:`<div class="doc-h">Contexto</div><div class="tbl-w"><table><tbody>
+      <tr><td style="width:130px;color:var(--fg3);font-size:12px">Empresa</td><td><strong>Daxgo</strong> — empresa do Grupo Cadastra, parceira certificada e revendedora autorizada Google Marketing Platform</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Cargo</td><td><strong>Consultor GMP</strong></td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Modelo</td><td>Remoto</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Faixa</td><td>R$8.000–10.000 + benefícios (VA+VR R$1.050, home office R$300, saúde, PLR)</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Stack</td><td>CM360, DV360, SA360, GA4, BigQuery, Looker Studio</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Perfil</td><td>Sênior/especialista com experiência consultiva — não apenas operacional</td></tr>
+    </tbody></table></div>
+    <div class="box info"><div class="box-lbl">ℹ️ Contexto Daxgo</div>A Daxgo não é uma agência de mídia — é uma <strong>consultoria/revendedora GMP</strong>. O consultor orienta clientes sobre quais ferramentas usar, como implementar e como extrair valor. O foco é mais estratégico e técnico do que operacional.</div>` },
+
+  { tag:'doc', q:'O que vão avaliar — mapa do JD',
+    body:`<div class="tbl-w"><table><thead><tr><th>Tema</th><th>O que querem ouvir</th><th>Peso</th></tr></thead><tbody>
+      <tr><td><strong>Floodlight + conversões offline</strong></td><td>Mapeamento, auditoria, GCLID no CRM, integração via API/BigQuery</td><td class="green">Alto</td></tr>
+      <tr><td><strong>Governança e estrutura GMP</strong></td><td>Abertura de contas, taxonomia, permissões, migração de ad server</td><td class="green">Alto</td></tr>
+      <tr><td><strong>SA360 consultivo</strong></td><td>Quando e por que usar, smart bidding cross-conta, cross-engine</td><td class="green">Alto</td></tr>
+      <tr><td><strong>CM360 reports e atribuição</strong></td><td>Path to Conversion, deduplicação, Report Builder, modelos de atribuição</td><td class="green">Alto</td></tr>
+      <tr><td><strong>Integração com dados (GA4/BigQuery)</strong></td><td>Data Transfer, exportação GA4, arquitetura de dados unificada</td><td class="med">Médio</td></tr>
+      <tr><td><strong>Perfil consultivo e proativo</strong></td><td>Exemplos reais de recomendações que geraram resultado, ownership</td><td class="med">Médio</td></tr>
+    </tbody></table></div>` },
+
+  { tag:'doc', q:'Seus diferenciais para destacar',
+    body:`<div class="box ok"><div class="box-lbl">✓ Pontos fortes</div><ul style="margin:6px 0 0;padding-left:16px">
+      <li><strong>15+ anos de AdOps operacional</strong> em CM360, DV360, Meta, GA4 — não é teoria, é prática acumulada</li>
+      <li><strong>Experiência em cliente multinacional (Unilever BR)</strong> — ambiente de alta complexidade e múltiplas agências</li>
+      <li><strong>Histórico em agência e lado do cliente</strong> — entende as dores dos dois lados da mesa</li>
+      <li><strong>Capacidade de traduzir técnico para negócio</strong> — não só executa, recomenda e justifica</li>
+    </ul></div>
+    <div class="box warn"><div class="box-lbl">⚠️ Lacunas — preparar respostas honestas</div><ul style="margin:6px 0 0;padding-left:16px">
+      <li><strong>SA360 operacional:</strong> "tenho sólida base conceitual e GMP 360, e estou com as certificações em dia — a curva técnica do SA360 é curta dado o domínio do ecossistema"</li>
+      <li><strong>BigQuery/SQL:</strong> "trabalho com times de BI, sei estruturar a necessidade de dados e interpretar os outputs — não sou o engenheiro, sou o parceiro que sabe o que pedir"</li>
+    </ul></div>` },
+
+  { tag:'doc', q:'Perguntas para fazer ao entrevistador',
+    body:`<p>Escolha 2–3:</p><ul>
+      <li><strong>"Quais são os principais desafios que os clientes Daxgo enfrentam hoje na adoção do GMP — é mais técnico, cultural ou de governança?"</strong><br><span class="muted">→ Mostra que você sabe navegar contextos de mudança.</span></li>
+      <li><strong>"Como é a relação entre o consultor Daxgo e o time do Google? Há acesso a suporte técnico dedicado?"</strong><br><span class="muted">→ Se confirmar canal dedicado, mencione que isso é diferencial frente a agências.</span></li>
+      <li><strong>"Qual é o perfil típico de cliente — agências ou anunciantes diretos? Qual o tamanho médio das contas?"</strong></li>
+      <li><strong>"Como é estruturado o onboarding de um novo consultor — há imersão técnica antes da alocação em clientes?"</strong><br><span class="muted">→ Mostra maturidade e preocupação com ramp-up.</span></li>
+      <li><strong>"Quais são as certificações que a Daxgo espera que o consultor mantenha ativas?"</strong><br><span class="muted">→ Abre espaço para mencionar as que já tem e as que está renovando.</span></li>
+    </ul>` }
+];
+
+/* ── state ── */
+let filt = 'all';
+let srch = '';
+
+function hl(text, q) {
+  if (!q) return text;
+  const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
+  return text.replace(re, '<mark>$1</mark>');
+}
+
+function tagLabel(t) {
+  return {gmp:'GMP',analytics:'Analytics',comportamental:'Comportamental',situacional:'Situacional',salario:'Salário',doc:'Contexto'}[t]||t;
+}
+
+function render() {
+  const q = srch.toLowerCase().trim();
+  const show = ITEMS.filter(it => {
+    const mf = filt === 'all' || it.tag === filt;
+    const mq = !q || it.q.toLowerCase().includes(q) || it.body.toLowerCase().includes(q);
+    return mf && mq;
+  });
+
+  document.getElementById('count').textContent = show.length + ' item' + (show.length !== 1 ? 's' : '');
+
+  const feed = document.getElementById('feed');
+  if (!show.length) { feed.innerHTML = '<div class="empty">Nenhum resultado encontrado.</div>'; return; }
+
+  feed.innerHTML = show.map((it, i) => {
+    const qhl = hl(it.q, q);
+    return `<div class="card" data-i="${i}">
+      <div class="ch">
+        <span class="ctag t-${it.tag}">${tagLabel(it.tag)}</span>
+        <span class="cq">${qhl}</span>
+        <svg class="chev" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+      </div>
+      <div class="cb">${it.body}</div>
+    </div>`;
+  }).join('');
+
+  feed.querySelectorAll('.ch').forEach(h => h.addEventListener('click', () => h.closest('.card').classList.toggle('open')));
+}
+
+/* ── search ── */
+const inp = document.getElementById('q');
+const clrBtn = document.getElementById('clr');
+inp.addEventListener('input', e => {
+  srch = e.target.value;
+  clrBtn.style.display = srch ? '' : 'none';
+  render();
+});
+function clearQ() { inp.value = ''; srch = ''; clrBtn.style.display = 'none'; inp.focus(); render(); }
+
+/* ── filters ── */
+document.querySelectorAll('.fb').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.fb').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  filt = b.dataset.f;
+  render();
+}));
+
+render();
+</script>
