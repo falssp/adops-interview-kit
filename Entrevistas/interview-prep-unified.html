@@ -24,6 +24,9 @@
   --t-sit:        #B45309; --t-sit-bg:   #FFFBEB;
   --t-sal:        #C41E3A; --t-sal-bg:   #FFF1F2;
   --t-doc:        #5B7FA6; --t-doc-bg:   #EEF3F9;
+  --t-cm:         #0070C0; --t-cm-bg:    #E6F2FF;
+  --t-dv:         #1A7A4A; --t-dv-bg:    #E6F7EE;
+  --t-sa:         #7B3FA0; --t-sa-bg:    #F3ECFF;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
@@ -39,6 +42,9 @@
   --t-sit:#FBBF24; --t-sit-bg:#451A03;
   --t-sal:#F87171; --t-sal-bg:#450A0A;
   --t-doc:#7BA7D4; --t-doc-bg:#0F1E30;
+  --t-cm:#4DA8FF;  --t-cm-bg:#0A1E36;
+  --t-dv:#4CD98A;  --t-dv-bg:#0A2318;
+  --t-sa:#C084FC;  --t-sa-bg:#1E0A36;
   color-scheme: dark;
 }}
 :root[data-theme="dark"] {
@@ -54,6 +60,9 @@
   --t-sit:#FBBF24; --t-sit-bg:#451A03;
   --t-sal:#F87171; --t-sal-bg:#450A0A;
   --t-doc:#7BA7D4; --t-doc-bg:#0F1E30;
+  --t-cm:#4DA8FF;  --t-cm-bg:#0A1E36;
+  --t-dv:#4CD98A;  --t-dv-bg:#0A2318;
+  --t-sa:#C084FC;  --t-sa-bg:#1E0A36;
   color-scheme: dark;
 }
 
@@ -61,8 +70,8 @@
 body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.65;background:var(--bg);color:var(--fg);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 
 /* TOP BAR */
-.bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--surf);border-bottom:1px solid var(--bdr);z-index:20;padding:0 20px}
-.bar-inner{max-width:860px;margin-inline:auto;display:flex;align-items:center;gap:12px;height:56px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--surf);border-bottom:1px solid var(--bdr);z-index:20;padding:0 24px}
+.bar-inner{max-width:1400px;margin-inline:auto;display:flex;align-items:center;gap:12px;height:56px}
 .brand{font-size:15px;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
 .pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;padding:2px 7px;border-radius:20px;background:var(--cad-bg);color:var(--cad);margin-left:5px;vertical-align:middle}
 .search-wrap{flex:1;min-width:0;position:relative}
@@ -74,23 +83,29 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.65;ba
 #count{font-size:12px;color:var(--fg3);white-space:nowrap}
 
 /* FILTERS */
-.filters{max-width:860px;margin-inline:auto;padding:10px 20px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr)}
+.filters{max-width:1400px;margin-inline:auto;padding:10px 24px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr)}
 .fb{padding:4px 11px;border-radius:20px;border:1.5px solid var(--bdr);background:transparent;color:var(--fg3);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
 .fb:hover{border-color:var(--acc);color:var(--acc)}
 .fb.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.fb[data-f="cm360"].on{background:var(--t-cm);border-color:var(--t-cm)}
+.fb[data-f="dv360"].on{background:var(--t-dv);border-color:var(--t-dv)}
+.fb[data-f="sa360"].on{background:var(--t-sa);border-color:var(--t-sa)}
 
 /* CARDS */
-.feed{max-width:860px;margin-inline:auto;padding:16px 20px 64px;display:flex;flex-direction:column;gap:10px}
+.feed{max-width:1400px;margin-inline:auto;padding:16px 24px 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:10px;align-items:start}
 .card{background:var(--surf);border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden;transition:border-color .15s}
 .card:hover{border-color:var(--acc)}
 .ch{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;cursor:pointer;user-select:none}
 .ctag{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:4px;margin-top:2px}
-.t-gmp         {background:var(--t-gmp-bg);color:var(--t-gmp)}
-.t-analytics   {background:var(--t-ana-bg);color:var(--t-ana)}
+.t-gmp          {background:var(--t-gmp-bg);color:var(--t-gmp)}
+.t-analytics    {background:var(--t-ana-bg);color:var(--t-ana)}
 .t-comportamental{background:var(--t-com-bg);color:var(--t-com)}
-.t-situacional {background:var(--t-sit-bg);color:var(--t-sit)}
-.t-salario     {background:var(--t-sal-bg);color:var(--t-sal)}
-.t-doc         {background:var(--t-doc-bg);color:var(--t-doc)}
+.t-situacional  {background:var(--t-sit-bg);color:var(--t-sit)}
+.t-salario      {background:var(--t-sal-bg);color:var(--t-sal)}
+.t-doc          {background:var(--t-doc-bg);color:var(--t-doc)}
+.t-cm360        {background:var(--t-cm-bg);color:var(--t-cm)}
+.t-dv360        {background:var(--t-dv-bg);color:var(--t-dv)}
+.t-sa360        {background:var(--t-sa-bg);color:var(--t-sa)}
 .cq{flex:1;min-width:0;font-size:14px;font-weight:600}
 .chev{flex-shrink:0;width:18px;height:18px;color:var(--fg3);transition:transform .2s;margin-top:2px}
 .card.open .chev{transform:rotate(180deg)}
@@ -168,6 +183,9 @@ mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
   <button class="fb" data-f="situacional">Situacional</button>
   <button class="fb" data-f="salario">Salário</button>
   <button class="fb" data-f="doc">Contexto</button>
+  <button class="fb" data-f="cm360">CM360</button>
+  <button class="fb" data-f="dv360">DV360</button>
+  <button class="fb" data-f="sa360">SA360</button>
 </div>
 
 <div class="feed" id="feed"></div>
@@ -264,6 +282,65 @@ const ITEMS = [
       <li><strong>BigQuery/SQL:</strong> "trabalho com times de BI, sei estruturar a necessidade de dados e interpretar os outputs — não sou o engenheiro, sou o parceiro que sabe o que pedir"</li>
     </ul></div>` },
 
+  // ── CM360 ──
+  { tag:'cm360', q:'Qual a estrutura hierárquica do CM360 e como você a organiza para um cliente enterprise?',
+    body:`<p>CM360 segue a hierarquia: <strong>Network → Advertiser → Campaign → Placement → Ad</strong>.</p><ul><li><strong>Network:</strong> nível da agência/revendedora (Daxgo). Um advertiser por marca-cliente.</li><li><strong>Campaign:</strong> espelha objetivo de negócio (Awareness, Consideration, Conversion). Nunca misturar objetivos numa mesma campanha.</li><li><strong>Placement:</strong> unidade de compra de inventário — um por veículo/formato/segmentação. Nomenclatura rigorosa aqui é essencial para os relatórios.</li><li><strong>Ad:</strong> combinação de criativo + Floodlight. Múltiplos ads por placement para A/B.</li></ul><div class="box info"><div class="box-lbl">ℹ️ Boas práticas</div>Naming convention obrigatório desde o Advertiser — qualquer desvio compromete automação de relatórios. Defino e documento antes de criar o primeiro elemento.</div>` },
+
+  { tag:'cm360', q:'Como você configura o Report Builder do CM360 para relatórios de atribuição?',
+    body:`<p>Report Builder permite criar relatórios customizados com dimensões e métricas que a UI padrão não expõe.</p><p><strong>Para atribuição:</strong></p><ul><li>Tipo: <strong>Path to Conversion</strong> — mostra cada touchpoint antes da conversão com seu modelo (last-click, first-click, linear, data-driven)</li><li>Dimensões chave: Channel, Placement, Creative, Floodlight Activity</li><li>Métricas: Impressions, Clicks, Conversions, Revenue, Attribution Credit</li><li>Janela de lookback: alinhada com o ciclo de venda do cliente (7d, 30d, 90d)</li></ul><p><strong>Deduplicação:</strong> configurar o Cross-Channel Deduplication para que uma conversão não seja contada duas vezes quando CM360 e GA4 estão linkados.</p><div class="tip"><strong>💡</strong> Mencione que Path to Conversion revela canais de apoio subfinanciados — argumento forte para migrar de last-click para DDA.</div>` },
+
+  { tag:'cm360', q:'Como funciona o trafficking de criativos no CM360 — quais são os passos críticos?',
+    body:`<div class="steps"><div class="step"><div class="sn">1</div><div class="sb"><strong>Upload de criativos</strong> Verificar specs técnicas (tamanho, duração, extensão). Para HTML5, usar Verificador de Anúncio do CM360 antes do upload.</div></div><div class="step"><div class="sn">2</div><div class="sb"><strong>Associar Floodlights</strong> Vincular o Floodlight Activity correto ao Ad — não ao Placement. Confirmar que é o tipo certo (Counter vs. Sales).</div></div><div class="step"><div class="sn">3</div><div class="sb"><strong>Configurar Click Tracker / Landing Page</strong> URL de destino de produção (não homologação). Parâmetros UTM alinhados com GA4.</div></div><div class="step"><div class="sn">4</div><div class="sb"><strong>Gerar Tags</strong> Exportar tags de veiculação (iframe/JavaScript) para cada Placement. Enviar ao publisher com prazo mínimo de 48h.</div></div><div class="step"><div class="sn">5</div><div class="sb"><strong>QA pré-go-live</strong> Verificar preview do criativo, confirmar Floodlight disparando no Tag Assistant, checar URL de clique, datas de voo.</div></div></div><div class="box warn"><div class="box-lbl">⚠️ Erro mais comum</div>URL de landing page apontando para homologação — adiciono verificação explícita ao checklist depois de vivenciar isso.</div>` },
+
+  { tag:'cm360', q:'O que são Custom Variables (u-variables) no Floodlight e quando usar?',
+    body:`<p>Custom Variables (u1, u2, ... u100) permitem capturar dados adicionais junto com a conversão — dados do CRM, valor de pedido, ID de produto, segmento do usuário.</p><p><strong>Casos de uso:</strong></p><ul><li><code>u1=order_id</code> — para deduplicação de conversões</li><li><code>u2=product_category</code> — segmentar relatórios de conversão por categoria</li><li><code>u3=customer_segment</code> — audiências de remarketing mais precisas</li><li><code>u4=revenue</code> — para Floodlight de venda com valor dinâmico</li></ul><p><strong>Implementação:</strong> via GTM como variável de Data Layer ou via tag direta na página de confirmação. Sempre documentar no Floodlight Map qual u-variable captura o quê.</p><div class="tip"><strong>💡</strong> Mostre que você não só configura — documenta. O Floodlight Map é o artefato que permite auditoria futura.</div>` },
+
+  { tag:'cm360', q:'Como funciona o Google Campaign Manager Studio (Studio) para criativos dinâmicos?',
+    body:`<p>Studio é a plataforma de criação de Dynamic Creative Optimization (DCO) integrada ao CM360.</p><p><strong>Como funciona:</strong></p><ul><li>Designer cria um template HTML5 com variáveis dinâmicas (headline, imagem, CTA, preço)</li><li>Planilha de feed conecta valores a segmentos de audiência ou regras de negócio</li><li>CM360 serve a versão do criativo em tempo real com base no perfil do usuário</li></ul><p><strong>Quando recomendar:</strong></p><ul><li>E-commerce com catálogo grande — criativo dinâmico por produto visto</li><li>Retargeting baseado em comportamento — mensagem diferente por estágio do funil</li><li>Personalização geográfica — cidade ou região no criativo</li></ul><div class="box info"><div class="box-lbl">ℹ️ Pré-requisito</div>Floodlights bem configurados com u-variables capturando o comportamento — é a base do feed de personalização.</div>` },
+
+  // ── DV360 ──
+  { tag:'dv360', q:'Quais tipos de inventário o DV360 acessa e como escolher entre eles?',
+    body:`<p>DV360 acessa quatro tipos de inventário programático:</p><div class="tbl-w"><table><thead><tr><th>Tipo</th><th>Como funciona</th><th>Quando usar</th></tr></thead><tbody>
+      <tr><td><strong>Open Auction</strong></td><td>RTB aberto — todos os DSPs competem</td><td>Escala e volume, menor custo</td></tr>
+      <tr><td><strong>Private Marketplace (PMP)</strong></td><td>Deal negociado com publisher, prioridade sobre open</td><td>Inventário premium com controle de contexto</td></tr>
+      <tr><td><strong>Preferred Deal</strong></td><td>Preço fixo negociado, sem garantia de volume</td><td>Publisher específico, preço controlado</td></tr>
+      <tr><td><strong>Programmatic Guaranteed (PG)</strong></td><td>Volume e preço garantidos — direto digitalizado</td><td>Substituir compra direta com automação de audience</td></tr>
+    </tbody></table></div><div class="tip"><strong>💡</strong> Para Daxgo: PMP e PG são os deals que clientes enterprise mais usam. Mostrar que você sabe negociar deals com publishers e configurá-los no DV360 é diferencial.</div>` },
+
+  { tag:'dv360', q:'Como configurar audiências no DV360 — quais as principais fontes?',
+    body:`<p>DV360 combina múltiplas fontes de audiência:</p><ul><li><strong>Google Audiences:</strong> In-market, Affinity, Demographics — prontas para uso</li><li><strong>Custom Intent:</strong> usuários que pesquisaram termos específicos no Google — ótimo para captura de demanda ativa</li><li><strong>Remarketing via Floodlight:</strong> lista gerada por ação no site (visitou página X, converteu Y) — requer Floodlight configurado no CM360</li><li><strong>Customer Match:</strong> upload de lista de CRM (email hash) — para reativar base ou excluir clientes atuais</li><li><strong>Lookalike:</strong> expansão de audiência similar à lista seed — ampliar alcance com qualidade</li></ul><div class="box warn"><div class="box-lbl">⚠️ Dependência crítica</div>Remarketing via Floodlight só funciona se as tags estiverem disparando corretamente no CM360. Um Floodlight com erro = lista vazia = remarketing sem escala.</div>` },
+
+  { tag:'dv360', q:'O que é Brand Safety no DV360 e como configurar?',
+    body:`<p>Brand Safety é o conjunto de controles que evita que o anúncio apareça em contexto inadequado para a marca.</p><p><strong>Camadas de proteção no DV360:</strong></p><ul><li><strong>Digital Content Labels:</strong> excluir categorias de conteúdo (DL-G a DL-MA) — recomendo sempre excluir DL-MA</li><li><strong>Sensitive Categories:</strong> checklist de temas (violência, conteúdo adulto, desastres) — marcar conforme sensibilidade da marca</li><li><strong>Verification (IAS/DoubleVerify):</strong> integração nativa para viewability, brand safety e fraud prevention em tempo real</li><li><strong>Placement Blocklist:</strong> lista de URLs/apps a excluir — manter atualizada com base em relatórios de placement</li></ul><div class="tip"><strong>💡</strong> Para clientes enterprise: Brand Safety é tema de C-level. Configurar e reportar regularmente é parte do serviço consultivo.</div>` },
+
+  { tag:'dv360', q:'Como DV360 e CM360 se integram — qual a diferença de papéis?',
+    body:`<p><strong>CM360 é o hub de mensuração</strong> — ad server central que rastreia todos os canais (display, video, search, social).</p><p><strong>DV360 é o DSP</strong> — executa a compra programática de mídia.</p><p><strong>Integração:</strong></p><ul><li>DV360 usa Floodlights do CM360 como sinal de conversão — não configura tags próprias</li><li>CM360 recebe impressões e cliques do DV360 via pixel de veiculação</li><li>Relatórios de atribuição cruzada ficam no CM360 — visão unificada de todos os canais</li></ul><div class="box info"><div class="box-lbl">ℹ️ Por que isso importa</div>O cliente que usa DV360 sem CM360 perde a visão cross-channel. Para Daxgo, vender a integração CM360+DV360 é argumento de valor claro.</div>` },
+
+  { tag:'dv360', q:'Como funciona o modelo de lances no DV360 — Smart Bidding vs. manual?',
+    body:`<p><strong>Lances manuais (Fixed CPM):</strong> você define o CPM máximo. Controle total, mas sem otimização automática.</p><p><strong>Smart Bidding no DV360:</strong></p><ul><li><strong>Maximize Conversions:</strong> maximiza conversões dentro do orçamento</li><li><strong>Target CPA:</strong> mantém custo por aquisição próximo do alvo — requer volume mínimo de dados (50+ conv/semana)</li><li><strong>Target ROAS:</strong> maximiza receita pelo alvo de retorno — requer Floodlight de Sales com valor configurado</li><li><strong>Viewability-Based:</strong> otimiza para impressões visíveis — útil para awareness</li></ul><div class="tip"><strong>💡</strong> Smart Bidding no DV360 se alimenta dos Floodlights do CM360. Quanto mais sólida a configuração de tags, melhor o sinal para o algoritmo.</div>` },
+
+  // ── SA360 ──
+  { tag:'sa360', q:'O que são Portfolio Bid Strategies no SA360 e quando recomendar?',
+    body:`<p>Portfolio Bid Strategies permitem otimizar lances de <strong>múltiplas campanhas como um portfólio único</strong>, em vez de otimizar cada campanha isoladamente.</p><p><strong>Por que usar:</strong></p><ul><li>O algoritmo distribui budget onde a margem de conversão é maior — em vez de cada campanha competir internamente</li><li>Sinal de conversão mais robusto: agrega dados de todas as campanhas no portfólio</li><li>Funciona com Floodlight do CM360 como sinal principal — não depende só do Google Ads</li></ul><p><strong>Quando NÃO usar:</strong> campanhas com objetivos muito diferentes (Awareness vs. Conversão) no mesmo portfólio — a otimização conflita.</p><div class="tip"><strong>💡</strong> Recomendar Portfolio Bid Strategy é argumento para SA360: não existe essa funcionalidade no Google Ads nativo com cross-engine.</div>` },
+
+  { tag:'sa360', q:'Como funciona o Inventory Management do SA360?',
+    body:`<p>Inventory Management cria, pausa e ativa anúncios automaticamente com base em um <strong>feed de dados externo</strong> (produto, estoque, preço).</p><p><strong>Fluxo:</strong></p><ul><li>Feed (planilha ou URL) com produtos, preços e disponibilidade</li><li>SA360 lê o feed periodicamente (frequência configurável)</li><li>Quando produto fica indisponível → pausa automaticamente os anúncios daquele produto</li><li>Quando volta ao estoque → reativa</li></ul><p><strong>Caso de uso típico:</strong> varejista com milhares de SKUs — manter 10.000 anúncios de produto ativos/pausos manualmente é inviável.</p><div class="box warn"><div class="box-lbl">⚠️ Requer setup inicial</div>Feed precisa de estrutura definida e o mapeamento de campos levam um tempo de configuração. Não é "ligar e esquecer".</div>` },
+
+  { tag:'sa360', q:'O SA360 suporta múltiplas engines de busca — como isso funciona?',
+    body:`<p>SA360 gerencia campanhas de busca em múltiplos engines numa interface única:</p><ul><li><strong>Google Ads</strong> — integração nativa</li><li><strong>Microsoft Advertising (Bing)</strong> — importação e sincronização de campanhas</li><li><strong>Yahoo Japan</strong> — para mercado japonês</li></ul><p><strong>Funcionalidades cross-engine:</strong></p><ul><li><strong>Reporting unificado:</strong> métricas de todos os engines numa view só</li><li><strong>Portfolio Bid Strategy cross-engine:</strong> otimizar lances considerando Google e Bing juntos</li><li><strong>Floodlight como conversão comum:</strong> mesma tag mede conversões de todos os engines</li></ul><div class="tip"><strong>💡</strong> Para clientes com operação global ou Bing relevante: SA360 é o único jeito de ter bid strategy cross-engine com Floodlight como sinal unificado.</div>` },
+
+  { tag:'sa360', q:'Como o SA360 se integra ao CM360 para mensuração unificada?',
+    body:`<p>A integração SA360 ↔ CM360 é via <strong>Floodlight compartilhado</strong>:</p><ul><li>SA360 usa as Floodlight Activities do CM360 como sinal de conversão — não configura tags de conversão separadas no Google Ads</li><li>CM360 recebe os cliques de search do SA360 e os atribui no Path to Conversion</li><li>Resultado: visão completa do funil — search aparece como canal no relatório de atribuição multicanal do CM360</li></ul><p><strong>Por que isso importa:</strong> sem a integração, search fica em silos — Google Ads mede com last-click, CM360 não vê o search. Com a integração, DDA no CM360 distribui crédito entre display (via DV360) e search (via SA360).</p><div class="box ok"><div class="box-lbl">✓ Argumento de venda</div>Vender a integração CM360 + SA360 + DV360 como stack unificado é o core do papel consultivo Daxgo.</div>` },
+
+  { tag:'sa360', q:'Como funciona o Smart Bidding no SA360 versus Google Ads nativo?',
+    body:`<div class="tbl-w"><table><thead><tr><th>Feature</th><th>Google Ads Nativo</th><th>SA360</th></tr></thead><tbody>
+      <tr><td>Sinal de conversão</td><td>Google Ads Conversion</td><td><strong>Floodlight (CM360)</strong> — mais confiável</td></tr>
+      <tr><td>Portfólio cross-campanha</td><td>Sim, mas só no Google</td><td><strong>Cross-engine</strong> (Google + Bing)</td></tr>
+      <tr><td>Bid ajuste por segmento</td><td>Limitado</td><td>Custom Columns e Bid Adjustments avançados</td></tr>
+      <tr><td>Relatórios de attribution</td><td>Google Ads Attribution</td><td><strong>CM360 Path to Conversion</strong> — visão cross-channel</td></tr>
+      <tr><td>Integração offline</td><td>Offline Conversion Import</td><td>Via Floodlight + CRM (GCLID obrigatório)</td></tr>
+    </tbody></table></div><div class="tip"><strong>💡</strong> O argumento central: o sinal de conversão do SA360 é o Floodlight, que é cross-channel. O Google Ads nativo só "vê" o próprio canal.</div>` },
+
   { tag:'doc', q:'Perguntas para fazer ao entrevistador',
     body:`<p>Escolha 2–3:</p><ul>
       <li><strong>"Quais são os principais desafios que os clientes Daxgo enfrentam hoje na adoção do GMP — é mais técnico, cultural ou de governança?"</strong><br><span class="muted">→ Mostra que você sabe navegar contextos de mudança.</span></li>
@@ -285,7 +362,7 @@ function hl(text, q) {
 }
 
 function tagLabel(t) {
-  return {gmp:'GMP',analytics:'Analytics',comportamental:'Comportamental',situacional:'Situacional',salario:'Salário',doc:'Contexto'}[t]||t;
+  return {gmp:'GMP',analytics:'Analytics',comportamental:'Comportamental',situacional:'Situacional',salario:'Salário',doc:'Contexto',cm360:'CM360',dv360:'DV360',sa360:'SA360'}[t]||t;
 }
 
 function render() {
