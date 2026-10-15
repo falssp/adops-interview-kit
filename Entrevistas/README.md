@@ -2,22 +2,27 @@
 
 Templates reutilizáveis para prep de processos seletivos em AdOps / Marketing Digital.
 
-## Arquivos
+## Arquivo principal
 
-| Arquivo | Formato | Quando usar |
-|---|---|---|
-| `interview-prep-cards.html` | Cards com busca e filtros por categoria | Revisão rápida no dia da entrevista |
-| `interview-prep-doc.html` | Documento estruturado com seções | Estudo aprofundado — mapa do JD, diferenciais, perguntas para fazer |
+| Arquivo | Descrição |
+|---|---|
+| [`interview-prep-unified.html`](interview-prep-unified.html) | **Feed único com busca global e filtros por categoria** — use este para a entrevista |
+| `interview-prep-cards.html` | Legado — substituído pelo unified |
+| `interview-prep-doc.html` | Legado — substituído pelo unified |
+
+## Visualizar online
+
+🔗 **[GitHub Pages — interview-prep-unified.html](https://falssp.github.io/adops-interview-kit/Entrevistas/interview-prep-unified.html)**
 
 ## Como usar para uma nova vaga
 
-1. Copiar o arquivo que fizer mais sentido (ou os dois)
-2. Renomear: `[empresa]-prep-cards.html` / `[empresa]-prep-doc.html`
-3. Substituir perguntas, respostas e contexto da empresa
-4. Publicar como artifact no Claude para acesso fácil
+1. Copiar `interview-prep-unified.html`
+2. Renomear: `[empresa]-prep.html`
+3. Editar o array `ITEMS` no JS — perguntas, respostas e cards de contexto
+4. Publicar como artifact no Claude para acesso fácil durante a entrevista
 
 ## Histórico de uso
 
-| Vaga | Empresa | Data | Arquivo base |
+| Vaga | Empresa | Data | Arquivo |
 |---|---|---|---|
-| Consultor GMP | Daxgo / Cadastra | Out 2026 | Ambos |
+| Consultor GMP | Daxgo / Cadastra | Out 2026 | `interview-prep-unified.html` |
