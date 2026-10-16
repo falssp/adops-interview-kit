@@ -1,0 +1,647 @@
+<title>ALLSTARSIT — Simulado</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+    :root {
+        --bg: #F5F4F1;
+        --surf: #FFFFFF;
+        --bdr: #E4E2DB;
+        --fg: #1A1916;
+        --fg2: #6A6760;
+        --fg3: #A09D97;
+        --acc: #1A52A0;
+        --acc-bg: #EAF1FB;
+        --grn: #167A45;
+        --grn-bg: #EDF7F2;
+        --warn: #B85C00;
+        --warn-bg: #FEF3E8;
+        --tag-bg: #F0EEEA;
+        --t-tech: #1B5CCC;
+        --t-tech-bg: #EBF0FB;
+        --t-sit: #B45309;
+        --t-sit-bg: #FFFBEB;
+        --t-beh: #7C3AED;
+        --t-beh-bg: #F5F3FF;
+        --t-gap: #C41E3A;
+        --t-gap-bg: #FFF1F2;
+        color-scheme: light;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+            --bg: #111110;
+            --surf: #1A1917;
+            --bdr: #2C2B27;
+            --fg: #EDEBE6;
+            --fg2: #A09D97;
+            --fg3: #615E58;
+            --acc: #5B9CF6;
+            --acc-bg: #0D1E38;
+            --grn: #3ECF7A;
+            --grn-bg: #0C2419;
+            --warn: #F49240;
+            --warn-bg: #2A1700;
+            --tag-bg: #222118;
+            --t-tech: #5B8DEF;
+            --t-tech-bg: #1C2540;
+            --t-sit: #FBBF24;
+            --t-sit-bg: #451A03;
+            --t-beh: #A78BFA;
+            --t-beh-bg: #2E1065;
+            --t-gap: #F87171;
+            --t-gap-bg: #450A0A;
+            color-scheme: dark;
+        }
+    }
+
+    :root[data-theme="dark"] {
+        --bg: #111110;
+        --surf: #1A1917;
+        --bdr: #2C2B27;
+        --fg: #EDEBE6;
+        --fg2: #A09D97;
+        --fg3: #615E58;
+        --acc: #5B9CF6;
+        --acc-bg: #0D1E38;
+        --grn: #3ECF7A;
+        --grn-bg: #0C2419;
+        --warn: #F49240;
+        --warn-bg: #2A1700;
+        --tag-bg: #222118;
+        --t-tech: #5B8DEF;
+        --t-tech-bg: #1C2540;
+        --t-sit: #FBBF24;
+        --t-sit-bg: #451A03;
+        --t-beh: #A78BFA;
+        --t-beh-bg: #2E1065;
+        --t-gap: #F87171;
+        --t-gap-bg: #450A0A;
+        color-scheme: dark;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+
+    body {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 14px;
+        line-height: 1.65;
+        background: var(--bg);
+        color: var(--fg);
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    /* TOP BAR */
+    .bar {
+        position: sticky;
+        top: env(safe-area-inset-top, 0px);
+        background: var(--surf);
+        border-bottom: 1px solid var(--bdr);
+        z-index: 20;
+        padding: 0 24px
+    }
+
+    .bar-inner {
+        max-width: 1400px;
+        margin-inline: auto;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 56px
+    }
+
+    .brand {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -.01em;
+        white-space: nowrap
+    }
+
+    .pill {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .05em;
+        padding: 2px 7px;
+        border-radius: 20px;
+        background: var(--acc-bg);
+        color: var(--acc);
+        margin-left: 5px;
+        vertical-align: middle
+    }
+
+    .search-wrap {
+        flex: 1;
+        min-width: 0;
+        position: relative
+    }
+
+    .search-wrap svg {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        color: var(--fg3);
+        pointer-events: none
+    }
+
+    #q {
+        width: 100%;
+        padding: 8px 36px 8px 32px;
+        border: 1.5px solid var(--bdr);
+        border-radius: 8px;
+        background: var(--surf);
+        color: var(--fg);
+        font-family: inherit;
+        font-size: 14px;
+        outline: none;
+        transition: border-color .15s
+    }
+
+    #q:focus { border-color: var(--acc) }
+    #q::placeholder { color: var(--fg3) }
+
+    .clr {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--fg3);
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 1;
+        padding: 2px 4px
+    }
+
+    #count {
+        font-size: 12px;
+        color: var(--fg3);
+        white-space: nowrap
+    }
+
+    /* PROGRESS */
+    .prog-wrap {
+        max-width: 1400px;
+        margin-inline: auto;
+        padding: 8px 24px 6px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid var(--bdr)
+    }
+
+    .prog-track {
+        flex: 1;
+        height: 4px;
+        background: var(--bdr);
+        border-radius: 3px;
+        overflow: hidden
+    }
+
+    .prog-bar {
+        height: 4px;
+        background: var(--acc);
+        border-radius: 3px;
+        width: 0%;
+        transition: width .3s
+    }
+
+    .prog-text {
+        font-size: 12px;
+        color: var(--fg3);
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums
+    }
+
+    /* FILTERS */
+    .filters {
+        max-width: 1400px;
+        margin-inline: auto;
+        padding: 10px 24px;
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        border-bottom: 1px solid var(--bdr)
+    }
+
+    .fb {
+        padding: 4px 11px;
+        border-radius: 20px;
+        border: 1.5px solid var(--bdr);
+        background: transparent;
+        color: var(--fg3);
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all .15s
+    }
+
+    .fb:hover { border-color: var(--acc); color: var(--acc) }
+
+    .fb.on {
+        background: var(--acc);
+        border-color: var(--acc);
+        color: #fff
+    }
+
+    .fb[data-f="tech"].on { background: var(--t-tech); border-color: var(--t-tech) }
+    .fb[data-f="sit"].on  { background: var(--t-sit);  border-color: var(--t-sit)  }
+    .fb[data-f="beh"].on  { background: var(--t-beh);  border-color: var(--t-beh)  }
+    .fb[data-f="gap"].on  { background: var(--t-gap);  border-color: var(--t-gap)  }
+
+    /* CARDS */
+    .feed {
+        max-width: 1400px;
+        margin-inline: auto;
+        padding: 16px 24px 64px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+        gap: 10px;
+        align-items: start
+    }
+
+    .card {
+        background: var(--surf);
+        border: 1.5px solid var(--bdr);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: border-color .15s
+    }
+
+    .card:hover { border-color: var(--acc) }
+
+    .ch {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px 16px;
+        cursor: pointer;
+        user-select: none
+    }
+
+    .ctag {
+        flex-shrink: 0;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .05em;
+        text-transform: uppercase;
+        padding: 3px 7px;
+        border-radius: 4px;
+        margin-top: 2px
+    }
+
+    .t-tech { background: var(--t-tech-bg); color: var(--t-tech) }
+    .t-sit  { background: var(--t-sit-bg);  color: var(--t-sit)  }
+    .t-beh  { background: var(--t-beh-bg);  color: var(--t-beh)  }
+    .t-gap  { background: var(--t-gap-bg);  color: var(--t-gap)  }
+
+    .cq {
+        flex: 1;
+        min-width: 0;
+        font-size: 14px;
+        font-weight: 600
+    }
+
+    .chev {
+        flex-shrink: 0;
+        width: 18px;
+        height: 18px;
+        color: var(--fg3);
+        transition: transform .2s;
+        margin-top: 2px
+    }
+
+    .card.open .chev { transform: rotate(180deg) }
+
+    .cb {
+        display: none;
+        padding: 0 16px 16px;
+        border-top: 1px solid var(--bdr);
+        padding-top: 14px
+    }
+
+    .card.open .cb { display: block }
+
+    .cb p { margin-bottom: 10px; font-size: 14px; max-width: 65ch }
+    .cb p:last-child { margin-bottom: 0 }
+    .cb ul, .cb ol { padding-left: 20px; margin-bottom: 10px }
+    .cb li { margin-bottom: 3px; font-size: 13px }
+    .cb strong { font-weight: 600 }
+
+    .ans {
+        font-size: 14px;
+        line-height: 1.7;
+        white-space: pre-wrap
+    }
+
+    .tip {
+        margin-top: 10px;
+        padding: 8px 12px;
+        background: var(--grn-bg);
+        border-left: 3px solid var(--grn);
+        border-radius: 0 6px 6px 0;
+        font-size: 13px
+    }
+
+    .tip strong { color: var(--grn) }
+
+    .box {
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin: 10px 0;
+        font-size: 13px;
+        line-height: 1.6
+    }
+
+    .box-lbl {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: .07em;
+        text-transform: uppercase;
+        margin-bottom: 5px
+    }
+
+    .box.warn { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn) }
+    .box.info { background: var(--acc-bg);  color: var(--acc);  border: 1px solid var(--acc)  }
+    .box.ok   { background: var(--grn-bg);  color: var(--grn);  border: 1px solid var(--grn)  }
+    .box strong { color: inherit }
+
+    /* section label row */
+    .sec-row {
+        grid-column: 1 / -1;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .09em;
+        text-transform: uppercase;
+        color: var(--fg3);
+        padding: 4px 0 2px;
+        display: flex;
+        align-items: center;
+        gap: 10px
+    }
+
+    .sec-row::after { content: ''; flex: 1; height: 1px; background: var(--bdr) }
+
+    /* empty */
+    .empty {
+        grid-column: 1 / -1;
+        text-align: center;
+        color: var(--fg3);
+        padding: 48px;
+        font-size: 14px
+    }
+
+    /* highlight */
+    mark {
+        background: #FEF08A;
+        color: #1A1916;
+        border-radius: 2px;
+        padding: 0 1px
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) mark { background: #7C6800; color: #EDEBE6 }
+    }
+
+    :root[data-theme="dark"] mark { background: #7C6800; color: #EDEBE6 }
+
+    @media (max-width: 480px) {
+        .bar-inner { gap: 8px }
+        .brand { font-size: 13px }
+        #count { display: none }
+        .feed { grid-template-columns: 1fr }
+    }
+</style>
+
+<div class="bar">
+    <div class="bar-inner">
+        <div class="brand">
+            ALLSTARSIT <span class="pill">Simulado</span>
+        </div>
+        <div class="search-wrap">
+            <svg viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
+            </svg>
+            <input id="q" type="search" placeholder="Buscar pergunta, tema ou palavra-chave…" autocomplete="off">
+            <button class="clr" id="clr" style="display:none" onclick="clearQ()">✕</button>
+        </div>
+        <span id="count"></span>
+    </div>
+</div>
+
+<div class="prog-wrap">
+    <div class="prog-track"><div class="prog-bar" id="prog-bar"></div></div>
+    <span class="prog-text" id="prog-text">0 de 18 abertas</span>
+</div>
+
+<div class="filters" id="filters">
+    <button class="fb on" data-f="all">Todas</button>
+    <button class="fb" data-f="tech">Técnico</button>
+    <button class="fb" data-f="sit">Situacional</button>
+    <button class="fb" data-f="beh">Comportamental</button>
+    <button class="fb" data-f="gap">Gap / Difícil</button>
+</div>
+
+<div class="feed" id="feed"></div>
+
+<script>
+const ITEMS = [
+    // ── TÉCNICAS ──
+    {
+        tag: 'tech',
+        q: 'Walk me through how you set up and launch a programmatic campaign — from brief to live.',
+        body: `<div class="ans">I start by mapping the brief to targeting parameters — audience, geo, device, formats, flight dates, budget. In CM360 I set up the campaign structure first: floodlight tags if needed, then placements per format. In DV360 I create the insertion order, line items with bid strategy, and attach creatives. Before launch I run a QA pass — creative specs, tracking pixels firing, budget caps — and confirm with the team. Then I monitor the first 24–48h for pacing and delivery issues before stepping back to weekly optimization.</div><div class="tip"><strong>💡</strong> Adapte para o lado SSP se ela pressionar: "On the SSP side the lifecycle — setup, QA, pacing, reporting — is the same regardless of which side of the pipe you're on."</div>`
+    },
+    {
+        tag: 'tech',
+        q: 'How do you approach daily pacing — what signals do you look for and what do you adjust first?',
+        body: `<div class="ans">I pull a daily pacing report first thing — budget consumed vs. expected at that point in the flight. If a campaign is under-pacing I check win rate, bid competitiveness, and frequency caps first. If it's over-pacing I tighten the daily budget or add frequency limits. Targeting that's too narrow is often the root cause of under-delivery — I'll broaden audiences or add inventory before touching the bid. I flag anything more than 15% off-pace to the team.</div><div class="tip"><strong>💡</strong> Mostre que você usa dados antes de mudar configurações — ela está buscando alguém analítico.</div>`
+    },
+    {
+        tag: 'tech',
+        q: 'What\'s your process for troubleshooting a discrepancy between your platform numbers and the client\'s ad server?',
+        body: `<div class="ans">I start by isolating the source: is the discrepancy in impressions, clicks, or conversions? For impressions a 10–15% gap is normal between DSP and third-party ad server due to filtering differences — I confirm whether it falls within that range. For clicks and conversions the threshold is tighter. I check pixel firing, tag implementation, and redirect chains. If it's a tracking issue I loop in the tech team. I document all discrepancies with a timestamp and resolution note — clients ask about them in post-campaign reviews.</div><div class="tip"><strong>💡</strong> Mencionar CM360 como seu ad server de referência é um ponto forte — é exatamente o cenário deles trabalhando com agências.</div>`
+    },
+    {
+        tag: 'tech',
+        q: 'How do you use Excel or Google Sheets in your campaign workflow? Give me a concrete example.',
+        body: `<div class="ans">I use Sheets daily. My main use case is a consolidated pacing tracker — I pull raw data from the platform, use pivot tables to aggregate by campaign and line item, and VLOOKUP/ARRAYFORMULA to match against booked budget. I have a conditional formatting layer that flags anything over 15% off-pace in red automatically. For post-campaign reports I build summary tabs with charts for the client deck. I've also built lightweight tools in Google Apps Script that automate repetitive reporting tasks.</div><div class="tip"><strong>💡</strong> O Apps Script é diferencial — poucos AdOps têm isso. Mencione se vier à tona.</div>`
+    },
+    {
+        tag: 'tech',
+        q: 'How do you use AI tools in your day-to-day work?',
+        body: `<div class="ans">I use Claude and ChatGPT regularly — for drafting client-facing emails and summaries quickly, cleaning and transforming data in Sheets, debugging formulas or Apps Script code, and researching platform-specific behavior. I've built reporting automations using AI to generate the first draft of a script, which I then refine. It's cut my reporting turnaround time significantly. I see AI as a force multiplier for the analytical and communication parts of the role, not a replacement for platform judgment.</div><div class="tip"><strong>💡</strong> O JD lista AI tools como must-have explícito — essa pergunta quase certamente vai aparecer. Seja específico com exemplos reais.</div>`
+    },
+    // ── SITUACIONAIS ──
+    {
+        tag: 'sit',
+        q: 'You have 15 campaigns live at the same time. One is severely under-delivering with 3 days left. What do you do?',
+        body: `<div class="ans">First I check why it's under-delivering: targeting issue, creative rejection, bid too low, or inventory problem? If targeting is too narrow I broaden immediately — geo, audience, device. If the bid is uncompetitive I raise it. If there's a creative issue I flag it to the client same day — we need new assets or approval to use alternates. With 3 days left I'd also increase the daily budget cap to accelerate. If full delivery isn't recoverable I notify the client proactively with the revised projection and a make-good proposal. No surprises.</div><div class="tip"><strong>💡</strong> "No surprises" é a mentalidade que eles querem. Comunicação proativa com o cliente é parte do JD explicitamente.</div>`
+    },
+    {
+        tag: 'sit',
+        q: 'A client comes to you with a report showing numbers that don\'t match yours. How do you handle the call?',
+        body: `<div class="ans">I start by validating both data sets before the call — I want to walk in knowing the gap, not discovering it live. On the call I acknowledge the discrepancy first, explain the typical sources (ad server vs. DSP filtering, time zone differences, deduplication), and show them the methodology for each number. If the gap is outside normal range I commit to an investigation and give them a timeline. I never get defensive about the numbers — the goal is to resolve it, not to be right.</div><div class="tip"><strong>💡</strong> Mostrar que você é o dono da resolução, não apenas o mensageiro, é o que diferencia um campaign manager sênior.</div>`
+    },
+    {
+        tag: 'sit',
+        q: 'You\'re asked to prioritize between two campaigns that both need immediate attention. How do you decide?',
+        body: `<div class="ans">I triage by: budget at risk, flight end date, and client visibility. A $100K campaign ending tomorrow beats a $20K campaign with two weeks left. I also factor in whether there's a client call or report due — if a client is watching, that goes first. I'm transparent with the team if both genuinely need a second person's eyes — over-committing on turnaround is worse than asking for help.</div><div class="tip"><strong>💡</strong> O JD menciona 10–20 campanhas simultâneas. Mostrar que você tem um framework de priorização é essencial.</div>`
+    },
+    {
+        tag: 'sit',
+        q: 'You notice a campaign set up before you joined has a structural issue. Do you flag it even if it\'s "working"?',
+        body: `<div class="ans">Yes, always. I flag it to the team with the specific issue and the potential impact — I don't silently fix it without visibility, because that creates confusion later. If fixing mid-flight carries risk (resetting delivery or learning period), I propose fixing it on the next campaign and document the issue. Leaving a silent problem running is a liability.</div><div class="tip"><strong>💡</strong> Fala ao fit cultural que eles descrevem: proativo, colaborativo, detalhe-orientado.</div>`
+    },
+    // ── COMPORTAMENTAIS ──
+    {
+        tag: 'beh',
+        q: 'Tell me about a campaign that didn\'t go as planned. What happened and what did you do?',
+        body: `<div class="ans">"Situação: [campanha real com problema — under-delivery, discrepância, criativo rejeitado]. O que eu fiz: [ação concreta]. O que aprendi: [processo que mudei depois]."</div><div class="tip"><strong>💡</strong> Prepare um exemplo real antes da call. Evite culpar plataforma ou cliente — foque no que você controlou. Estrutura STAR: Situação, Tarefa, Ação, Resultado.</div>`
+    },
+    {
+        tag: 'beh',
+        q: 'How do you stay current with changes in the programmatic ecosystem?',
+        body: `<div class="ans">I follow trade publications — AdExchanger, The Trade Desk blog, Think with Google. I also built my own reference platform for AdOps that I update whenever there are significant changes in platforms I use — it forces me to read release notes. For certifications I keep CM360 and DV360 current. And dealing with real delivery issues teaches you more than articles — you develop a feel for when something is a platform change vs. a setup issue.</div><div class="tip"><strong>💡</strong> Mencionar o AdOps Reference aqui é natural e diferencial — mostra iniciativa e profundidade real.</div>`
+    },
+    {
+        tag: 'beh',
+        q: 'Tell me about a time you had to work with a team in a different time zone. How did you manage it?',
+        body: `<div class="ans">At StormX I coordinate with global clients and suppliers in different time zones regularly. My approach is to over-document: every decision goes in writing, status updates are async-friendly with enough context that someone can pick it up without a sync call. I also anchor my schedule around overlap windows — I'm flexible about shifting my hours when needed for a critical campaign or call. The time zone difference with Israel is manageable from BRT — there's a reasonable overlap in the afternoon.</div><div class="tip"><strong>💡</strong> O JD menciona equipe em Israel e horário US-friendly. Mostrar que você já navega isso é tranquilizador para ela.</div>`
+    },
+    {
+        tag: 'beh',
+        q: 'Why are you looking for a new opportunity?',
+        body: `<div class="ans">I'm looking to take on more ownership of the programmatic side — deeper platform work, closer to delivery mechanics and optimization decisions, rather than coordinating across multiple stakeholders at an agency. This role caught my eye specifically because it's closer to the platform itself, working with a team that's technical, and with real accountability for campaign outcomes.</div><div class="tip"><strong>💡</strong> Não mencione EssenceMediacom nesta fase. Se ela perguntar especificamente: "mutual decision, I was looking for a different direction."</div>`
+    },
+    // ── GAP / DIFÍCIL ──
+    {
+        tag: 'gap',
+        q: 'We work heavily with SSPs — PubMatic, Magnite. Have you managed campaigns from the sell side before?',
+        body: `<div class="ans">My hands-on experience has been on the buy side — DV360, CM360, SA360. But because of that I've worked directly with SSPs as inventory sources, so I understand how deal IDs work, how floor prices affect delivery, and how bid requests flow through the chain. The operational layer — campaign setup, pacing, troubleshooting, client reporting — is what I do daily, and that transfers directly. I'd need a ramp-up period on the specific platform UI, but the programmatic judgment is already there.</div><div class="tip"><strong>💡</strong> Não exagere o conhecimento de SSP — eles vão testar. Mas não minimize o buy-side — é genuinamente relevante para o papel deles.</div>`
+    },
+    {
+        tag: 'gap',
+        q: 'Do you have experience with mobile in-app campaigns — interstitial, rewarded, banner?',
+        body: `<div class="ans">My primary focus has been web and CTV programmatic. Mobile in-app is an area I'd be ramping up on — I'm familiar with the format specs and the ecosystem conceptually, but I haven't managed in-app-specific campaigns hands-on. That said, the campaign lifecycle — setup, pacing, troubleshooting, reporting — is the same regardless of format, and the creative spec differences for in-app are well-documented. I'd be upfront about the ramp-up and get there fast.</div><div class="tip"><strong>💡</strong> Resposta honesta. Não tente improvisar exposure que não tem — eles vão perceber. O que vende aqui é a velocidade de ramp-up, não fingir que já sabe.</div>`
+    },
+    {
+        tag: 'gap',
+        q: 'What do you know about OpenRTB? Have you worked with bid request/response logs?',
+        body: `<div class="ans">I understand OpenRTB conceptually — the auction mechanics, how bid requests carry impression attributes (geo, device, placement), and how DSPs evaluate and respond. I've reviewed bid-level logs in DV360 for troubleshooting delivery issues — win rate, bid clearing price, loss reasons. Working inside an SSP where those logs are the native view would be new territory for me, but the mental model is already there.</div><div class="tip"><strong>💡</strong> O JD lista OpenRTB como nice-to-have, não must-have. Mostrar o modelo mental sem over-claiming é a posição certa.</div>`
+    },
+    {
+        tag: 'gap',
+        q: 'What\'s your English level — you\'d be communicating with US agencies and brands daily.',
+        body: `<div class="ans">Fluent — I work in English regularly, write client-facing reports and emails in English, and have had calls with international clients throughout my career. I'm comfortable on calls, in writing, and in async communication. You can judge for yourself from this call.</div><div class="tip"><strong>💡</strong> Curta e confiante. A call em si é a prova — não precisa elaborar demais.</div>`
+    },
+    {
+        tag: 'gap',
+        q: 'What are your salary expectations?',
+        body: `<div class="ans">I'd love to understand the range you have budgeted before giving a number — that way I can give you a grounded answer rather than throwing something out blind. What's the range for this role?</div><div class="box warn"><div class="box-lbl">⚠️ Se ela insistir em você falar primeiro</div>"I'm targeting somewhere in the $X–Y range depending on the full package — benefits, equity if any, and growth path. But I'm genuinely more focused on the right fit than maximizing the number."<br><br>Ela ainda não falou o range → mantenha aberto, espere ela trazer.</div><div class="tip"><strong>💡</strong> O JD é em USD, empresa israelense, cliente global. Ela provavelmente tem um range definido. Quem fala primeiro perde margem de negociação.</div>`
+    }
+];
+
+const SECTIONS = { tech: 'Técnicas', sit: 'Situacionais', beh: 'Comportamentais', gap: 'Gap / Difícil' };
+const SECTION_ORDER = ['tech', 'sit', 'beh', 'gap'];
+
+let filt = 'all';
+let srch = '';
+
+function hl(text, q) {
+    if (!q) return text;
+    const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return text.replace(re, '<mark>$1</mark>');
+}
+
+function tagLabel(t) {
+    return { tech: 'Técnico', sit: 'Situacional', beh: 'Comportamental', gap: 'Gap' }[t] || t;
+}
+
+function render() {
+    const q = srch.toLowerCase().trim();
+    const feed = document.getElementById('feed');
+
+    const show = ITEMS.filter(it => {
+        const mf = filt === 'all' || it.tag === filt;
+        const mq = !q || it.q.toLowerCase().includes(q) || it.body.toLowerCase().includes(q);
+        return mf && mq;
+    });
+
+    document.getElementById('count').textContent = show.length + ' item' + (show.length !== 1 ? 's' : '');
+
+    if (!show.length) {
+        feed.innerHTML = '<div class="empty">Nenhum resultado encontrado.</div>';
+        updateProgress();
+        return;
+    }
+
+    // Group by section order
+    let html = '';
+    const grouped = {};
+    show.forEach(it => { (grouped[it.tag] = grouped[it.tag] || []).push(it); });
+
+    SECTION_ORDER.forEach(sec => {
+        if (!grouped[sec]) return;
+        if (filt === 'all') html += `<div class="sec-row">${SECTIONS[sec]}</div>`;
+        grouped[sec].forEach((it, i) => {
+            const idx = ITEMS.indexOf(it) + 1;
+            const qhl = hl(it.q, q);
+            html += `<div class="card" data-tag="${it.tag}">
+  <div class="ch">
+    <span class="ctag t-${it.tag}">${tagLabel(it.tag)}</span>
+    <span class="cq">${qhl}</span>
+    <svg class="chev" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+  </div>
+  <div class="cb">${it.body}</div>
+</div>`;
+        });
+    });
+
+    feed.innerHTML = html;
+    feed.querySelectorAll('.ch').forEach(h => h.addEventListener('click', () => {
+        h.closest('.card').classList.toggle('open');
+        updateProgress();
+    }));
+    updateProgress();
+}
+
+function updateProgress() {
+    const cards = document.querySelectorAll('.card');
+    const opened = document.querySelectorAll('.card.open');
+    const total = cards.length;
+    const pct = total ? (opened.length / total) * 100 : 0;
+    document.getElementById('prog-bar').style.width = pct + '%';
+    document.getElementById('prog-text').textContent = opened.length + ' de ' + total + ' abertas';
+}
+
+/* search */
+const inp = document.getElementById('q');
+const clrBtn = document.getElementById('clr');
+inp.addEventListener('input', e => {
+    srch = e.target.value;
+    clrBtn.style.display = srch ? '' : 'none';
+    render();
+});
+function clearQ() {
+    inp.value = '';
+    srch = '';
+    clrBtn.style.display = 'none';
+    inp.focus();
+    render();
+}
+
+/* filters */
+document.querySelectorAll('.fb').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.fb').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    filt = b.dataset.f;
+    render();
+}));
+
+render();
+</script>

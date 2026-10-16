@@ -1,0 +1,395 @@
+<title>Roteiro ALLSTARSIT</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+/* Layout: single-column doc, max 680px, card-per-section */
+:root {
+  --bg: #f8f8f7;
+  --surface: #ffffff;
+  --border: #e4e3e0;
+  --fg: #1a1917;
+  --fg2: #5c5a55;
+  --accent: #1a56db;
+  --accent-bg: #eff4ff;
+  --warn: #b45309;
+  --warn-bg: #fffbeb;
+  --ok: #166534;
+  --ok-bg: #f0fdf4;
+  --gap: #dc2626;
+  --gap-bg: #fff1f0;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #18181a; --surface: #232327; --border: #3a3a3e;
+    --fg: #f0efed; --fg2: #9a9895;
+    --accent: #6090f8; --accent-bg: #1e2a4a;
+    --warn: #f59e0b; --warn-bg: #271f0a;
+    --ok: #4ade80; --ok-bg: #0d2318;
+    --gap: #f87171; --gap-bg: #2d1010;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #18181a; --surface: #232327; --border: #3a3a3e;
+  --fg: #f0efed; --fg2: #9a9895;
+  --accent: #6090f8; --accent-bg: #1e2a4a;
+  --warn: #f59e0b; --warn-bg: #271f0a;
+  --ok: #4ade80; --ok-bg: #0d2318;
+  --gap: #f87171; --gap-bg: #2d1010;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+  padding-block: 32px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+.wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header */
+.header {
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 4px;
+}
+.header-meta {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  text-wrap: balance;
+}
+.header-sub {
+  font-size: 13px;
+  color: var(--fg2);
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 22px;
+}
+.card-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--fg2);
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-title .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; height: 20px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Pitch block */
+.pitch-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--fg);
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  margin: 0;
+  font-style: italic;
+}
+.pitch-note {
+  font-size: 12px;
+  color: var(--fg2);
+  margin-top: 10px;
+}
+
+/* Gap framing */
+.gap-box {
+  background: var(--gap-bg);
+  border: 1px solid color-mix(in srgb, var(--gap) 30%, transparent);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.gap-box .label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gap);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.gap-box p { margin: 0; font-size: 14px; }
+
+.answer-box {
+  background: var(--ok-bg);
+  border: 1px solid color-mix(in srgb, var(--ok) 30%, transparent);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.answer-box .label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ok);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.answer-box p { margin: 0; font-size: 14px; line-height: 1.65; }
+
+/* Checklist */
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.checklist li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.checklist li::before {
+  content: '';
+  width: 16px; height: 16px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.checklist li .badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.badge-ok { background: var(--ok-bg); color: var(--ok); }
+.badge-warn { background: var(--warn-bg); color: var(--warn); }
+.badge-gap { background: var(--gap-bg); color: var(--gap); }
+
+/* Q&A */
+.qa-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.qa {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.qa-q {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+}
+.qa-hint {
+  font-size: 13px;
+  color: var(--fg2);
+  font-style: italic;
+}
+
+/* Timeline strip */
+.timeline {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.tl-item {
+  flex: 1;
+  padding: 10px 14px;
+  border-right: 1px solid var(--border);
+  min-width: 0;
+}
+.tl-item:last-child { border-right: none; }
+.tl-time {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: var(--mono);
+  margin-bottom: 2px;
+}
+.tl-label { font-size: 13px; color: var(--fg2); line-height: 1.3; }
+
+@media (max-width: 520px) {
+  .timeline { flex-direction: column; }
+  .tl-item { border-right: none; border-bottom: 1px solid var(--border); }
+  .tl-item:last-child { border-bottom: none; }
+}
+
+/* Footer note */
+.footnote {
+  font-size: 12px;
+  color: var(--fg2);
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  text-align: center;
+}
+</style>
+
+<div class="wrapper">
+
+  <div class="header">
+    <div class="header-meta">Prep · Segunda-feira · ALLSTARSIT</div>
+    <h1>Roteiro — Intro Call Olena Hetman</h1>
+    <div class="header-sub">Programmatic Campaign Manager · Cliente NDA (ad-tech mobile/gaming) · LATAM Remote</div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">0–2 min</div>
+      <div class="tl-label">Abertura &amp; pitch</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">2–5 min</div>
+      <div class="tl-label">Background + gaps</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">5–10 min</div>
+      <div class="tl-label">Olena fala sobre o projeto</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">10–12 min</div>
+      <div class="tl-label">Suas perguntas</div>
+    </div>
+  </div>
+
+  <!-- 1. Pitch -->
+  <div class="card">
+    <div class="card-title"><span class="num">1</span> Pitch de abertura (~90s)</div>
+    <p class="pitch-text">
+      "I'm an Ad Operations specialist based in São Paulo with 15+ years running programmatic campaigns — primarily on the buy side, managing CM360, DV360, and SA360 for multinational brands. Right now I'm at StormX, a data &amp; tech company, handling campaign operations for clients like Unilever. I'm looking to move into a role closer to the platform side, where I can get deeper into delivery mechanics and optimization — which is exactly what caught my eye about this position."
+    </p>
+    <p class="pitch-note">Tom: confiante, direto. Não mencione salário atual nessa fase.</p>
+  </div>
+
+  <!-- 2. Gap SSP -->
+  <div class="card">
+    <div class="card-title"><span class="num">2</span> Framing do gap SSP (se ela perguntar)</div>
+
+    <div class="gap-box">
+      <div class="label">Possível pergunta dela</div>
+      <p>"Do you have experience managing campaigns from the SSP/publisher side, or with platforms like PubMatic or Magnite?"</p>
+    </div>
+
+    <div class="answer-box">
+      <div class="label">Sua resposta</div>
+      <p>"My background is primarily buy-side — I've spent years managing campaigns in DV360 and CM360, so I understand how DSPs consume inventory, how bid requests flow, and how delivery issues look from the buyer's perspective. I haven't managed campaigns inside a specific SSP directly, but I'm very familiar with how the sell side works conceptually, and I pick up platforms fast — that's a constant in AdOps. The mechanics of campaign setup, pacing, discrepancy troubleshooting, and client communication are the same regardless of which side of the pipe you're on."</p>
+    </div>
+  </div>
+
+  <!-- 3. Match check -->
+  <div class="card">
+    <div class="card-title"><span class="num">3</span> Checklist — must-haves da vaga</div>
+    <ul class="checklist">
+      <li>
+        <span class="badge badge-ok">OK</span>
+        <span>2+ anos programmatic — 15 anos, CM360/DV360/SA360</span>
+      </li>
+      <li>
+        <span class="badge badge-ok">OK</span>
+        <span>Full lifecycle de campanha: setup, monitoramento, otimização, relatórios, pós-campanha</span>
+      </li>
+      <li>
+        <span class="badge badge-ok">OK</span>
+        <span>Excel/Sheets avançado — pivot tables, lookups, análise de dados</span>
+      </li>
+      <li>
+        <span class="badge badge-ok">OK</span>
+        <span>Inglês escrito e falado — fluente</span>
+      </li>
+      <li>
+        <span class="badge badge-ok">OK</span>
+        <span>AI tools no dia a dia — Claude, ChatGPT</span>
+      </li>
+      <li>
+        <span class="badge badge-warn">Parcial</span>
+        <span>DSP <em>e</em> SSP experience — forte no DSP, SSP conceitual. Endereçar proativamente se vier à tona</span>
+      </li>
+      <li>
+        <span class="badge badge-gap">Novo</span>
+        <span>Mobile in-app: banner, video, interstitial, rewarded — confirmar se tem exposure ou se é gap real</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 4. Perguntas -->
+  <div class="card">
+    <div class="card-title"><span class="num">4</span> Suas perguntas pra ela</div>
+    <div class="qa-list">
+      <div class="qa">
+        <div class="qa-q">Can you tell me more about the client and the type of inventory they primarily work with?</div>
+        <div class="qa-hint">Confirma o NDA / mobile in-app / gaming — valida o contexto da vaga</div>
+      </div>
+      <div class="qa">
+        <div class="qa-q">What does the team structure look like — how many campaign managers, and who would I be reporting to day-to-day?</div>
+        <div class="qa-hint">Já sabemos que o manager é em Israel — bom confirmar e mostrar que você leu o JD</div>
+      </div>
+      <div class="qa">
+        <div class="qa-q">What's the expected working schedule — is it aligned with US hours, Israel, or flexible?</div>
+        <div class="qa-hint">JD diz "US-friendly hours" — confirmar impacto prático no seu horário BRT</div>
+      </div>
+      <div class="qa">
+        <div class="qa-q">What are the next steps in the process after this intro call?</div>
+        <div class="qa-hint">Fecha bem a conversa e mostra interesse genuíno</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Não mencionar -->
+  <div class="card">
+    <div class="card-title"><span class="num">5</span> O que não trazer espontaneamente</div>
+    <ul class="checklist">
+      <li><span class="badge badge-warn">Evitar</span><span>Pretensão salarial — esperar ela perguntar</span></li>
+      <li><span class="badge badge-warn">Evitar</span><span>Motivo de saída da EssenceMediacom — "buscando novos desafios" se vier</span></li>
+      <li><span class="badge badge-warn">Evitar</span><span>Que não conhece PubMatic/Magnite profundamente — só abordar se ela perguntar</span></li>
+    </ul>
+  </div>
+
+  <div class="footnote">Gerado com base no JD publicado em 16/10/2026 · allstarsit.com</div>
+
+</div>
