@@ -2,11 +2,17 @@
 
 Prep material por processo seletivo.
 
-## Cadastra
-- [`interview-prep-unified.html`](Cadastra/interview-prep-unified.html) — simulado unificado (cards + busca + filtros)
-- [`interview-prep-cards.html`](Cadastra/interview-prep-cards.html) — versão cards
-- [`interview-prep-doc.html`](Cadastra/interview-prep-doc.html) — versão documento
+## Cadastra (Daxgo) — Out 2026
 
-## ALLSTARSIT
-- [`simulado-allstarsit.html`](ALLSTARSIT/simulado-allstarsit.html) — 18 perguntas: técnicas, situacionais, comportamentais, gap
-- [`roteiro-allstarsit.html`](ALLSTARSIT/roteiro-allstarsit.html) — roteiro da intro call com Olena Hetman
+| Arquivo | Link |
+|---|---|
+| Simulado unificado (principal) | [interview-prep-unified.html](https://falssp.github.io/adops-interview-kit/Entrevistas/Cadastra/interview-prep-unified.html) |
+| Versão cards | [interview-prep-cards.html](https://falssp.github.io/adops-interview-kit/Entrevistas/Cadastra/interview-prep-cards.html) |
+| Versão documento | [interview-prep-doc.html](https://falssp.github.io/adops-interview-kit/Entrevistas/Cadastra/interview-prep-doc.html) |
+
+## ALLSTARSIT — Out 2026
+
+| Arquivo | Link |
+|---|---|
+| Simulado (18 perguntas) | [simulado-allstarsit.html](https://falssp.github.io/adops-interview-kit/Entrevistas/ALLSTARSIT/simulado-allstarsit.html) |
+| Roteiro intro call | [roteiro-allstarsit.html](https://falssp.github.io/adops-interview-kit/Entrevistas/ALLSTARSIT/roteiro-allstarsit.html) |
