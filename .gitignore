@@ -1,0 +1,13 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node (caso use localmente)
+node_modules/
+npm-debug.log*
+
+# Build / temp
+*.tmp
+*.log
+dist/
