@@ -6,9 +6,9 @@ Prep material por processo seletivo.
 
 | Arquivo | Link |
 |---|---|
-| Simulado unificado (principal) | [interview-prep-unified.html](https://falssp.github.io/adops-interview-kit/Entrevistas/Cadastra/interview-prep-unified.html) |
-| Versão cards | [interview-prep-cards.html](https://falssp.github.io/adops-interview-kit/Entrevistas/Cadastra/interview-prep-cards.html) |
-| Versão documento | [interview-prep-doc.html](https://falssp.github.io/adops-interview-kit/Entrevistas/Cadastra/interview-prep-doc.html) |
+| Simulado unificado (principal) | [interview-prep-unified.html](https://falssp.github.io/adops-interview-kit/Entrevistas/GMP-Consultant/interview-prep-unified.html) |
+| Versão cards | [interview-prep-cards.html](https://falssp.github.io/adops-interview-kit/Entrevistas/GMP-Consultant/interview-prep-cards.html) |
+| Versão documento | [interview-prep-doc.html](https://falssp.github.io/adops-interview-kit/Entrevistas/GMP-Consultant/interview-prep-doc.html) |
 
 ## ALLSTARSIT — Out 2026
 
