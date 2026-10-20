@@ -1,0 +1,450 @@
+<title>Deep — Interview Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg:    #F5F6F8;
+  --surf:  #FFFFFF;
+  --fg:    #111318;
+  --fg2:   #4B5060;
+  --fg3:   #8A8F9E;
+  --bdr:   #E2E4EA;
+  --acc:   #2563EB;
+  --acc-bg:#EFF4FF;
+  --grn:   #16A34A;
+  --grn-bg:#F0FDF4;
+  --warn:  #D97706;
+  --warn-bg:#FFFBEB;
+  --tag-bg:#F1F3F7;
+
+  --t-adops:   #0369A1; --t-adops-bg:   #E0F2FE;
+  --t-tech:    #7C3AED; --t-tech-bg:    #EDE9FE;
+  --t-sit:     #BE185D; --t-sit-bg:     #FCE7F3;
+  --t-com:     #065F46; --t-com-bg:     #D1FAE5;
+  --t-sal:     #9A3412; --t-sal-bg:     #FFEDD5;
+  --t-doc:     #1E40AF; --t-doc-bg:     #DBEAFE;
+  --t-ott:     #6B21A8; --t-ott-bg:     #F3E8FF;
+  --t-prog:    #0F766E; --t-prog-bg:    #CCFBF1;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0E1117; --surf:#181C27; --fg:#E8EAF0; --fg2:#9BA3B8; --fg3:#555C74;
+    --bdr:#252A3A; --acc:#3B82F6; --acc-bg:#1E2D50; --grn:#22C55E; --grn-bg:#052E16;
+    --warn:#FCD34D; --warn-bg:#2C1810; --tag-bg:#1C2133;
+    --t-adops:#38BDF8; --t-adops-bg:#082F49;
+    --t-tech:#A78BFA; --t-tech-bg:#2E1065;
+    --t-sit:#F472B6; --t-sit-bg:#500724;
+    --t-com:#34D399; --t-com-bg:#022C22;
+    --t-sal:#FB923C; --t-sal-bg:#431407;
+    --t-doc:#60A5FA; --t-doc-bg:#1E3A8A;
+    --t-ott:#C084FC; --t-ott-bg:#3B0764;
+    --t-prog:#2DD4BF; --t-prog-bg:#042F2E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0E1117; --surf:#181C27; --fg:#E8EAF0; --fg2:#9BA3B8; --fg3:#555C74;
+  --bdr:#252A3A; --acc:#3B82F6; --acc-bg:#1E2D50; --grn:#22C55E; --grn-bg:#052E16;
+  --warn:#FCD34D; --warn-bg:#2C1810; --tag-bg:#1C2133;
+  --t-adops:#38BDF8; --t-adops-bg:#082F49;
+  --t-tech:#A78BFA; --t-tech-bg:#2E1065;
+  --t-sit:#F472B6; --t-sit-bg:#500724;
+  --t-com:#34D399; --t-com-bg:#022C22;
+  --t-sal:#FB923C; --t-sal-bg:#431407;
+  --t-doc:#60A5FA; --t-doc-bg:#1E3A8A;
+  --t-ott:#C084FC; --t-ott-bg:#3B0764;
+  --t-prog:#2DD4BF; --t-prog-bg:#042F2E;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);font-size:14px;line-height:1.6}
+
+/* BAR */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:var(--surf);border-bottom:1px solid var(--bdr);padding:10px 24px}
+.bar-inner{max-width:1400px;margin-inline:auto;display:flex;align-items:center;gap:12px}
+.brand{font-size:15px;font-weight:700;white-space:nowrap;color:var(--fg)}
+.pill{display:inline-block;background:var(--acc);color:#fff;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.search-wrap{flex:1;position:relative;display:flex;align-items:center}
+.search-wrap svg{position:absolute;left:10px;width:16px;height:16px;color:var(--fg3)}
+#q{width:100%;padding:7px 32px 7px 32px;border:1.5px solid var(--bdr);border-radius:8px;background:var(--bg);color:var(--fg);font-family:inherit;font-size:13px;outline:none;transition:border-color .15s}
+#q:focus{border-color:var(--acc)}
+#q::placeholder{color:var(--fg3)}
+.clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--fg3);cursor:pointer;font-size:16px;line-height:1;padding:2px 4px}
+#count{font-size:12px;color:var(--fg3);white-space:nowrap}
+
+/* FILTERS */
+.filters{max-width:1400px;margin-inline:auto;padding:10px 24px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr)}
+.fb{padding:4px 11px;border-radius:20px;border:1.5px solid var(--bdr);background:transparent;color:var(--fg3);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
+.fb:hover{border-color:var(--acc);color:var(--acc)}
+.fb.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.fb[data-f="adops"].on{background:var(--t-adops);border-color:var(--t-adops)}
+.fb[data-f="tech"].on{background:var(--t-tech);border-color:var(--t-tech)}
+.fb[data-f="ott"].on{background:var(--t-ott);border-color:var(--t-ott)}
+.fb[data-f="prog"].on{background:var(--t-prog);border-color:var(--t-prog)}
+
+/* CARDS */
+.feed{max-width:1400px;margin-inline:auto;padding:16px 24px 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:10px;align-items:start}
+.card{background:var(--surf);border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:var(--acc)}
+.ch{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;cursor:pointer;user-select:none}
+.ctag{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:4px;margin-top:2px}
+.t-adops      {background:var(--t-adops-bg);color:var(--t-adops)}
+.t-tech       {background:var(--t-tech-bg);color:var(--t-tech)}
+.t-situacional{background:var(--t-sit-bg);color:var(--t-sit)}
+.t-comportamental{background:var(--t-com-bg);color:var(--t-com)}
+.t-salario    {background:var(--t-sal-bg);color:var(--t-sal)}
+.t-doc        {background:var(--t-doc-bg);color:var(--t-doc)}
+.t-ott        {background:var(--t-ott-bg);color:var(--t-ott)}
+.t-prog       {background:var(--t-prog-bg);color:var(--t-prog)}
+.cq{flex:1;min-width:0;font-size:14px;font-weight:600}
+.chev{flex-shrink:0;width:18px;height:18px;color:var(--fg3);transition:transform .2s;margin-top:2px}
+.card.open .chev{transform:rotate(180deg)}
+.cb{display:none;padding:0 16px 16px;border-top:1px solid var(--bdr);padding-top:14px}
+.card.open .cb{display:block}
+
+/* body content */
+.cb p{margin-bottom:10px;font-size:14px;max-width:65ch}
+.cb p:last-child{margin-bottom:0}
+.cb ul,.cb ol{padding-left:20px;margin-bottom:10px}
+.cb li{margin-bottom:3px;font-size:13px}
+.cb strong{font-weight:600}
+.cb code{font-size:.85em;background:var(--tag-bg);padding:1px 5px;border-radius:3px}
+.cb pre{background:var(--tag-bg);padding:12px;border-radius:6px;overflow-x:auto;font-size:12px;margin-bottom:10px}
+.ans{font-size:14px;line-height:1.7;white-space:pre-wrap}
+.tip{margin-top:10px;padding:8px 12px;background:var(--grn-bg);border-left:3px solid var(--grn);border-radius:0 6px 6px 0;font-size:13px}
+.tip strong{color:var(--grn)}
+.box{border-radius:8px;padding:12px 14px;margin:10px 0;font-size:13px;line-height:1.6}
+.box-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}
+.box.warn{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn)}
+.box.info{background:var(--acc-bg);color:var(--acc);border:1px solid var(--acc)}
+.box.ok{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn)}
+.box.tip2{background:var(--surf);color:var(--fg);border:1px solid var(--bdr)}
+.box strong{color:inherit}
+.steps{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.step{display:flex;gap:10px;align-items:flex-start;font-size:13px}
+.sn{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.sb{flex:1;min-width:0}
+.sb strong{display:block;font-weight:600;margin-bottom:1px}
+.tbl-w{overflow-x:auto;margin-bottom:10px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{background:var(--tag-bg);color:var(--fg2);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:7px 10px;text-align:left;border-bottom:1px solid var(--bdr)}
+td{padding:8px 10px;border-bottom:1px solid var(--bdr);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.green{color:var(--grn);font-weight:600}
+.med{color:var(--warn);font-weight:600}
+.muted{color:var(--fg3)}
+.doc-h{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--bdr)}
+.doc-h3{font-size:14px;font-weight:600;margin:16px 0 8px}
+.empty{text-align:center;color:var(--fg3);padding:48px;font-size:14px}
+mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) mark{background:#7C6800;color:#EDEBE6}}
+:root[data-theme="dark"] mark{background:#7C6800;color:#EDEBE6}
+@media(max-width:480px){.bar-inner{gap:8px}.brand{font-size:13px}#count{display:none}}
+</style>
+
+<div class="bar">
+  <div class="bar-inner">
+    <div class="brand">Deep <span class="pill">Prep</span></div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/></svg>
+      <input id="q" type="search" placeholder="Buscar pergunta, tema ou palavra-chave…" autocomplete="off">
+      <button class="clr" id="clr" style="display:none" onclick="clearQ()">✕</button>
+    </div>
+    <span id="count"></span>
+  </div>
+</div>
+
+<div class="filters" id="filters">
+  <button class="fb on" data-f="all">Todas</button>
+  <button class="fb" data-f="doc">Contexto</button>
+  <button class="fb" data-f="adops">AdOps</button>
+  <button class="fb" data-f="tech">Técnico</button>
+  <button class="fb" data-f="ott">OTT/CTV/DOOH</button>
+  <button class="fb" data-f="prog">Programático</button>
+  <button class="fb" data-f="situacional">Situacional</button>
+  <button class="fb" data-f="comportamental">Comportamental</button>
+  <button class="fb" data-f="salario">Salário</button>
+</div>
+
+<div class="feed" id="feed"></div>
+
+<script>
+const ITEMS = [
+
+  // ── CONTEXTO (DOC) ──
+  { tag:'doc', q:'Sobre a vaga e a empresa — Deep',
+    body:`<div class="doc-h">Contexto</div><div class="tbl-w"><table><tbody>
+      <tr><td style="width:130px;color:var(--fg3);font-size:12px">Empresa</td><td><strong>Deep</strong> — adtech publisher-side, omnichannel (display, native, video, CTV, áudio, DOOH). Plataforma de IA proprietária para otimização de inventário e yield.</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Cargo</td><td><strong>Analista de AdOps</strong> — operação do ciclo completo de ad trafficking para publishers parceiros</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Modelo</td><td>Híbrido / a confirmar</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Stack</td><td>GAM (Google Ad Manager), SSPs, tags de terceiros, pixels de verificação (IAS/DV), formatos rich media, sistemas de pacing/yield</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Diferencial</td><td>Omnichannel real: web, app, CTV/streaming, áudio digital, DOOH</td></tr>
+    </tbody></table></div>
+    <div class="box info"><div class="box-lbl">ℹ️ Publisher-side vs Agency-side</div>Na agência você compra inventário para o anunciante. Na Deep você <strong>opera e entrega</strong> o inventário do publisher. O "cliente" é o publisher parceiro; o produto é o inventário que ele vende. Isso inverte a perspectiva: qualidade de entrega, fill rate e pacing são a sua métrica, não ROAS.</div>
+    <div class="box tip2" style="margin-top:10px"><div class="box-lbl">🔗 Links</div>
+      <ul style="margin:6px 0 0;padding-left:16px;list-style:none">
+        <li style="margin-bottom:6px">📄 <a href="https://falssp.github.io/adops-interview-kit/Entrevistas/Deep/interview-prep-deep.html" target="_blank" style="color:var(--acc)">GitHub Pages — visualizar online</a></li>
+        <li>📁 <a href="https://github.com/falssp/adops-interview-kit/tree/main/Entrevistas/Deep" target="_blank" style="color:var(--acc)">GitHub — repositório / fonte</a></li>
+      </ul>
+    </div>` },
+
+  { tag:'doc', q:'O que vão avaliar — mapa do JD',
+    body:`<div class="tbl-w"><table><thead><tr><th>Tema</th><th>O que querem ouvir</th><th>Peso</th></tr></thead><tbody>
+      <tr><td><strong>Trafficking end-to-end no GAM</strong></td><td>Criação de ordens/line items, prioridades (sponsorship, standard, house), associação de criativos e tags</td><td class="green">Alto</td></tr>
+      <tr><td><strong>Pacing e delivery</strong></td><td>Even pacing, front-loading, como monitorar e ajustar durante o voo</td><td class="green">Alto</td></tr>
+      <tr><td><strong>QA de tags e pixels</strong></td><td>Validação VAST/VPAID, pixels de verificação, troubleshooting de discrepâncias</td><td class="green">Alto</td></tr>
+      <tr><td><strong>Geo-targeting e segmentações</strong></td><td>Targeting por DMA, estado, país; combinações de audiência</td><td class="med">Médio</td></tr>
+      <tr><td><strong>Formatos OTT/CTV/DOOH/Áudio</strong></td><td>Diferenças técnicas, specs, VAST vs VMAP, DAI</td><td class="med">Médio</td></tr>
+      <tr><td><strong>Programático / SSP</strong></td><td>Open auction, PMP, header bidding básico, relação GAM + SSP</td><td class="med">Médio</td></tr>
+      <tr><td><strong>Diferenciar background agência</strong></td><td>Mostrar que entende o lado publisher — fill rate, yield, discrepância buy-side vs sell-side</td><td class="green">Alto</td></tr>
+    </tbody></table></div>` },
+
+  { tag:'doc', q:'Seus diferenciais para a Deep — e como endereçar o gap publisher-side',
+    body:`<div class="box ok"><div class="box-lbl">✓ Pontos fortes</div><ul style="margin:6px 0 0;padding-left:16px">
+      <li><strong>Experiência de agência como vantagem competitiva</strong> — você sabe exatamente o que um comprador precisa: specs de criativo corretas, tags que carregam, pacing que não quebra relatório. Isso é ouro num publisher.</li>
+      <li><strong>Floodlight/tag implementation</strong> em CM360 é diretamente aplicável a verificação de pixels, VAST tags e troubleshooting no lado publisher.</li>
+      <li><strong>Visão omnichannel</strong> — experiência com Display, Video, programático, Meta; a Deep opera justamente esses canais mais CTV/DOOH.</li>
+      <li><strong>Automação e processos</strong> — Apps Script/Sheets para ganho de escala; publishers adoram reduzir trabalho manual em trafficking.</li>
+    </ul></div>
+    <div class="box warn"><div class="box-lbl">⚠️ Gap — preparar resposta honesta</div><ul style="margin:6px 0 0;padding-left:16px">
+      <li><strong>GAM (publisher-side):</strong> "Trabalhei com GAM pelo lado comprador — geração de tags, associação de criativos, troubleshooting com publishers. O lado sell-side é a evolução natural; a lógica de prioridades, line items e targeting é a mesma plataforma."</li>
+      <li><strong>CTV/DOOH nativo:</strong> "Não operei CTV como publisher, mas trabalhei com campanhas de video/OTT em agência e entendo o ecossistema VAST, header bidding e SSPs que essas compras usam."</li>
+    </ul></div>` },
+
+  { tag:'doc', q:'Perguntas para fazer ao entrevistador',
+    body:`<p>Escolha 2–3:</p><ul>
+      <li><strong>"Quais são os publishers parceiros da Deep e qual o mix de formatos mais relevante hoje — mais CTV/DOOH ou display/web?"</strong><br><span class="muted">→ Mostra interesse no negócio e ajuda a focar na conversa.</span></li>
+      <li><strong>"Como é o fluxo de work entre o time de AdOps e os publishers? O analista tem contato direto com eles ou passa por um CS?"</strong><br><span class="muted">→ Entende o escopo real do papel.</span></li>
+      <li><strong>"A plataforma de IA da Deep — qual é o papel do analista em relação a ela? Alimentar dados, configurar regras, ou mais monitoramento?"</strong><br><span class="muted">→ Demonstra curiosidade tecnológica, tema relevante para uma empresa com IA no core.</span></li>
+      <li><strong>"Quais são as maiores fontes de discrepância que vocês enfrentam e como o time de AdOps ajuda a resolver?"</strong><br><span class="muted">→ Mostra maturidade técnica e foco em resultado.</span></li>
+      <li><strong>"Como é estruturado o crescimento de carreira — o analista pode evoluir para um papel de yield management ou de produto?"</strong></li>
+    </ul>` },
+
+  // ── ADOPS ──
+  { tag:'adops', q:'Como funciona o ciclo completo de trafficking no GAM?',
+    body:`<div class="steps"><div class="step"><div class="sn">1</div><div class="sb"><strong>Receber o IO</strong> Verificar specs: formato, tamanho, duração, datas, targeting, orçamento, cap de frequência. Qualquer dúvida resolve antes de criar — mudança depois é custo.</div></div>
+    <div class="step"><div class="sn">2</div><div class="sb"><strong>Criar a Ordem e o Line Item no GAM</strong> Ordem = cliente/campanha. Line Item = voo específico (datas, tipo, prioridade, CPM, metas de impressão). Tipos mais comuns: Sponsorship (share of voice %), Standard (meta de impressão), Network (backfill).</div></div>
+    <div class="step"><div class="sn">3</div><div class="sb"><strong>Configurar targeting</strong> Geo, dispositivo, OS, inventário (ad unit), audiência, day-parting, frequência. No lado publisher: inventário = ad units do site/app/stream do publisher.</div></div>
+    <div class="step"><div class="sn">4</div><div class="sb"><strong>Upload de criativos ou associação de tags</strong> Criativo direto (imagem, HTML5) ou tag de terceiro (CM360, Xandr, VAST). Verificar specs técnicas antes do upload — tamanho, duração, formato.</div></div>
+    <div class="step"><div class="sn">5</div><div class="sb"><strong>QA pré-go-live</strong> Preview no GAM, validar tag com Ad Tag Tester, checar targeting, confirmar datas e metas. Para video: VAST Inspector para verificar VAST antes de subir.</div></div>
+    <div class="step"><div class="sn">6</div><div class="sb"><strong>Monitoramento de pacing</strong> Verificar entrega no dia 1 e acompanhar daily. Ajustar prioridade, CPM ou targeting se o pacing estiver fora.</div></div></div>
+    <div class="tip"><strong>💡</strong> Mencione que no publisher-side a prioridade de entrega segue a hierarquia GAM: Sponsorship > Standard > Network > House. Entender essa hierarquia é crítico para não sobrescrever uma campanha de maior valor.</div>` },
+
+  { tag:'adops', q:'O que é pacing e como você monitora e ajusta uma campanha que está atrasada?',
+    body:`<div class="ans">Pacing é a taxa de entrega de impressões ao longo do voo de uma campanha. Uma campanha bem pacida entrega uniformemente durante o período — nem tudo no começo (front-loading excessivo) nem acumulando para o final (sub-delivery).\n\nTipos de pacing no GAM:\n• Even pacing: divide as impressões pelo número de dias — entrega uniforme\n• Frontloading: prioriza entrega no início do voo — útil para campanhas com risco de sub-delivery\n\nComo monitorar:\n• Comparar impressões entregues vs. esperadas (goal pace) no dashboard do GAM\n• Fórmula simples: (impressões entregues / dias de campanha) ÷ (meta total / dias totais) — resultado esperado ≈ 1,0\n\nAjustes quando está atrasado:\n• Aumentar prioridade do line item\n• Ampliar targeting (remover restrições de geo, dispositivo)\n• Aumentar o bid CPM para competir mais no leilão\n• Verificar se há conflito com campanha de sponsorship consumindo todo o inventário</div>
+    <div class="box warn"><div class="box-lbl">⚠️ Sub-delivery vs. Over-delivery</div>Sub-delivery = publisher não entregou o que vendeu → makegood ou crédito para o anunciante. Over-delivery = entregou mais do que vendeu → custo para o publisher. Ambos são problema; pacing correto protege os dois lados.</div>` },
+
+  { tag:'adops', q:'Como você faz QA de uma tag de terceiro antes de subir para produção?',
+    body:`<div class="steps"><div class="step"><div class="sn">1</div><div class="sb"><strong>Validar o formato da tag</strong> Tag iframe, JavaScript ou VAST? Confirmar que o formato é suportado pelo ad unit do publisher. Tags VAST para video; iframe/JS para display.</div></div>
+    <div class="step"><div class="sn">2</div><div class="sb"><strong>Testar a tag no GAM Ad Tag Tester</strong> Verificar se a tag carrega, retorna criativo, dispara todos os pixels de tracking (impressão, clique, viewability). Validar que não há erros no console.</div></div>
+    <div class="step"><div class="sn">3</div><div class="sb"><strong>Verificar pixels de verificação</strong> IAS, DoubleVerify ou MOAT — confirmar se o pixel está presente na tag. Se ausente, solicitar tag atualizada ao comprador.</div></div>
+    <div class="step"><div class="sn">4</div><div class="sb"><strong>Testar URL de clique</strong> Abre na página correta? Em ambiente de produção (não homologação)? Sem redirect loops?</div></div>
+    <div class="step"><div class="sn">5</div><div class="sb"><strong>Preview em múltiplos dispositivos</strong> Desktop, mobile e — se aplicável — simulação de CTV. Criativo carrega? Tamanho correto? Animação funciona?</div></div></div>
+    <div class="tip"><strong>💡</strong> Para tags VAST: usar o VAST Inspector do IAB (ou Google VAST Inspector) para validar o XML antes de qualquer coisa — muitos erros aparecem ali antes de subir para o GAM.</div>` },
+
+  { tag:'adops', q:'Como funciona geo-targeting no GAM e quais os cuidados?',
+    body:`<div class="ans">No GAM o targeting geográfico pode ser feito por:\n• País, estado/região, cidade, DMA (Designated Market Area — padrão nos EUA)\n• CEP (zip code) — mais granular, útil para varejo local\n• Raio (radius targeting) — para campanhas hiperlocais\n\nComo configurar:\n1. No line item > Targeting > Geography\n2. Selecionar os critérios (incluir ou excluir)\n3. Pode combinar: incluir São Paulo + excluir Campinas\n\nCuidados:\n• Geo targeting reduz inventário disponível — pode causar sub-delivery\n• DMA é padrão americano; para Brasil, usar cidade/estado\n• Verificar com o publisher se o inventário do site/app tem cobertura real na geo solicitada\n• Para mobile: IP-based geo é menos preciso que GPS-based (app com permissão)</div>
+    <div class="tip"><strong>💡</strong> Mencionei DMA porque a Deep é omnichannel e pode ter publishers com inventário nos EUA. Mostrar que conhece o padrão americano (DMA) além do brasileiro demonstra maturidade.</div>` },
+
+  { tag:'adops', q:'O que é discrepância de impressões e como investigar?',
+    body:`<div class="ans">Discrepância é a diferença entre as impressões reportadas pelo ad server do publisher (GAM) e pelo ad server do comprador (ex: CM360). Uma discrepância de 10–15% é considerada normal; acima disso merece investigação.\n\nPrincipais causas:\n1. Bloqueadores de anúncio (ad blockers) — o pixel do comprador não dispara\n2. Diferença de metodologia: GAM conta quando a tag é chamada, CM360 conta quando o criativo carrega\n3. Latência de rede: tag não carrega antes do usuário sair da página\n4. Timeout de criativo: o criativo demorou mais que o timeout configurado\n5. Filtros de tráfego inválido (IVT) — cada plataforma filtra de forma diferente\n\nComo investigar:\n• Comparar o intervalo de datas exatamente igual nos dois sistemas\n• Verificar se há HTTPS/HTTP mismatch na tag (mixed content)\n• Checar se o pixel de impressão está presente e disparando\n• Contato com o comprador: ele pode ter visto a mesma tag em outros publishers</div>
+    <div class="box info"><div class="box-lbl">ℹ️ Buy-side vs Sell-side</div>A discrepância quase sempre "favorece" o sell-side (publisher reporta mais). O comprador paga pelo que seu sistema registra. Esse delta é o campo de negociação num makegood.</div>` },
+
+  { tag:'adops', q:'Como você configura frequência de cap e day-parting no GAM?',
+    body:`<p><strong>Frequency Cap:</strong> limita quantas vezes um usuário vê um determinado ad criativo dentro de um período.</p>
+    <ul><li>No line item: <em>Frequency</em> → definir X impressões por Y horas/dias</li><li>GAM usa cookie/device ID para rastrear — limitação em ambientes sem cookie (CTV, iOS 14.5+)</li><li>Cap muito baixo = sub-delivery. Cap muito alto = experiência ruim para o usuário.</li></ul>
+    <p><strong>Day-parting:</strong> restringe a entrega a horários específicos do dia.</p>
+    <ul><li>No line item: <em>Day and time</em> → selecionar dias da semana e faixas de horário</li><li>Fuso horário: verificar se está configurado no fuso do publisher ou do anunciante</li><li>Day-parting reduz o inventário disponível — aumentar CPM para compensar se pacing cair</li></ul>
+    <div class="tip"><strong>💡</strong> Para CTV: frequency cap por household é mais complexo — depende do ID de dispositivo, não de cookie. Mencionar isso mostra conhecimento do ecossistema.</div>` },
+
+  // ── TÉCNICO ──
+  { tag:'tech', q:'Qual a diferença entre uma tag iframe e uma tag JavaScript?',
+    body:`<div class="tbl-w"><table><thead><tr><th>Feature</th><th>iframe</th><th>JavaScript</th></tr></thead><tbody>
+      <tr><td>Isolamento</td><td>Completo — o criativo roda numa "janela" separada</td><td>Roda no mesmo contexto da página</td></tr>
+      <tr><td>Compatibilidade</td><td>Funciona em quase todo ambiente, incluindo AMP</td><td>Pode ser bloqueado por CSP (Content Security Policy) restritivo</td></tr>
+      <tr><td>Expansão/interatividade</td><td>Limitado — não consegue "sair" do iframe</td><td>Pode expandir, sobrepor conteúdo, interagir com a página</td></tr>
+      <tr><td>Rastreamento</td><td>Mais fácil isolar problemas de terceiros</td><td>Acesso completo ao DOM — mais poderoso para rich media</td></tr>
+      <tr><td>Quando usar</td><td>Default seguro, banner display padrão</td><td>Rich media, expansivos, formatos interativos</td></tr>
+    </tbody></table></div>
+    <div class="tip"><strong>💡</strong> Para publisher: preferir iframe como default — menos risco de conflito com código da página. JavaScript tags só com confirmação de compatibilidade do publisher.</div>` },
+
+  { tag:'tech', q:'O que é VAST e como funciona para tags de video?',
+    body:`<div class="ans">VAST (Video Ad Serving Template) é o protocolo XML que define como um video ad deve ser servido. O player do publisher lê o VAST, faz o request para o ad server e executa o video.\n\nEstrutura básica:\n• &lt;InLine&gt;: contém o criativo (URL do video, duração, clique)\n• &lt;Impression&gt;: pixel que dispara quando o ad inicia\n• &lt;Tracking&gt;: eventos de quartile (25%, 50%, 75%, 100%), clique, pausa, mute\n• &lt;MediaFile&gt;: URL do arquivo de video (MP4, WebM), bitrate e resolução\n\nVAST 2.0 vs 3.0 vs 4.x:\n• VAST 3.0 adiciona skippable ads e ad pods\n• VAST 4.x adiciona suporte a audio-only, OMID para viewability\n\nVPAID (Video Player Ad-Serving Interface): extensão que permite ao criativo interagir com o player. Depreciado — players modernos preferem SIMID ou OMID.</div>
+    <div class="box warn"><div class="box-lbl">⚠️ Wrapper tags</div>VAST wrapper é uma tag que aponta para outra tag VAST (chain de redirects). Publishers devem limitar o número de wrappers — cada redirect adiciona latência e risco de timeout.</div>` },
+
+  { tag:'tech', q:'O que é VMAP e quando usar em vez de VAST?',
+    body:`<p><strong>VAST</strong> define um único ad. <strong>VMAP</strong> (Video Multiple Ads Playlist) define uma sequência de ads ao longo de um conteúdo de video — como um playlist de breaks.</p>
+    <p><strong>VMAP define:</strong></p>
+    <ul>
+      <li>Pre-roll: antes do conteúdo</li>
+      <li>Mid-roll: no meio — posição por tempo (00:30) ou por porcentagem (50%)</li>
+      <li>Post-roll: após o conteúdo</li>
+      <li>Número máximo de ads por break</li>
+    </ul>
+    <p><strong>Quando usar VMAP:</strong> conteúdo de long-form (séries, documentários, streams ao vivo). O publisher entrega um único endpoint VMAP; o player gerencia os breaks.</p>
+    <p><strong>Quando usar VAST:</strong> video curto, pre-roll isolado, banner de video outstream (sem conteúdo longo).</p>
+    <div class="tip"><strong>💡</strong> Para CTV/SVOD: VMAP é o padrão. Um episódio de 30 min pode ter 4–6 ad breaks definidos pelo VMAP — modelo muito próximo da TV linear.</div>` },
+
+  { tag:'tech', q:'O que é header bidding e como impacta o lado publisher?',
+    body:`<div class="ans">Header bidding é uma técnica que permite ao publisher oferecer seu inventário para múltiplos SSPs/DSPs simultaneamente, antes de fazer o request para o ad server (GAM). O resultado: mais demanda competindo pelo mesmo inventário, gerando CPMs mais altos.\n\nFluxo clássico (client-side):\n1. Página carrega → script de header bidding (Prebid.js) roda\n2. Simultâneamente envia bid requests para todos os SSPs configurados\n3. SSPs retornam bids em milissegundos\n4. O Prebid escolhe o maior bid e passa para o GAM como um "key-value pair" (hb_pb=2.50)\n5. GAM decide se o header bid ganha ou se um guaranteed do GAM tem prioridade\n\nImpacto para o publisher:\n• Revenue uplift: mais demanda = CPM mais alto\n• Mais complexidade técnica: múltiplos SSPs para monitorar e resolver conflitos\n• Latência: mais requests antes de renderizar o ad</div>
+    <div class="box info"><div class="box-lbl">ℹ️ Server-side header bidding</div>Move os bids requests do browser para um servidor intermediário — reduz latência, importante para mobile e CTV onde o header bidding client-side é limitado.</div>` },
+
+  { tag:'tech', q:'Como funciona a hierarquia de prioridades no GAM e por que isso importa?',
+    body:`<p>GAM processa line items em cascata de prioridade — o de maior prioridade "ganha" a impressão primeiro:</p>
+    <div class="tbl-w"><table><thead><tr><th>Tipo</th><th>Prioridade</th><th>Caso de uso</th></tr></thead><tbody>
+      <tr><td><strong>Roadblock</strong></td><td>Máxima</td><td>Todos os ad units de uma página para um único anunciante</td></tr>
+      <tr><td><strong>Sponsorship</strong></td><td>Muito alta</td><td>Share of voice garantido (ex: 100% das impressões de homepage)</td></tr>
+      <tr><td><strong>Standard</strong></td><td>Alta</td><td>Volume de impressões garantido, entregue uniformemente</td></tr>
+      <tr><td><strong>Network</strong></td><td>Média</td><td>Preenchimento de inventário residual — CPM dinâmico</td></tr>
+      <tr><td><strong>Bulk</strong></td><td>Baixa</td><td>Grandes volumes sem data de fim, sem prioridade</td></tr>
+      <tr><td><strong>Price Priority</strong></td><td>Baseada em CPM</td><td>Header bidding — line item genérico, ganha pelo CPM</td></tr>
+      <tr><td><strong>House</strong></td><td>Mínima</td><td>Promoções internas do publisher</td></tr>
+    </tbody></table></div>
+    <div class="tip"><strong>💡</strong> Um Sponsorship de 100% de share of voice elimina qualquer programático naquele slot. Se um publisher vende Sponsorship em excesso, prejudica o yield do programático. Gerenciar esse equilíbrio é parte do papel de AdOps.</div>` },
+
+  // ── OTT / CTV / DOOH ──
+  { tag:'ott', q:'Qual a diferença entre OTT, CTV e AVOD — e o que muda para AdOps?',
+    body:`<div class="tbl-w"><table><thead><tr><th>Termo</th><th>Definição</th><th>Exemplos</th></tr></thead><tbody>
+      <tr><td><strong>OTT</strong></td><td>Over-The-Top — conteúdo de video via internet, sem cabo</td><td>Qualquer streaming: Netflix, Globoplay, Pluto</td></tr>
+      <tr><td><strong>CTV</strong></td><td>Connected TV — o dispositivo (smart TV, Fire Stick, Apple TV)</td><td>Samsung SmartTV, Roku, Fire TV</td></tr>
+      <tr><td><strong>AVOD</strong></td><td>Advertising-based VOD — streaming gratuito com anúncios</td><td>Pluto TV, Tubi, versão com anúncios do Peacock</td></tr>
+      <tr><td><strong>FAST</strong></td><td>Free Ad-Supported Streaming TV — canais lineares gratuitos</td><td>Pluto TV channels, Samsung TV Plus</td></tr>
+    </tbody></table></div>
+    <p><strong>O que muda para AdOps:</strong></p>
+    <ul>
+      <li>Sem cookies — identificação por household ID, ACR (Automatic Content Recognition) ou login</li>
+      <li>VAST com VMAP para long-form — gerenciar ad pods e breaks</li>
+      <li>Criativo: MP4 1920x1080, 15s ou 30s, sem interatividade de clique (TV não tem cursor)</li>
+      <li>Viewability não se aplica — replaced por completion rate e quartis de video</li>
+      <li>Brand safety: contexto de conteúdo (IAB category) em vez de URL blocking</li>
+    </ul>` },
+
+  { tag:'ott', q:'Como funciona o DAI (Dynamic Ad Insertion) para streaming?',
+    body:`<div class="ans">DAI substitui o modelo client-side de ad serving por inserção do anúncio diretamente no stream de video, server-side. O player recebe um stream unificado (conteúdo + ads costurados), sem separação clara entre um e outro.\n\nDois modelos:\n• Server-Side Ad Insertion (SSAI): ad server insere o ad no manifest (HLS/DASH) antes de chegar ao player. Resultado: o ad faz parte do stream. Ad blockers não conseguem distinguir conteúdo de ad.\n• Client-Side Ad Insertion (CSAI): o player faz o ad request separado. Mais simples, mais bloqueável.\n\nVantagens do DAI/SSAI para publisher:\n• Ad blocking ineficaz\n• Experiência seamless (sem loading spinner entre conteúdo e ad)\n• Suporte a streams ao vivo (live DAI)\n\nDesafios:\n• Tracking mais complexo (beacons precisam ser relatados corretamente)\n• Discrepâncias maiores com buy-side (o buy-side conta por player load, o SSAI por stream)\n• Custo de infraestrutura maior</div>
+    <div class="tip"><strong>💡</strong> A Deep provavelmente usa SSAI para os publishers CTV que opera. Conhecer o modelo e suas diferenças de tracking é diferencial claro.</div>` },
+
+  { tag:'ott', q:'Como funciona publicidade em DOOH (Digital Out-of-Home) — o que muda para AdOps?',
+    body:`<div class="ans">DOOH são as telas digitais em espaços públicos: painéis em ruas, aeroportos, estações, shoppings.\n\nO que muda em relação ao digital web/app:\n• Sem cookie, sem device ID — audiência é estimada por passagem/tráfego no local\n• "Impressão" = uma exibição do criativo numa tela, num horário específico\n• Criativo: video loop (geralmente 6–15s), sem clique, sem interação\n• Compra: slot de tempo (share of voice % num loop de X segundos), não CPM individual\n• Programático DOOH: real-time bidding por slot, mas baseado em audiência estimada no local (temperatura, tráfego, hora do dia)\n\nDooh programático (pDOOH):\n• SSPs específicos (Vistar Media, Place Exchange, Moving Walls)\n• Deals negociados por períodos (rush hour, fim de semana)\n\nO papel do AdOps:\n• Garantir specs do criativo (resolução da tela, duração do loop, formato de arquivo)\n• Monitorar proof of play (o publisher confirma que a exibição ocorreu)\n• Conciliar entrega entre o sistema do publisher DOOH e o relatório do comprador</div>` },
+
+  { tag:'ott', q:'Quais são as especificações técnicas típicas para criativos CTV e DOOH?',
+    body:`<div class="tbl-w"><table><thead><tr><th>Formato</th><th>Resolução</th><th>Duração</th><th>Arquivo</th><th>Observações</th></tr></thead><tbody>
+      <tr><td><strong>CTV pre-roll</strong></td><td>1920×1080 (16:9)</td><td>15s ou 30s</td><td>MP4 H.264</td><td>Non-skippable padrão; bitrate mínimo 2–5 Mbps</td></tr>
+      <tr><td><strong>CTV mid-roll</strong></td><td>1920×1080</td><td>30s</td><td>MP4 H.264</td><td>VMAP define posição no conteúdo</td></tr>
+      <tr><td><strong>DOOH painel outdoor</strong></td><td>1920×1080 ou resolução customizada</td><td>6–15s loop</td><td>MP4 ou HTML5</td><td>Confirmar resolução da tela com o publisher</td></tr>
+      <tr><td><strong>DOOH indoor (shopping)</strong></td><td>1080×1920 (vertical) ou 1920×1080</td><td>10–30s</td><td>MP4 ou JPEG</td><td>Estático também aceito</td></tr>
+      <tr><td><strong>Áudio digital</strong></td><td>N/A</td><td>15s ou 30s</td><td>MP3 ou WAV 44.1kHz</td><td>Companion banner opcional (300×250)</td></tr>
+    </tbody></table></div>
+    <div class="box warn"><div class="box-lbl">⚠️ Sempre confirmar com o publisher</div>Cada publisher DOOH pode ter resolução customizada. Pedir a spec sheet antes de solicitar criativo ao cliente — não assumir 1080p.</div>` },
+
+  // ── PROGRAMÁTICO ──
+  { tag:'prog', q:'Como funciona um leilão programático open auction?',
+    body:`<div class="ans">Open auction (RTB — Real-Time Bidding) é um leilão que ocorre em milissegundos toda vez que um usuário carrega uma página:\n\n1. Usuário acessa o site do publisher → ad unit dispara um bid request\n2. SSP (Supply-Side Platform) recebe o request com dados do usuário e do contexto\n3. SSP envia o bid request para múltiplos DSPs simultaneamente\n4. DSPs avaliam o request, consultam suas audiências, e retornam um bid (CPM)\n5. SSP seleciona o maior bid e notifica o DSP vencedor\n6. DSP retorna o criativo → GAM serve o ad → impressão contabilizada\n\nTudo isso ocorre em &lt;100ms.\n\nPara o publisher:\n• O price floor define o CPM mínimo — bids abaixo são rejeitados\n• Mais SSPs = mais competição = CPM mais alto\n• Open auction é o piso; PMP/PG pagam mais e têm prioridade</div>
+    <div class="tip"><strong>💡</strong> A Deep provavelmente opera múltiplos SSPs para os publishers. Conhecer o modelo de waterfall vs. header bidding mostra que você entende como o yield é maximizado.</div>` },
+
+  { tag:'prog', q:'O que é um PMP (Private Marketplace) e por que publishers preferem?',
+    body:`<div class="ans">PMP é um leilão programático restrito a um grupo selecionado de compradores, negociado diretamente entre publisher e comprador/agência.\n\nComo funciona:\n1. Publisher e comprador negociam um deal ID e um floor price\n2. O comprador ativa o deal no seu DSP com o Deal ID\n3. Quando uma impressão elegível aparece, o DSP pode dar um bid com o Deal ID\n4. Esse bid concorre (com prioridade) no open auction\n\nVantagens para o publisher:\n• CPM mais alto — compradores pagam premium por inventário garantido e seguro\n• Relacionamento direto — publisher controla quem acessa o inventário\n• Brand safety — publisher valida o anunciante antes de abrir o deal\n• Melhor que open auction: não compete com qualquer comprador anônimo\n\nDesafios:\n• Deal IDs exigem configuração nos dois lados (publisher e DSP)\n• Deal sem entrega (low fill rate) precisa de diagnóstico ativo — problema de configuração ou de targeting no comprador</div>` },
+
+  { tag:'prog', q:'O que é SSP e como o publisher escolhe com quais trabalhar?',
+    body:`<div class="ans">SSP (Supply-Side Platform) é a plataforma que conecta o inventário do publisher à demanda programática (DSPs, ad exchanges).\n\nO que um SSP faz para o publisher:\n• Agrega demanda de múltiplos DSPs (Google, The Trade Desk, DV360, Xandr, etc.)\n• Gerencia leilões em tempo real\n• Controla price floors, deal IDs e regras de brand safety\n• Oferece relatórios de revenue e fill rate\n\nSSPs relevantes por formato:\n• Display/Video web: Google AdX (via GAM), Xandr, Magnite, PubMatic, Index Exchange\n• CTV/Video OTT: Magnite (ex-Rubicon), SpotX, FreeWheel\n• DOOH: Vistar Media, Place Exchange\n• Áudio: AdsWizz, TargetSpot, Triton Digital\n\nComo escolher:\n• Volume de demanda que o SSP traz (fill rate e CPM histórico)\n• Qualidade do inventário dos compradores (brand safety)\n• Suporte a header bidding (Prebid.js integration)\n• Taxas/fee structure — a maioria cobra 15–20% sobre o revenue</div>` },
+
+  // ── SITUACIONAL ──
+  { tag:'situacional', q:'Uma campanha está em 50% do goal a 2 dias do fim. O que você faz?',
+    body:`<div class="ans">Não entro em pânico — faço o diagnóstico antes de qualquer ação:\n\n1. Confirmar o tipo de line item: Standard (meta de impressões) vs. Sponsorship (share of voice)? Se for Sponsorship, o problema é diferente.\n\n2. Verificar o pacing histórico: a campanha sempre esteve lenta, ou caiu recentemente?\n\n3. Identificar gargalos:\n• Targeting muito restrito está limitando o inventário disponível?\n• Outra campanha de prioridade maior está "roubando" as impressões?\n• Criativos com erro de carregamento?\n• Price floor acima dos bids disponíveis (para programático)?\n\n4. Ajustes:\n• Aumentar prioridade do line item\n• Ampliar targeting (remover restricão de dispositivo, ampliar geo)\n• Ativar frontloading (livrar-se de impressões mais agressivamente nos 2 dias)\n• Negociar com o publisher adicionar mais inventário elegível\n\n5. Comunicar: notificar o cliente (interno ou externo) com diagnóstico e ação tomada — não deixar ele descobrir no relatório final.</div>
+    <div class="tip"><strong>💡</strong> A Deep opera publisher-side: o "cliente" é o publisher e o "anunciante" é quem comprou o inventário. Sub-delivery pode gerar makegood — impacto direto no revenue do publisher.</div>` },
+
+  { tag:'situacional', q:'Um publisher reporta que as impressões no relatório dele não batem com o GAM. Como você resolve?',
+    body:`<div class="ans">Discrepância entre publisher e GAM é frequente — o importante é investigar sistematicamente:\n\n1. Confirmar o intervalo de datas e o fuso horário nos dois sistemas — a maioria das discrepâncias é isso.\n\n2. Verificar qual métrica o publisher está comparando: ele está olhando requests (bid requests) ou impressões entregues? São métricas muito diferentes.\n\n3. Verificar se o publisher usa uma tag de terceiro (passback) ou está trafegando diretamente no GAM. Tags de passback adicionam uma camada de redirect que pode introduzir discrepâncias.\n\n4. Verificar se há discrepância de tráfego inválido: o GAM pode filtrar IVT que o sistema do publisher não filtra.\n\n5. Aceitar um delta de ≤10–15% como normal e documentar a metodologia.\n\nSe a discrepância for maior:\n• Pedir o log de impressões do publisher para comparar com o log do GAM\n• Verificar se a tag no site do publisher está corretamente implementada</div>` },
+
+  { tag:'situacional', q:'Como você priorizaria múltiplas demandas simultâneas de diferentes publishers?',
+    body:`<div class="ans">Meu sistema de priorização considera dois eixos: urgência e impacto financeiro.\n\n1. Campanhas ao vivo com erro de entrega (tag quebrada, sub-delivery crítico) — atender imediatamente. Cada hora é revenue perdido para o publisher.\n\n2. Campanhas prestes a ir ao ar (próximas 24–48h) — QA e trafficking antes do prazo, sem exceção.\n\n3. Otimizações e reports — agenda regular, não urgência.\n\nFerramentas: uso de planilha de controle de status por publisher e linha de campanha, com alertas de prazo. Em agência gerenciei 6 clientes com campanhas em diferentes fases — o que salva é processo documentado e alinhamento proativo.\n\nQuando a capacidade está no limite, comunico antes do prazo — nunca depois.</div>` },
+
+  // ── COMPORTAMENTAL ──
+  { tag:'comportamental', q:'Por que você quer trabalhar na Deep?',
+    body:`<div class="ans">O que me atrai na Deep é a combinação de omnichannel real — web, CTV, áudio, DOOH — com o uso de IA para otimização de inventário. Isso é exatamente onde o AdOps está indo.\n\nVenho do lado da agência, onde comprava inventário de publishers como os que a Deep serve. Essa perspectiva é valiosa: sei o que uma campanha bem operada significa para o comprador — specs corretas, pacing sólido, tags que carregam, discrepância dentro do aceitável. Agora quero estar do lado de quem entrega esse inventário.\n\nA Deep me dá a chance de aprofundar no ecossistema programático e omnichannel num ambiente que usa tecnologia para escalar o que hoje é feito manualmente em muitos publishers. Isso é onde quero construir os próximos anos da minha carreira.</div>
+    <div class="tip"><strong>💡</strong> Conecte explicitamente: "sei o que o comprador espera → quero garantir isso do lado publisher". É o melhor argumento para quem vem de agência.</div>` },
+
+  { tag:'comportamental', q:'Como você descreveria sua experiência com operações publisher-side?',
+    body:`<div class="ans">Minha experiência direta é no lado comprador — gestão de campanhas em CM360, DV360, Meta, com tráfego intenso de tags para publishers.\n\nO que isso me deu na prática:\n• Profunda familiaridade com tags de terceiro: sei o que pode dar errado, sei como fazer QA\n• Entendimento do que o comprador exige: specs corretas, pacing honesto, discrepância documentada\n• Experiência real de trabalho com publishers: recebi specs, reportei discrepâncias, escalei problemas de implementação\n\nA transição para o publisher-side é natural. O GAM sell-side usa os mesmos conceitos que conheço do buy-side — prioridades, line items, targeting, Floodlight. A lógica é espelhada.\n\nNa Deep vou internalizar a visão do publisher com rapidez porque já enxergo o que o outro lado da mesa quer.</div>
+    <div class="tip"><strong>💡</strong> Não tente fingir experiência publisher que não tem. Seja honesto e use o "perspectiva de comprador" como diferencial — é genuinamente valioso.</div>` },
+
+  { tag:'comportamental', q:'Fale de uma situação em que uma campanha deu errado e o que você fez.',
+    body:`<div class="ans">Em um projeto em agência, fiz upload de uma tag com a URL de clique apontando para o ambiente de homologação em vez de produção. A campanha ficou ao vivo por algumas horas antes de alguém notar pela performance abaixo do esperado.\n\nAo identificar, pausei imediatamente os ads afetados, fiz a correção e reativei. Comuniquei ao cliente proativamente com diagnóstico completo: duração do problema, estimativa de cliques afetados, ação tomada.\n\nA partir disso, adicionei ao meu checklist de QA uma etapa específica de validação de URL em produção antes de qualquer go-live. O checklist ainda existe e ainda pego esse tipo de erro em revisões de outros.\n\nO que aprendi: o erro ocorreu porque confiei na tag sem validar. Processo e checklist não são burocracia — são o que impede que um erro individual vire um problema de cliente.</div>` },
+
+  // ── SALÁRIO ──
+  { tag:'salario', q:'Qual é a sua pretensão salarial?',
+    body:`<div class="ans">Estou buscando uma faixa entre R$ 7.000 e R$ 9.000, considerando o pacote completo de benefícios.\n\nPara um papel de Analista de AdOps com esse escopo omnichannel — CTV, DOOH, áudio, programático — e considerando que venho com expertise de agência que acelera a curva de aprendizado do lado publisher, acredito que esse range reflete o valor que entrego desde o início.\n\nEstou aberto a conversar sobre o pacote completo e entender o plano de crescimento na Deep.</div>
+    <div class="box info"><div class="box-lbl">ℹ️ Ancoragem</div>Deixa o recrutador ancorar primeiro se possível — dê uma faixa só se ele insistir. Se der a faixa, fique no meio-topo dela e mencione que está aberto a conversar pelo total do pacote.</div>
+    <div class="tip"><strong>💡</strong> Se ele perguntar por que saiu da faixa da vaga: "A vaga indica faixa de analista — estou trazendo senioridade de operações complexas em CM360/DV360 que entrega ROI mais rápido para o time."</div>` },
+
+  { tag:'salario', q:'O range da vaga é abaixo do que você pediu. O que te faria aceitar?',
+    body:`<div class="ans">Entendo que o range de analista tem seu nível. O que precisaria avaliar é o pacote completo — benefícios, possibilidade de crescimento e uma revisão programada em 6 meses com base em resultado.\n\nSe o teto é X, seria possível compartilhar o range completo? Prefiro tomar uma decisão com informação real do que negociar às cegas.\n\nAlém disso, se há diferença na faixa, o que me seguraria seria clareza sobre o caminho de crescimento — quando um analista pode ser promovido a sênior, e quais são as métricas para isso.</div>` }
+
+];
+
+/* ── state ── */
+let filt = 'all';
+let srch = '';
+
+function hl(text, q) {
+  if (!q) return text;
+  const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
+  return text.replace(re, '<mark>$1</mark>');
+}
+
+function tagLabel(t) {
+  return {
+    adops:'AdOps', tech:'Técnico', situacional:'Situacional',
+    comportamental:'Comportamental', salario:'Salário', doc:'Contexto',
+    ott:'OTT/CTV', prog:'Programático'
+  }[t] || t;
+}
+
+function render() {
+  const q = srch.toLowerCase().trim();
+  const show = ITEMS.filter(it => {
+    const mf = filt === 'all' || it.tag === filt;
+    const mq = !q || it.q.toLowerCase().includes(q) || it.body.toLowerCase().includes(q);
+    return mf && mq;
+  });
+
+  document.getElementById('count').textContent = show.length + ' item' + (show.length !== 1 ? 's' : '');
+
+  const feed = document.getElementById('feed');
+  if (!show.length) { feed.innerHTML = '<div class="empty">Nenhum resultado encontrado.</div>'; return; }
+
+  feed.innerHTML = show.map((it, i) => {
+    const qhl = hl(it.q, q);
+    return `<div class="card" data-i="${i}">
+      <div class="ch">
+        <span class="ctag t-${it.tag}">${tagLabel(it.tag)}</span>
+        <span class="cq">${qhl}</span>
+        <svg class="chev" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+      </div>
+      <div class="cb">${it.body}</div>
+    </div>`;
+  }).join('');
+
+  feed.querySelectorAll('.ch').forEach(h => h.addEventListener('click', () => h.closest('.card').classList.toggle('open')));
+}
+
+/* ── search ── */
+const inp = document.getElementById('q');
+const clrBtn = document.getElementById('clr');
+inp.addEventListener('input', e => {
+  srch = e.target.value;
+  clrBtn.style.display = srch ? '' : 'none';
+  render();
+});
+function clearQ() { inp.value = ''; srch = ''; clrBtn.style.display = 'none'; inp.focus(); render(); }
+
+/* ── filters ── */
+document.querySelectorAll('.fb').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.fb').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  filt = b.dataset.f;
+  render();
+}));
+
+render();
+</script>
