@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Deep — Interview Prep</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -60,7 +65,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);font-size:14px;line-height:1.6}
 
-/* BAR */
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:var(--surf);border-bottom:1px solid var(--bdr);padding:10px 24px}
 .bar-inner{max-width:1400px;margin-inline:auto;display:flex;align-items:center;gap:12px}
 .brand{font-size:15px;font-weight:700;white-space:nowrap;color:var(--fg)}
@@ -73,7 +77,6 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--f
 .clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--fg3);cursor:pointer;font-size:16px;line-height:1;padding:2px 4px}
 #count{font-size:12px;color:var(--fg3);white-space:nowrap}
 
-/* FILTERS */
 .filters{max-width:1400px;margin-inline:auto;padding:10px 24px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr)}
 .fb{padding:4px 11px;border-radius:20px;border:1.5px solid var(--bdr);background:transparent;color:var(--fg3);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
 .fb:hover{border-color:var(--acc);color:var(--acc)}
@@ -83,7 +86,6 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--f
 .fb[data-f="ott"].on{background:var(--t-ott);border-color:var(--t-ott)}
 .fb[data-f="prog"].on{background:var(--t-prog);border-color:var(--t-prog)}
 
-/* CARDS */
 .feed{max-width:1400px;margin-inline:auto;padding:16px 24px 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:10px;align-items:start}
 .card{background:var(--surf);border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden;transition:border-color .15s}
 .card:hover{border-color:var(--acc)}
@@ -103,7 +105,6 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--f
 .cb{display:none;padding:0 16px 16px;border-top:1px solid var(--bdr);padding-top:14px}
 .card.open .cb{display:block}
 
-/* body content */
 .cb p{margin-bottom:10px;font-size:14px;max-width:65ch}
 .cb p:last-child{margin-bottom:0}
 .cb ul,.cb ol{padding-left:20px;margin-bottom:10px}
@@ -142,6 +143,8 @@ mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
 :root[data-theme="dark"] mark{background:#7C6800;color:#EDEBE6}
 @media(max-width:480px){.bar-inner{gap:8px}.brand{font-size:13px}#count{display:none}}
 </style>
+</head>
+<body>
 
 <div class="bar">
   <div class="bar-inner">
@@ -173,13 +176,23 @@ mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
 const ITEMS = [
 
   // ── CONTEXTO (DOC) ──
+  { tag:'doc', q:'Checklist pré-call — o que fazer antes de entrar na reunião',
+    body:`<div class="steps">
+    <div class="step"><div class="sn">1</div><div class="sb"><strong>LinkedIn do Diogo Telles</strong> Ver cargo atual, histórico, há quanto tempo está na Deep — dá contexto sobre quem vai te entrevistar (founder, head de ops, RH?).</div></div>
+    <div class="step"><div class="sn">2</div><div class="sb"><strong>LinkedIn da Deep</strong> Quantos funcionários? Quem mais está no time? Postagens recentes dão pista de clientes, formatos e momento da empresa.</div></div>
+    <div class="step"><div class="sn">3</div><div class="sb"><strong>Site thedeep.com.br</strong> Já verificado — pouca info. Mas confirmar se tem página de cases ou clientes visíveis.</div></div>
+    <div class="step"><div class="sn">4</div><div class="sb"><strong>Testar o link da call com antecedência</strong> Zoom, Meet ou Teams? Áudio e câmera funcionando? Fundo arrumado.</div></div>
+    <div class="step"><div class="sn">5</div><div class="sb"><strong>Ter à mão</strong> Currículo aberto, este kit numa aba, bloco de notas para anotar o que ele disser sobre o pacote.</div></div>
+    </div>
+    <div class="tip"><strong>💡</strong> Se o Diogo for founder ou sócio, adapte o tom: ele quer saber se você vai entregar, não se conhece todos os acrônimos. Foque em histórias de resultado, não em vocabulário técnico.</div>` },
+
   { tag:'doc', q:'Sobre a vaga e a empresa — Deep',
     body:`<div class="doc-h">Contexto</div><div class="tbl-w"><table><tbody>
       <tr><td style="width:130px;color:var(--fg3);font-size:12px">Empresa</td><td><strong>Deep</strong> — adtech publisher-side, omnichannel (display, native, video, CTV, áudio, DOOH). Plataforma de IA proprietária para otimização de inventário e yield.</td></tr>
       <tr><td style="color:var(--fg3);font-size:12px">Cargo</td><td><strong>Analista de AdOps</strong> — operação do ciclo completo de ad trafficking para publishers parceiros</td></tr>
-      <tr><td style="color:var(--fg3);font-size:12px">Modelo</td><td>Híbrido / a confirmar</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Modelo</td><td>Híbrido / a confirmar — <strong>perguntar sobre remoto na call</strong></td></tr>
       <tr><td style="color:var(--fg3);font-size:12px">Stack</td><td>GAM (Google Ad Manager), SSPs, tags de terceiros, pixels de verificação (IAS/DV), formatos rich media, sistemas de pacing/yield</td></tr>
-      <tr><td style="color:var(--fg3);font-size:12px">Diferencial</td><td>Omnichannel real: web, app, CTV/streaming, áudio digital, DOOH</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Diferencial</td><td>Omnichannel real: web, app, CTV/streaming, áudio digital, DOOH + IA proprietária para otimização</td></tr>
     </tbody></table></div>
     <div class="box info"><div class="box-lbl">ℹ️ Publisher-side vs Agency-side</div>Na agência você compra inventário para o anunciante. Na Deep você <strong>opera e entrega</strong> o inventário do publisher. O "cliente" é o publisher parceiro; o produto é o inventário que ele vende. Isso inverte a perspectiva: qualidade de entrega, fill rate e pacing são a sua métrica, não ROAS.</div>
     <div class="box tip2" style="margin-top:10px"><div class="box-lbl">🔗 Links</div>
@@ -194,9 +207,11 @@ const ITEMS = [
       <tr><td><strong>Trafficking end-to-end no GAM</strong></td><td>Criação de ordens/line items, prioridades (sponsorship, standard, house), associação de criativos e tags</td><td class="green">Alto</td></tr>
       <tr><td><strong>Pacing e delivery</strong></td><td>Even pacing, front-loading, como monitorar e ajustar durante o voo</td><td class="green">Alto</td></tr>
       <tr><td><strong>QA de tags e pixels</strong></td><td>Validação VAST/VPAID, pixels de verificação, troubleshooting de discrepâncias</td><td class="green">Alto</td></tr>
+      <tr><td><strong>Brand safety e blocklists</strong></td><td>Categorias IAB, listas de publishers bloqueados, ferramentas de verificação (IAS, DV)</td><td class="green">Alto</td></tr>
       <tr><td><strong>Geo-targeting e segmentações</strong></td><td>Targeting por DMA, estado, país; combinações de audiência</td><td class="med">Médio</td></tr>
       <tr><td><strong>Formatos OTT/CTV/DOOH/Áudio</strong></td><td>Diferenças técnicas, specs, VAST vs VMAP, DAI</td><td class="med">Médio</td></tr>
       <tr><td><strong>Programático / SSP</strong></td><td>Open auction, PMP, header bidding básico, relação GAM + SSP</td><td class="med">Médio</td></tr>
+      <tr><td><strong>IA aplicada a AdOps</strong></td><td>Como usa IA no dia a dia para escalar operação e automação respeitando processos do cliente</td><td class="med">Médio</td></tr>
       <tr><td><strong>Diferenciar background agência</strong></td><td>Mostrar que entende o lado publisher — fill rate, yield, discrepância buy-side vs sell-side</td><td class="green">Alto</td></tr>
     </tbody></table></div>` },
 
@@ -205,6 +220,7 @@ const ITEMS = [
       <li><strong>Experiência de agência como vantagem competitiva</strong> — você sabe exatamente o que um comprador precisa: specs de criativo corretas, tags que carregam, pacing que não quebra relatório. Isso é ouro num publisher.</li>
       <li><strong>Floodlight/tag implementation</strong> em CM360 é diretamente aplicável a verificação de pixels, VAST tags e troubleshooting no lado publisher.</li>
       <li><strong>Visão omnichannel</strong> — experiência com Display, Video, programático, Meta; a Deep opera justamente esses canais mais CTV/DOOH.</li>
+      <li><strong>IA aplicada ao dia a dia</strong> — construção de ferramentas com IA para escalar operação respeitando os processos do cliente; aderente ao posicionamento AI ad tech da Deep.</li>
       <li><strong>Automação e processos</strong> — Apps Script/Sheets para ganho de escala; publishers adoram reduzir trabalho manual em trafficking.</li>
     </ul></div>
     <div class="box warn"><div class="box-lbl">⚠️ Gap — preparar resposta honesta</div><ul style="margin:6px 0 0;padding-left:16px">
@@ -214,6 +230,7 @@ const ITEMS = [
 
   { tag:'doc', q:'Perguntas para fazer ao entrevistador',
     body:`<p>Escolha 2–3:</p><ul>
+      <li><strong>"Como vocês trabalham hoje — remoto, híbrido, presencial? Como é o dia a dia do time de AdOps?"</strong><br><span class="muted">→ Pergunta neutra de contexto. Você ouve, avalia no conjunto do pacote, negocia se precisar.</span></li>
       <li><strong>"Quais são os publishers parceiros da Deep e qual o mix de formatos mais relevante hoje — mais CTV/DOOH ou display/web?"</strong><br><span class="muted">→ Mostra interesse no negócio e ajuda a focar na conversa.</span></li>
       <li><strong>"Como é o fluxo de work entre o time de AdOps e os publishers? O analista tem contato direto com eles ou passa por um CS?"</strong><br><span class="muted">→ Entende o escopo real do papel.</span></li>
       <li><strong>"A plataforma de IA da Deep — qual é o papel do analista em relação a ela? Alimentar dados, configurar regras, ou mais monitoramento?"</strong><br><span class="muted">→ Demonstra curiosidade tecnológica, tema relevante para uma empresa com IA no core.</span></li>
@@ -242,6 +259,10 @@ const ITEMS = [
     <div class="step"><div class="sn">4</div><div class="sb"><strong>Testar URL de clique</strong> Abre na página correta? Em ambiente de produção (não homologação)? Sem redirect loops?</div></div>
     <div class="step"><div class="sn">5</div><div class="sb"><strong>Preview em múltiplos dispositivos</strong> Desktop, mobile e — se aplicável — simulação de CTV. Criativo carrega? Tamanho correto? Animação funciona?</div></div></div>
     <div class="tip"><strong>💡</strong> Para tags VAST: usar o VAST Inspector do IAB (ou Google VAST Inspector) para validar o XML antes de qualquer coisa — muitos erros aparecem ali antes de subir para o GAM.</div>` },
+
+  { tag:'adops', q:'Como funciona brand safety e gestão de blocklists no lado publisher?',
+    body:`<div class="ans">Brand safety é o conjunto de práticas que garante que os anúncios aparecem em contextos seguros e adequados para a marca — e no lado publisher, é responsabilidade do AdOps garantir que o inventário ofertado está limpo.\n\nCategorias de risco (padrão IAB):\n• Conteúdo adulto / sensível\n• Violência, armas, terrorismo\n• Discurso de ódio\n• Downloads ilegais, pirataria\n• Fake news / desinformação\n\nFerramentas de verificação:\n• IAS (Integral Ad Science) — pixel na tag que classifica o contexto em tempo real\n• DoubleVerify (DV) — idem, usado por grandes compradores\n• MOAT — focado em viewability + brand safety\n\nBlocklists no lado publisher:\n• Lista de domínios/apps onde o publisher <strong>não quer</strong> que certos anunciantes apareçam\n• Lista de anunciantes/categorias que o publisher bloqueia do seu inventário\n• Configuradas no GAM: Company > Ad blocking > URL blocklists\n\nGestão prática:\n• Revisar blocklists periodicamente — listas antigas podem bloquear receita desnecessariamente\n• Quando um comprador pede brand safety: confirmar que a ferramenta de verificação deles está na tag e que o inventário do publisher passa nos critérios\n• Discrepâncias grandes de entrega muitas vezes são causadas por brand safety — o criativo é chamado mas bloqueado antes de servir</div>
+    <div class="tip"><strong>💡</strong> Mencione que brand safety no CTV é diferente: sem URL para bloquear, a proteção é por categoria de conteúdo IAB do canal/stream. Conhecer essa diferença demonstra maturidade no ecossistema omnichannel.</div>` },
 
   { tag:'adops', q:'Como funciona geo-targeting no GAM e quais os cuidados?',
     body:`<div class="ans">No GAM o targeting geográfico pode ser feito por:\n• País, estado/região, cidade, DMA (Designated Market Area — padrão nos EUA)\n• CEP (zip code) — mais granular, útil para varejo local\n• Raio (radius targeting) — para campanhas hiperlocais\n\nComo configurar:\n1. No line item > Targeting > Geography\n2. Selecionar os critérios (incluir ou excluir)\n3. Pode combinar: incluir São Paulo + excluir Campinas\n\nCuidados:\n• Geo targeting reduz inventário disponível — pode causar sub-delivery\n• DMA é padrão americano; para Brasil, usar cidade/estado\n• Verificar com o publisher se o inventário do site/app tem cobertura real na geo solicitada\n• Para mobile: IP-based geo é menos preciso que GPS-based (app com permissão)</div>
@@ -287,7 +308,7 @@ const ITEMS = [
     <div class="tip"><strong>💡</strong> Para CTV/SVOD: VMAP é o padrão. Um episódio de 30 min pode ter 4–6 ad breaks definidos pelo VMAP — modelo muito próximo da TV linear.</div>` },
 
   { tag:'tech', q:'O que é header bidding e como impacta o lado publisher?',
-    body:`<div class="ans">Header bidding é uma técnica que permite ao publisher oferecer seu inventário para múltiplos SSPs/DSPs simultaneamente, antes de fazer o request para o ad server (GAM). O resultado: mais demanda competindo pelo mesmo inventário, gerando CPMs mais altos.\n\nFluxo clássico (client-side):\n1. Página carrega → script de header bidding (Prebid.js) roda\n2. Simultâneamente envia bid requests para todos os SSPs configurados\n3. SSPs retornam bids em milissegundos\n4. O Prebid escolhe o maior bid e passa para o GAM como um "key-value pair" (hb_pb=2.50)\n5. GAM decide se o header bid ganha ou se um guaranteed do GAM tem prioridade\n\nImpacto para o publisher:\n• Revenue uplift: mais demanda = CPM mais alto\n• Mais complexidade técnica: múltiplos SSPs para monitorar e resolver conflitos\n• Latência: mais requests antes de renderizar o ad</div>
+    body:`<div class="ans">Header bidding é uma técnica que permite ao publisher oferecer seu inventário para múltiplos SSPs/DSPs simultaneamente, antes de fazer o request para o ad server (GAM). O resultado: mais demanda competindo pelo mesmo inventário, gerando CPMs mais altos.\n\nFluxo clássico (client-side):\n1. Página carrega → script de header bidding (Prebid.js) roda\n2. Simultâneamente envia bid requests para todos os SSPs configurados\n3. SSPs retornam bids em milissegundos\n4. O Prebid escolhe o maior bid e passa para o GAM como um "key-value pair" (hb_pb=2.50)\n5. GAM decide se o header bid ganha ou se um guaranteed do GAM tem prioridade\n\nTudo isso ocorre em &lt;100ms.\n\nPara o publisher:\n• Revenue uplift: mais demanda = CPM mais alto\n• Mais complexidade técnica: múltiplos SSPs para monitorar e resolver conflitos\n• Latência: mais requests antes de renderizar o ad</div>
     <div class="box info"><div class="box-lbl">ℹ️ Server-side header bidding</div>Move os bids requests do browser para um servidor intermediário — reduz latência, importante para mobile e CTV onde o header bidding client-side é limitado.</div>` },
 
   { tag:'tech', q:'Como funciona a hierarquia de prioridades no GAM e por que isso importa?',
@@ -368,17 +389,25 @@ const ITEMS = [
     body:`<div class="ans">Minha experiência direta é no lado comprador — gestão de campanhas em CM360, DV360, Meta, com tráfego intenso de tags para publishers.\n\nO que isso me deu na prática:\n• Profunda familiaridade com tags de terceiro: sei o que pode dar errado, sei como fazer QA\n• Entendimento do que o comprador exige: specs corretas, pacing honesto, discrepância documentada\n• Experiência real de trabalho com publishers: recebi specs, reportei discrepâncias, escalei problemas de implementação\n\nA transição para o publisher-side é natural. O GAM sell-side usa os mesmos conceitos que conheço do buy-side — prioridades, line items, targeting, Floodlight. A lógica é espelhada.\n\nNa Deep vou internalizar a visão do publisher com rapidez porque já enxergo o que o outro lado da mesa quer.</div>
     <div class="tip"><strong>💡</strong> Não tente fingir experiência publisher que não tem. Seja honesto e use o "perspectiva de comprador" como diferencial — é genuinamente valioso.</div>` },
 
+  { tag:'comportamental', q:'Como você usa IA no seu trabalho de AdOps?',
+    body:`<div class="ans">Tenho construído ferramentas com IA para escalar a operação — sempre respeitando os processos e estruturas dos clientes, não substituindo o julgamento humano.\n\nExemplos práticos:\n• Gerador de nomes de campanha e IDs estruturados via Apps Script + IA — garante nomenclatura padronizada em escala, sem erro de digitação e respeitando a taxonomia definida pelo cliente\n• Automação de checklists de QA — IA ajuda a identificar padrões de erro em tags e specs antes do go-live\n• Apoio na redação de specs e comunicação com publishers — geração de briefings padronizados que reduzem idas e vindas\n\nO princípio que uso: IA entra onde a tarefa é repetitiva e suscetível a erro humano. Decisão de pacing, prioridade ou negociação de makegood continua sendo julgamento humano com contexto.\n\nNuma empresa que se posiciona como AI ad tech, essa mentalidade — IA como ferramenta de escala operacional, não de substituição — se encaixa bem com o que eu entendo do modelo da Deep.</div>
+    <div class="tip"><strong>💡</strong> Não cite ferramentas genéricas ("uso o ChatGPT"). Fale de aplicações concretas que você construiu ou adaptou para AdOps. É muito mais impactante.</div>` },
+
   { tag:'comportamental', q:'Fale de uma situação em que uma campanha deu errado e o que você fez.',
     body:`<div class="ans">Em um projeto em agência, fiz upload de uma tag com a URL de clique apontando para o ambiente de homologação em vez de produção. A campanha ficou ao vivo por algumas horas antes de alguém notar pela performance abaixo do esperado.\n\nAo identificar, pausei imediatamente os ads afetados, fiz a correção e reativei. Comuniquei ao cliente proativamente com diagnóstico completo: duração do problema, estimativa de cliques afetados, ação tomada.\n\nA partir disso, adicionei ao meu checklist de QA uma etapa específica de validação de URL em produção antes de qualquer go-live. O checklist ainda existe e ainda pego esse tipo de erro em revisões de outros.\n\nO que aprendi: o erro ocorreu porque confiei na tag sem validar. Processo e checklist não são burocracia — são o que impede que um erro individual vire um problema de cliente.</div>` },
 
   // ── SALÁRIO ──
   { tag:'salario', q:'Qual é a sua pretensão salarial?',
-    body:`<div class="ans">Estou buscando uma faixa entre R$ 7.000 e R$ 9.000, considerando o pacote completo de benefícios.\n\nPara um papel de Analista de AdOps com esse escopo omnichannel — CTV, DOOH, áudio, programático — e considerando que venho com expertise de agência que acelera a curva de aprendizado do lado publisher, acredito que esse range reflete o valor que entrego desde o início.\n\nEstou aberto a conversar sobre o pacote completo e entender o plano de crescimento na Deep.</div>
-    <div class="box info"><div class="box-lbl">ℹ️ Ancoragem</div>Deixa o recrutador ancorar primeiro se possível — dê uma faixa só se ele insistir. Se der a faixa, fique no meio-topo dela e mencione que está aberto a conversar pelo total do pacote.</div>
-    <div class="tip"><strong>💡</strong> Se ele perguntar por que saiu da faixa da vaga: "A vaga indica faixa de analista — estou trazendo senioridade de operações complexas em CM360/DV360 que entrega ROI mais rápido para o time."</div>` },
+    body:`<div class="ans">Estou buscando em torno de R$ 12.000, considerando o pacote completo de benefícios.\n\nCom 15 anos de AdOps — operações complexas em CM360, DV360, programático omnichannel, interface direta com agências e anunciantes — acredito que esse valor reflete o que entrego, especialmente numa operação que exige o escopo descrito na vaga: CTV, DOOH, áudio, brand safety, pacing em múltiplos canais.\n\nEstou aberto a conversar sobre o pacote completo. Se o budget tiver um teto diferente, o que equilibraria seria clareza sobre revisão salarial em 6 meses com meta definida e PLR.</div>
+    <div class="box info"><div class="box-lbl">ℹ️ Ancoragem</div>Deixa o recrutador ancorar primeiro se possível. Se ele insistir, dê o número — R$ 12k — com confiança e sem desculpas. A justificativa (15 anos + escopo omnichannel) vem junto, não depois.</div>
+    <div class="tip"><strong>💡</strong> Se ele pressionar para baixar: "Entendo o range de analista. O que me faria avaliar um valor abaixo seria entender melhor o pacote completo — saúde, PLR e plano de revisão. Consigo decidir com essas informações."</div>` },
 
   { tag:'salario', q:'O range da vaga é abaixo do que você pediu. O que te faria aceitar?',
-    body:`<div class="ans">Entendo que o range de analista tem seu nível. O que precisaria avaliar é o pacote completo — benefícios, possibilidade de crescimento e uma revisão programada em 6 meses com base em resultado.\n\nSe o teto é X, seria possível compartilhar o range completo? Prefiro tomar uma decisão com informação real do que negociar às cegas.\n\nAlém disso, se há diferença na faixa, o que me seguraria seria clareza sobre o caminho de crescimento — quando um analista pode ser promovido a sênior, e quais são as métricas para isso.</div>` }
+    body:`<div class="ans">Entendo que o range de analista tem seu nível. O que precisaria avaliar é o pacote completo.\n\nPrioritário pra mim:\n• Saúde sem coparticipação (individual + dependentes)\n• PLR ou bônus semestral com meta clara\n• Revisão salarial em 6 meses com critérios definidos — não vaga\n• Modelo 100% remoto — é uma condição importante no momento\n\nSe o teto for X, com esses itens no pacote, consigo fazer o cálculo. Prefiro tomar uma decisão com informação real do que negociar às cegas.</div>` },
+
+  { tag:'salario', q:'Como abordar o modelo de trabalho (remoto/híbrido)?',
+    body:`<div class="ans">Perguntar de forma neutra, como contexto — não como exigência:\n\n"Como vocês trabalham hoje — remoto, híbrido? Como é o dia a dia do time de AdOps?"\n\nVocê ouve a resposta e avalia no conjunto do pacote. Com R$ 12k CLT o líquido já é bom — se vier híbrido 1–2 dias, dependendo da localização em SP, pode ser administrável.\n\nCenários e como reagir:\n• Remoto: ótimo — confirmar ferramentas, horários, onboarding\n• Híbrido 1–2 dias/semana: avaliar pelo resto do pacote (saúde, PLR, revisão)\n• Presencial full: pesar o custo real (transporte, tempo) contra o salário e decidir com informação</div>
+    <div class="box info"><div class="box-lbl">ℹ️ Estratégia</div>Não sinalize que é condição antes de ouvir. Se o modelo não for ideal, você usa no momento da negociação final — "para aceitar presencial, precisaria que o salário refletisse isso" — não como bloqueio na primeira call.</div>` }
 
 ];
 
@@ -448,3 +477,5 @@ document.querySelectorAll('.fb').forEach(b => b.addEventListener('click', () => 
 
 render();
 </script>
+</body>
+</html>
