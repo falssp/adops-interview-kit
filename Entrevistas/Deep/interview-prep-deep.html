@@ -163,7 +163,7 @@ mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
   <button class="fb" data-f="doc">Contexto</button>
   <button class="fb" data-f="adops">AdOps</button>
   <button class="fb" data-f="tech">Técnico</button>
-  <button class="fb" data-f="ott">OTT/CTV/DOOH</button>
+  <button class="fb" data-f="ott">OTT/CTV/Áudio</button>
   <button class="fb" data-f="prog">Programático</button>
   <button class="fb" data-f="situacional">Situacional</button>
   <button class="fb" data-f="comportamental">Comportamental</button>
@@ -359,6 +359,11 @@ const ITEMS = [
     </tbody></table></div>
     <div class="box warn"><div class="box-lbl">⚠️ Sempre confirmar com o publisher</div>Cada publisher DOOH pode ter resolução customizada. Pedir a spec sheet antes de solicitar criativo ao cliente — não assumir 1080p.</div>` },
 
+  { tag:'ott', q:'Como funciona publicidade em áudio digital — o que muda para AdOps?',
+    body:`<div class="ans"><strong>Áudio digital</strong> inclui streaming de música (Spotify, Deezer), podcasts e rádio online. Para AdOps, é um formato com lógica própria:\n\n<strong>Formatos:</strong>\n• <strong>Audio pre-roll</strong> — spot antes do conteúdo (15s ou 30s), não skippável em muitas plataformas\n• <strong>Audio mid-roll</strong> — inserido durante pausas naturais do conteúdo (podcast, rádio ao vivo)\n• <strong>Companion banner</strong> — banner visual (geralmente 300×250 ou 320×50) exibido junto com o áudio; não é obrigatório mas melhora CTR e lembrança de marca\n\n<strong>Padrão técnico:</strong>\n• VAST 4.x com extensão de áudio (<code>MediaFile</code> com MIME type <code>audio/mpeg</code>)\n• Arquivo: MP3 ou WAV, 44.1 kHz, 128–320 kbps\n• DAAST é o padrão alternativo (Digital Audio Ad Serving Template), específico para áudio</n\n<strong>Plataformas e SSPs relevantes:</strong>\n• <strong>AdsWizz</strong> — maior plataforma de ad serving para áudio; integra com podcasts e streaming\n• <strong>Triton Digital</strong> — especializado em rádio digital e streaming ao vivo\n• <strong>Spotify Audience Network</strong> — distribui áudio fora do Spotify\n• <strong>Podscribe / Magellan AI</strong> — tracking e atribuição de podcasts\n\n<strong>O que muda para AdOps vs. display/video:</strong>\n• Sem pixel de viewability — impressão = ad completo ou tempo mínimo de ouça\n• Companion banner serve via tag separada; pode ter discrepância entre audio e banner\n• Brand safety é contextual (genre, show, palavras-chave no transcript) — sem URL de página para bloquear\n• Frequency cap é crucial: áudio irritativo demais = skip ou churn de usuário</div>
+    <div class="box warn"><div class="box-lbl">🎧 Por que é relevante na Deep</div>Diogo postou sobre áudio digital recentemente. A Deep opera omnichannel — provavelmente já tem ou está construindo demanda programática em áudio. Mostrar que você conhece AdsWizz, VAST para áudio e companion banner coloca você acima de 90% dos candidatos AdOps.</div>
+    <div class="tip"><strong>💡 Como falar sem acrônimo (para Diogo):</strong> "Áudio digital tem uma spec própria — o criativo é um MP3, mas funciona num sistema parecido com o de vídeo: VAST. O detalhe é que não tem viewability — o que você mede é ouça completa e clique no banner que aparece junto. Já configurei campanhas nesse formato e sei como evitar que o anunciante seja veiculado num programa incompatível com a marca."</div>` },
+
   // ── PROGRAMÁTICO ──
   { tag:'prog', q:'Como funciona um leilão programático open auction?',
     body:`<div class="ans">Open auction (RTB — Real-Time Bidding) é um leilão que ocorre em milissegundos toda vez que um usuário carrega uma página:\n\n1. Usuário acessa o site do publisher → ad unit dispara um bid request\n2. SSP (Supply-Side Platform) recebe o request com dados do usuário e do contexto\n3. SSP envia o bid request para múltiplos DSPs simultaneamente\n4. DSPs avaliam o request, consultam suas audiências, e retornam um bid (CPM)\n5. SSP seleciona o maior bid e notifica o DSP vencedor\n6. DSP retorna o criativo → GAM serve o ad → impressão contabilizada\n\nTudo isso ocorre em &lt;100ms.\n\nPara o publisher:\n• O price floor define o CPM mínimo — bids abaixo são rejeitados\n• Mais SSPs = mais competição = CPM mais alto\n• Open auction é o piso; PMP/PG pagam mais e têm prioridade</div>
@@ -382,6 +387,17 @@ const ITEMS = [
     body:`<div class="ans">Meu sistema de priorização considera dois eixos: urgência e impacto financeiro.\n\n1. Campanhas ao vivo com erro de entrega (tag quebrada, sub-delivery crítico) — atender imediatamente. Cada hora é revenue perdido para o publisher.\n\n2. Campanhas prestes a ir ao ar (próximas 24–48h) — QA e trafficking antes do prazo, sem exceção.\n\n3. Otimizações e reports — agenda regular, não urgência.\n\nFerramentas: uso de planilha de controle de status por publisher e linha de campanha, com alertas de prazo. Em agência gerenciei 6 clientes com campanhas em diferentes fases — o que salva é processo documentado e alinhamento proativo.\n\nQuando a capacidade está no limite, comunico antes do prazo — nunca depois.</div>` },
 
   // ── COMPORTAMENTAL ──
+  { tag:'comportamental', q:'Como adaptar o discurso para um entrevistador comercial (não técnico)',
+    body:`<div class="box warn"><div class="box-lbl">⚠️ Diogo é sócio comercial — não técnico</div>Ele entende resultado, cliente, entrega, receita. Não vive no GAM. Traduza tudo para linguagem de negócio — o técnico você mostra só se ele pedir.</div>
+    <div class="tbl-w"><table><thead><tr><th>Não diga</th><th>Diga assim</th></tr></thead><tbody>
+      <tr><td>"Fiz trafficking de line items no GAM com even pacing"</td><td>"Garantia que as campanhas entregavam 100% do contratado no prazo, sem sub-delivery"</td></tr>
+      <tr><td>"Configurei frequency cap e day-parting"</td><td>"Controlava quando e quantas vezes cada pessoa via o anúncio — impacto direto na performance e na experiência do usuário"</td></tr>
+      <tr><td>"Fiz QA de tags VAST com o VAST Inspector"</td><td>"Validava todos os anúncios antes de ir ao ar — zero surpresa depois do go-live"</td></tr>
+      <tr><td>"Gerenciei discrepâncias entre buy-side e sell-side"</td><td>"Resolvia quando os números do cliente não batiam com os nossos — encontrava a causa e fechava o gap"</td></tr>
+      <tr><td>"Usei Apps Script para automação de nomenclatura"</td><td>"Construí uma ferramenta que eliminou erro humano na geração de nomes de campanha — economizou horas toda semana"</td></tr>
+    </tbody></table></div>
+    <div class="tip"><strong>💡</strong> Regra prática: primeiro diga o resultado ("o que isso gerou"), depois o como ("como eu fiz") — só se ele perguntar. Comercial pensa em cliente, entrega e receita. Mostre que você também.</div>` },
+
   { tag:'comportamental', q:'Por que você quer trabalhar na Deep?',
     body:`<div class="ans">O que me atrai na Deep é a combinação de omnichannel real — web, CTV, áudio, DOOH — com o uso de IA para otimização de inventário. Isso é exatamente onde o AdOps está indo.\n\nVenho do lado da agência, onde comprava inventário de publishers como os que a Deep serve. Essa perspectiva é valiosa: sei o que uma campanha bem operada significa para o comprador — specs corretas, pacing sólido, tags que carregam, discrepância dentro do aceitável. Agora quero estar do lado de quem entrega esse inventário.\n\nA Deep me dá a chance de aprofundar no ecossistema programático e omnichannel num ambiente que usa tecnologia para escalar o que hoje é feito manualmente em muitos publishers. Isso é onde quero construir os próximos anos da minha carreira.</div>
     <div class="tip"><strong>💡</strong> Conecte explicitamente: "sei o que o comprador espera → quero garantir isso do lado publisher". É o melhor argumento para quem vem de agência.</div>` },
@@ -426,7 +442,7 @@ function tagLabel(t) {
   return {
     adops:'AdOps', tech:'Técnico', situacional:'Situacional',
     comportamental:'Comportamental', salario:'Salário', doc:'Contexto',
-    ott:'OTT/CTV', prog:'Programático'
+    ott:'OTT/CTV/Áudio', prog:'Programático'
   }[t] || t;
 }
 
