@@ -230,8 +230,9 @@ const ITEMS = [
     </ul></div>` },
 
   { tag:'doc', q:'Perguntas para fazer ao entrevistador',
-    body:`<p>Escolha 2–3:</p><ul>
-      <li><strong>"Como vocês trabalham hoje — remoto, híbrido, presencial? Como é o dia a dia do time de AdOps?"</strong><br><span class="muted">→ Pergunta neutra de contexto. Você ouve, avalia no conjunto do pacote, negocia se precisar.</span></li>
+    body:`<div class="box warn"><div class="box-lbl">🎯 Estratégia: deixa ele falar primeiro</div>Antes de revelar qualquer expectativa sua, deixe Diogo contar tudo: CLT ou PJ, salário, benefícios, remoto ou presencial, o que o analista faz no dia a dia. Ele vai abrir esse assunto naturalmente — ou você puxa com uma pergunta de contexto. Só posicione o seu lado depois que tiver o quadro completo.</div>
+    <p>Escolha 2–3:</p><ul>
+      <li><strong>"Como vocês trabalham hoje — remoto, híbrido, presencial? Como é o dia a dia do time de AdOps?"</strong><br><span class="muted">→ Pergunta neutra de contexto. Você ouve o modelo de trabalho, o regime (CLT/PJ), a estrutura — avalia no conjunto.</span></li>
       <li><strong>"Quais são os publishers parceiros da Deep e qual o mix de formatos mais relevante hoje — mais CTV/DOOH ou display/web?"</strong><br><span class="muted">→ Mostra interesse no negócio e ajuda a focar na conversa.</span></li>
       <li><strong>"Como é o fluxo de work entre o time de AdOps e os publishers? O analista tem contato direto com eles ou passa por um CS?"</strong><br><span class="muted">→ Entende o escopo real do papel.</span></li>
       <li><strong>"A plataforma de IA da Deep — qual é o papel do analista em relação a ela? Alimentar dados, configurar regras, ou mais monitoramento?"</strong><br><span class="muted">→ Demonstra curiosidade tecnológica, tema relevante para uma empresa com IA no core.</span></li>
@@ -424,7 +425,16 @@ const ITEMS = [
 
   { tag:'salario', q:'Como abordar o modelo de trabalho (remoto/híbrido)?',
     body:`<div class="ans">Perguntar de forma neutra, como contexto — não como exigência:\n\n"Como vocês trabalham hoje — remoto, híbrido? Como é o dia a dia do time de AdOps?"\n\nVocê ouve a resposta e avalia no conjunto do pacote. Com R$ 12k CLT o líquido já é bom — se vier híbrido 1–2 dias, dependendo da localização em SP, pode ser administrável.\n\nCenários e como reagir:\n• Remoto: ótimo — confirmar ferramentas, horários, onboarding\n• Híbrido 1–2 dias/semana: avaliar pelo resto do pacote (saúde, PLR, revisão)\n• Presencial full: pesar o custo real (transporte, tempo) contra o salário e decidir com informação</div>
-    <div class="box info"><div class="box-lbl">ℹ️ Estratégia</div>Não sinalize que é condição antes de ouvir. Se o modelo não for ideal, você usa no momento da negociação final — "para aceitar presencial, precisaria que o salário refletisse isso" — não como bloqueio na primeira call.</div>` }
+    <div class="box info"><div class="box-lbl">ℹ️ Estratégia</div>Não sinalize que é condição antes de ouvir. Se o modelo não for ideal, você usa no momento da negociação final — "para aceitar presencial, precisaria que o salário refletisse isso" — não como bloqueio na primeira call.</div>` },
+
+  { tag:'salario', q:'CLT ou PJ — como isso muda a conta?',
+    body:`<div class="box warn"><div class="box-lbl">🎯 Deixa ele revelar primeiro</div>Não pergunte diretamente "é CLT ou PJ?" logo de cara — deixa o contexto vir naturalmente quando ele falar de salário ou estrutura da empresa. Empresa de 2-10 pessoas fundada em 2023 tem alta chance de ser PJ.</div>
+    <div class="tbl-w"><table><thead><tr><th>Regime</th><th>Bruto ofertado</th><th>Líquido estimado</th><th>O que muda</th></tr></thead><tbody>
+      <tr><td><strong>CLT</strong></td><td>R$12k</td><td>~R$9–9,5k</td><td>FGTS, férias, 13º, saúde pelo empregador</td></tr>
+      <tr><td><strong>PJ</strong></td><td>R$12k</td><td>~R$10–11k</td><td>Você paga INSS (optativo) + contador; sem FGTS, sem férias automáticas</td></tr>
+      <tr><td><strong>PJ</strong></td><td>R$8k</td><td>~R$7–7,5k</td><td>Pode ser equivalente a R$10k CLT dependendo dos benefícios</td></tr>
+    </tbody></table></div>
+    <div class="ans">Como reagir se for PJ:\n• Se ofertarem abaixo de R$10k PJ → o número precisa subir ou os benefícios compensam\n• Se for remoto + PJ + R$8–10k → pode funcionar como renda adicional (acumula com situação atual)\n• Se for presencial + PJ + R$6–8k → provavelmente não compensa deixar o que você tem\n\nPergunta neutra para descobrir: <strong>"Como funciona a estrutura de contratação de vocês?"</strong></div>` }
 
 ];
 
