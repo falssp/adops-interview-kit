@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goodway Group — Interview Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg:    #F5F6F8;
+  --surf:  #FFFFFF;
+  --fg:    #111318;
+  --fg2:   #4B5060;
+  --fg3:   #8A8F9E;
+  --bdr:   #E2E4EA;
+  --acc:   #2563EB;
+  --acc-bg:#EFF4FF;
+  --grn:   #16A34A;
+  --grn-bg:#F0FDF4;
+  --warn:  #D97706;
+  --warn-bg:#FFFBEB;
+  --tag-bg:#F1F3F7;
+
+  --t-adops:   #0369A1; --t-adops-bg:   #E0F2FE;
+  --t-tech:    #7C3AED; --t-tech-bg:    #EDE9FE;
+  --t-sit:     #BE185D; --t-sit-bg:     #FCE7F3;
+  --t-com:     #065F46; --t-com-bg:     #D1FAE5;
+  --t-sal:     #9A3412; --t-sal-bg:     #FFEDD5;
+  --t-doc:     #1E40AF; --t-doc-bg:     #DBEAFE;
+  --t-ott:     #6B21A8; --t-ott-bg:     #F3E8FF;
+  --t-prog:    #0F766E; --t-prog-bg:    #CCFBF1;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0E1117; --surf:#181C27; --fg:#E8EAF0; --fg2:#9BA3B8; --fg3:#555C74;
+    --bdr:#252A3A; --acc:#3B82F6; --acc-bg:#1E2D50; --grn:#22C55E; --grn-bg:#052E16;
+    --warn:#FCD34D; --warn-bg:#2C1810; --tag-bg:#1C2133;
+    --t-adops:#38BDF8; --t-adops-bg:#082F49;
+    --t-tech:#A78BFA; --t-tech-bg:#2E1065;
+    --t-sit:#F472B6; --t-sit-bg:#500724;
+    --t-com:#34D399; --t-com-bg:#022C22;
+    --t-sal:#FB923C; --t-sal-bg:#431407;
+    --t-doc:#60A5FA; --t-doc-bg:#1E3A8A;
+    --t-ott:#C084FC; --t-ott-bg:#3B0764;
+    --t-prog:#2DD4BF; --t-prog-bg:#042F2E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0E1117; --surf:#181C27; --fg:#E8EAF0; --fg2:#9BA3B8; --fg3:#555C74;
+  --bdr:#252A3A; --acc:#3B82F6; --acc-bg:#1E2D50; --grn:#22C55E; --grn-bg:#052E16;
+  --warn:#FCD34D; --warn-bg:#2C1810; --tag-bg:#1C2133;
+  --t-adops:#38BDF8; --t-adops-bg:#082F49;
+  --t-tech:#A78BFA; --t-tech-bg:#2E1065;
+  --t-sit:#F472B6; --t-sit-bg:#500724;
+  --t-com:#34D399; --t-com-bg:#022C22;
+  --t-sal:#FB923C; --t-sal-bg:#431407;
+  --t-doc:#60A5FA; --t-doc-bg:#1E3A8A;
+  --t-ott:#C084FC; --t-ott-bg:#3B0764;
+  --t-prog:#2DD4BF; --t-prog-bg:#042F2E;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);font-size:14px;line-height:1.6}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:var(--surf);border-bottom:1px solid var(--bdr);padding:10px 24px}
+.bar-inner{max-width:1400px;margin-inline:auto;display:flex;align-items:center;gap:12px}
+.brand{font-size:15px;font-weight:700;white-space:nowrap;color:var(--fg)}
+.pill{display:inline-block;background:var(--acc);color:#fff;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.search-wrap{flex:1;position:relative;display:flex;align-items:center}
+.search-wrap svg{position:absolute;left:10px;width:16px;height:16px;color:var(--fg3)}
+#q{width:100%;padding:7px 32px 7px 32px;border:1.5px solid var(--bdr);border-radius:8px;background:var(--bg);color:var(--fg);font-family:inherit;font-size:13px;outline:none;transition:border-color .15s}
+#q:focus{border-color:var(--acc)}
+#q::placeholder{color:var(--fg3)}
+.clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--fg3);cursor:pointer;font-size:16px;line-height:1;padding:2px 4px}
+#count{font-size:12px;color:var(--fg3);white-space:nowrap}
+
+.filters{max-width:1400px;margin-inline:auto;padding:10px 24px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr)}
+.fb{padding:4px 11px;border-radius:20px;border:1.5px solid var(--bdr);background:transparent;color:var(--fg3);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
+.fb:hover{border-color:var(--acc);color:var(--acc)}
+.fb.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.fb[data-f="adops"].on{background:var(--t-adops);border-color:var(--t-adops)}
+.fb[data-f="tech"].on{background:var(--t-tech);border-color:var(--t-tech)}
+.fb[data-f="ott"].on{background:var(--t-ott);border-color:var(--t-ott)}
+.fb[data-f="prog"].on{background:var(--t-prog);border-color:var(--t-prog)}
+
+.feed{max-width:1400px;margin-inline:auto;padding:16px 24px 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:10px;align-items:start}
+.card{background:var(--surf);border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:var(--acc)}
+.ch{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;cursor:pointer;user-select:none}
+.ctag{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:4px;margin-top:2px}
+.t-adops      {background:var(--t-adops-bg);color:var(--t-adops)}
+.t-tech       {background:var(--t-tech-bg);color:var(--t-tech)}
+.t-situacional{background:var(--t-sit-bg);color:var(--t-sit)}
+.t-comportamental{background:var(--t-com-bg);color:var(--t-com)}
+.t-salario    {background:var(--t-sal-bg);color:var(--t-sal)}
+.t-doc        {background:var(--t-doc-bg);color:var(--t-doc)}
+.t-ott        {background:var(--t-ott-bg);color:var(--t-ott)}
+.t-prog       {background:var(--t-prog-bg);color:var(--t-prog)}
+.cq{flex:1;min-width:0;font-size:14px;font-weight:600}
+.chev{flex-shrink:0;width:18px;height:18px;color:var(--fg3);transition:transform .2s;margin-top:2px}
+.card.open .chev{transform:rotate(180deg)}
+.cb{display:none;padding:0 16px 16px;border-top:1px solid var(--bdr);padding-top:14px}
+.card.open .cb{display:block}
+
+.cb p{margin-bottom:10px;font-size:14px;max-width:65ch}
+.cb p:last-child{margin-bottom:0}
+.cb ul,.cb ol{padding-left:20px;margin-bottom:10px}
+.cb li{margin-bottom:3px;font-size:13px}
+.cb strong{font-weight:600}
+.cb code{font-size:.85em;background:var(--tag-bg);padding:1px 5px;border-radius:3px}
+.cb pre{background:var(--tag-bg);padding:12px;border-radius:6px;overflow-x:auto;font-size:12px;margin-bottom:10px}
+.ans{font-size:14px;line-height:1.7;white-space:pre-wrap}
+.tip{margin-top:10px;padding:8px 12px;background:var(--grn-bg);border-left:3px solid var(--grn);border-radius:0 6px 6px 0;font-size:13px}
+.tip strong{color:var(--grn)}
+.box{border-radius:8px;padding:12px 14px;margin:10px 0;font-size:13px;line-height:1.6}
+.box-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}
+.box.warn{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn)}
+.box.info{background:var(--acc-bg);color:var(--acc);border:1px solid var(--acc)}
+.box.ok{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn)}
+.box.tip2{background:var(--surf);color:var(--fg);border:1px solid var(--bdr)}
+.box strong{color:inherit}
+.steps{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.step{display:flex;gap:10px;align-items:flex-start;font-size:13px}
+.sn{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.sb{flex:1;min-width:0}
+.sb strong{display:block;font-weight:600;margin-bottom:1px}
+.tbl-w{overflow-x:auto;margin-bottom:10px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{background:var(--tag-bg);color:var(--fg2);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:7px 10px;text-align:left;border-bottom:1px solid var(--bdr)}
+td{padding:8px 10px;border-bottom:1px solid var(--bdr);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.green{color:var(--grn);font-weight:600}
+.med{color:var(--warn);font-weight:600}
+.muted{color:var(--fg3)}
+.doc-h{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--bdr)}
+.doc-h3{font-size:14px;font-weight:600;margin:16px 0 8px}
+.empty{text-align:center;color:var(--fg3);padding:48px;font-size:14px}
+mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) mark{background:#7C6800;color:#EDEBE6}}
+:root[data-theme="dark"] mark{background:#7C6800;color:#EDEBE6}
+@media(max-width:480px){.bar-inner{gap:8px}.brand{font-size:13px}#count{display:none}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-inner">
+    <div class="brand">Goodway Group <span class="pill">Prep</span></div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/></svg>
+      <input id="q" type="search" placeholder="Search question, topic or keyword…" autocomplete="off">
+      <button class="clr" id="clr" style="display:none" onclick="clearQ()">✕</button>
+    </div>
+    <span id="count"></span>
+  </div>
+</div>
+
+<div class="filters" id="filters">
+  <button class="fb on" data-f="all">All</button>
+  <button class="fb" data-f="doc">Context</button>
+  <button class="fb" data-f="adops">AdOps</button>
+  <button class="fb" data-f="tech">Technical</button>
+  <button class="fb" data-f="prog">Programmatic</button>
+  <button class="fb" data-f="situacional">Situational</button>
+  <button class="fb" data-f="comportamental">Behavioral</button>
+  <button class="fb" data-f="salario">Salary</button>
+</div>
+
+<div class="feed" id="feed"></div>
+
+<script>
+const ITEMS = [
+
+  // ── CONTEXT ──
+  { tag:'doc', q:'Pre-call checklist — what to do before the screen',
+    body:`<div class="steps">
+    <div class="step"><div class="sn">1</div><div class="sb"><strong>Find Lauren Young on LinkedIn</strong> Recruiter / Talent Acquisition at Goodway Group. 30-min video screen. CST timezone (UTC-6) — 9am–4pm CST = 12pm–7pm BRT.</div></div>
+    <div class="step"><div class="sn">2</div><div class="sb"><strong>Read goodwaygroup.com</strong> Independent agency, 90+ years, remote-first, certified The Trade Desk partner. AdAge Best Places to Work 2026. Teams in US + UK. Know their story in 2 sentences.</div></div>
+    <div class="step"><div class="sn">3</div><div class="sb"><strong>Check their recent LinkedIn posts</strong> What campaigns, verticals or tech are they highlighting right now? Drop a natural reference in conversation.</div></div>
+    <div class="step"><div class="sn">4</div><div class="sb"><strong>Confirm video link</strong> Meeting likely via Zoom or Google Meet. Test audio and camera ahead of time. English only — no Portuguese fallback.</div></div>
+    <div class="step"><div class="sn">5</div><div class="sb"><strong>Have open</strong> Your English CV, this kit in another tab, and a notepad to capture salary/benefits/team info they reveal.</div></div>
+    </div>
+    <div class="box info"><div class="box-lbl">ℹ️ About this screen</div>This is a first-round <strong>30-min video screen</strong> with Lauren Young (Sourcing/Talent). She will assess communication skills, background fit, and timezone/availability. Technical depth comes later. <strong>Priority: speak clearly, be concrete, show ownership.</strong></div>
+    <div class="box warn"><div class="box-lbl">⚠️ English is the entire interview</div>All communication with Goodway will be in English — including this screen, any technical rounds, and future day-to-day work. If you feel shaky on any answer, practice it out loud before the call.</div>` },
+
+  { tag:'doc', q:'About Goodway Group — company context',
+    body:`<div class="tbl-w"><table><tbody>
+      <tr><td style="width:130px;color:var(--fg3);font-size:12px">Company</td><td><strong>Goodway Group</strong> — independent, remote-first digital media &amp; marketing services agency. 90+ year history, start-up culture. Teams in US and UK.</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Role</td><td><strong>Global Ad Operations Manager</strong> — end-to-end campaign execution across programmatic, social, display, video, CTV, audio, native. Reports to Associate Media Director.</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Work model</td><td><strong>Fully remote</strong>, outside the US. Priority: Brazil, Colombia, Mexico, Peru.</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Stack</td><td>DV360, Google Ads, Facebook Ads Manager, CM360 (trafficking, pixels), ad verification tools (IAS/DoubleVerify), The Trade Desk (certified partner)</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Awards</td><td>AdAge Best Places to Work (multi-year), Ad Exchanger Best Use of Technology by an Agency, 2× MarTech Breakthrough Award</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Differentiator</td><td>Certified The Trade Desk partner. Data-driven + tech-enabled. 70% female workforce. Diversity-first culture.</td></tr>
+    </tbody></table></div>
+    <div class="box ok"><div class="box-lbl">✅ Why this role fits your profile</div>
+    <ul style="margin:4px 0 0 16px">
+      <li>15+ years AdOps — they ask for 3+. You exceed the bar significantly.</li>
+      <li>DV360 + CM360 advanced — their primary stack.</li>
+      <li>Multi-channel (CTV, audio, display, video) — matches the Global Ad Ops Manager scope.</li>
+      <li>Agency background — Goodway is 100% agency-side, your StormX experience translates directly.</li>
+      <li>Unilever BR (large advertiser, high volume) — signals ability to manage complexity.</li>
+      <li>Remote-first — you are already working remotely.</li>
+    </ul></div>` },
+
+  { tag:'doc', q:'Questions to ask Lauren — let her talk first',
+    body:`<div class="box warn"><div class="box-lbl">🎯 Strategy: gather intel before revealing expectations</div>Before mentioning any number or preference, let Lauren describe the role, team, compensation structure, and timezone expectations. Everything she says helps you anchor better.</div>
+    <div class="doc-h3">Good questions for a first screen</div>
+    <ul>
+      <li>Can you tell me more about the team structure — who would I be working with day-to-day, and who does this role report into?</li>
+      <li>What does a typical campaign look like in terms of channels and scale?</li>
+      <li>How is timezone overlap managed with the US team? Are there specific core hours?</li>
+      <li>What's the compensation structure — is it USD-based, and how is payment handled for contractors in Brazil?</li>
+      <li>What does the onboarding process look like for someone joining remotely from Brazil?</li>
+      <li>What's the typical next step after this screen?</li>
+    </ul>
+    <div class="tip"><strong>💡</strong> Ask about compensation structure neutrally — "how is it structured?" — not "how much?" That gets you the USD vs BRL, contractor vs employment, and benefits info without anchoring yourself first.</div>` },
+
+  // ── ADOPS ──
+  { tag:'adops', q:'Walk me through your ad operations experience',
+    body:`<div class="box info"><div class="box-lbl">ℹ️ This is your opening — be concrete and global-sounding</div>They want someone who can run operations independently. Lead with scope and ownership, not titles.</div>
+    <p class="ans">I have 15 years of experience in digital advertising operations, working primarily on the agency side in Brazil. My core stack is DV360 and CM360, where I handle end-to-end campaign setup — from trafficking and tag generation to QA, pixel implementation, and troubleshooting discrepancies.
+
+I've managed campaigns for large advertisers including Unilever Brazil, running display, video, programmatic, and influencer-side tracking across multiple channels simultaneously. I'm used to high-volume environments where accuracy and on-time launch are non-negotiable.
+
+Beyond execution, I build internal processes — taxonomies, naming conventions, QA checklists — that keep operations clean across a team. I also work directly with clients to explain performance and troubleshoot issues, which I understand is a key part of this Global Ad Ops Manager role.</p>` },
+
+  { tag:'adops', q:'What is your experience with campaign trafficking and QA?',
+    body:`<p class="ans">Trafficking is where I spend most of my operational time. In CM360, I build placement structures from scratch — naming the placements according to our taxonomy, generating tags, and coordinating with publishers or partners for tag implementation.
+
+QA is non-negotiable before any launch: I verify that creative assets are sized correctly, tracking pixels fire on the right events, Floodlight tags are attributed to the right activity groups, and landing pages match the intended destination.
+
+For DV360, I set up line items with the correct targeting parameters — audience segments, geo, device, frequency cap — and confirm that the CM360 ad tag is properly linked so impressions and clicks reconcile between the DSP and the ad server.
+
+Discrepancy investigation is something I handle routinely: comparing impression counts, checking for double-counting from multiple tags, and isolating the source of any gap between platform and client reporting.</p>
+    <div class="tip"><strong>💡</strong> If they ask about a specific discrepancy you've solved, have a real example ready — Unilever campaign, mismatched Floodlight configuration, missing pixel on a specific URL.</div>` },
+
+  { tag:'adops', q:'How do you ensure campaigns launch on time and without errors?',
+    body:`<p class="ans">I use a staged checklist process. Before any launch, I verify: creative assets are approved and trafficking-ready, tags are generated and tested (using the Chrome tag assistant or a similar tool), pixels are firing correctly in staging, all targeting settings are confirmed against the media plan, and the campaign status is set to active only after the final sign-off.
+
+I also build buffer time into my workflow — I never rely on same-day turnaround for a launch. If I'm receiving assets the morning of a go-live, I flag the risk in advance rather than absorbing it silently.
+
+For multi-channel campaigns, I keep a shared trafficking tracker so the team knows the status of each placement — especially important when different team members own different channels.</p>` },
+
+  { tag:'adops', q:'Describe your experience with pixel implementation and troubleshooting',
+    body:`<p class="ans">In CM360, I work with Floodlight activities for conversion tracking — setting up activity groups, generating the Floodlight tag, coordinating placement on the client's site, and verifying that the tag fires correctly on the right pages and events.
+
+For third-party verification, I implement IAS or DoubleVerify measurement tags alongside the ad creative — either as a wrapper or via direct placement — and confirm that impression, viewability, and brand safety data is populating in the verification dashboard.
+
+Troubleshooting usually starts by isolating: is the issue with the tag itself (syntax, URL encoding), with where it was placed (wrong page, wrong event trigger), or with an adblocker or CSP blocking the call? I use browser developer tools and tag inspection tools to trace the network request and identify the failure point.</p>` },
+
+  // ── TECHNICAL ──
+  { tag:'tech', q:'How advanced is your DV360 experience?',
+    body:`<p class="ans">Advanced and hands-on. In DV360, I work at the campaign, insertion order, and line item level. I configure bidding strategies — target CPM, target CPA, maximize viewable impressions — and select the appropriate inventory source, whether open auction, private marketplace deal, or programmatic guaranteed.
+
+I work with audience segments: first-party lists uploaded via CM360 audience, Google Audiences, and custom intent audiences. I also apply brand safety settings at the insertion order level and use brand safety targeting to exclude sensitive content categories.
+
+For reporting, I build custom reports in DV360 combining dimensions like creative, placement, exchange, and audience segment to find optimization opportunities. And I use the CM360 integration to reconcile impression and click data for unified reporting to the client.</p>` },
+
+  { tag:'tech', q:'What is your experience with CM360 beyond trafficking?',
+    body:`<p class="ans">CM360 is my main ad server. Beyond placing tags and generating trafficking sheets, I use it for:
+
+- <strong>Floodlight configuration</strong>: setting up activity groups for different conversion events, coordinating with client web teams for implementation, and verifying attribution windows.
+- <strong>Audience creation</strong>: building remarketing lists from Floodlight activity and sharing them into DV360 for targeting.
+- <strong>Report building</strong>: creating cross-channel reports that combine impression, click, and conversion data across all placements served through CM360, regardless of buying channel.
+- <strong>Creative rotation</strong>: setting up A/B tests in CM360 by defining creative rotation rules within a placement.
+
+I've also handled discrepancy investigations between CM360 and publisher ad servers — identifying the source of impression gaps and documenting findings for clients.</p>` },
+
+  { tag:'tech', q:'Walk me through how you would set up a multi-channel campaign from scratch',
+    body:`<p class="ans">Starting from the media plan:
+
+1. <strong>Trafficking structure in CM360</strong> — create the advertiser (if new), set up the campaign with the correct date range, and build placements per channel following the taxonomy (channel, format, size, targeting).
+2. <strong>Creative assets</strong> — upload creatives in CM360, QA for size/specs/landing URL, associate to the correct placements.
+3. <strong>Tag generation</strong> — export CM360 tags and send to publishers or implement directly into the DSP (DV360) for programmatic line items.
+4. <strong>DV360 setup</strong> — create insertion orders per channel, configure line items with targeting (audience, geo, device, brand safety), set pacing and budget, and link the CM360 tag as the creative source.
+5. <strong>Pixel verification</strong> — confirm Floodlight fires on the conversion page before launch.
+6. <strong>QA pass</strong> — preview all creatives in live environment, verify tracking on click and impression.
+7. <strong>Launch and monitor</strong> — confirm delivery starts, check pacing within first 24h, flag any delivery issues early.</p>
+    <div class="tip"><strong>💡</strong> Mention that you document every step in a trafficking sheet or tracker shared with the team — it shows process maturity.</div>` },
+
+  // ── PROGRAMMATIC ──
+  { tag:'prog', q:'Explain the difference between open auction, PMP, and programmatic guaranteed',
+    body:`<div class="tbl-w"><table>
+      <thead><tr><th>Model</th><th>How it works</th><th>Use case</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Open Auction (RTB)</strong></td><td>Real-time bidding on open exchange inventory. All buyers compete simultaneously. Price discovery is dynamic.</td><td>Scale and reach at efficient CPM. Lower inventory quality control.</td></tr>
+        <tr><td><strong>PMP (Private Marketplace)</strong></td><td>Publisher invites specific buyers to bid on curated inventory via a Deal ID. Still RTB, but with exclusivity and price floor.</td><td>Premium inventory with brand safety guarantees. Better transparency on where ads run.</td></tr>
+        <tr><td><strong>Programmatic Guaranteed (PG)</strong></td><td>Fixed price, reserved inventory — like a traditional direct IO but executed programmatically through the DSP.</td><td>High-impact placements where delivery certainty matters (homepage takeover, launch campaigns).</td></tr>
+      </tbody>
+    </table></div>
+    <p>In practice, I use all three depending on the campaign goal: open auction for efficiency and scale, PMP for brand-safe premium placements, and PG for guaranteed reach on critical launch periods.</p>` },
+
+  { tag:'prog', q:'How do you handle brand safety in programmatic campaigns?',
+    body:`<p class="ans">Brand safety is configured at multiple levels:
+
+<strong>In DV360:</strong> I apply content category exclusions at the insertion order level (IAB sensitive categories like adult content, violence, fake news). I also use brand safety targeting to restrict to specific inventory sources or apply verified inventory lists.
+
+<strong>Verification layer:</strong> I implement IAS or DoubleVerify measurement tags to monitor viewability, brand safety compliance, and IVT (invalid traffic) post-impression. If brand safety violations exceed threshold, I add the offending domains to a blocklist and report to the client.
+
+<strong>For CTV:</strong> brand safety is primarily contextual — evaluated by content genre and publisher relationship, rather than URL-level filtering, since CTV inventory doesn't have traditional page-level signals in the same way.
+
+I always document brand safety settings in the campaign setup sheet so there's a clear record of what was applied and why.</p>` },
+
+  // ── SITUATIONAL ──
+  { tag:'situacional', q:'Tell me about a time you caught a major error before a campaign went live',
+    body:`<p class="ans">On a Unilever campaign, I was doing a final QA pass the evening before launch and noticed that the Floodlight tag was firing on the confirmation page but not passing the transaction value — the revenue field was blank. The client was running a conversion campaign, and without that data, attribution would be broken from day one.
+
+I flagged it immediately to the client's web team at around 7pm. We worked through the issue together — the developer had implemented the tag but hadn't wired the dynamic revenue variable correctly. We verified the fix by midnight, and the campaign launched correctly the next morning.
+
+The lesson I took from that: QA is not just "did the tag fire" but "is it firing with the right data." I now include data-layer validation as a standard step in my pre-launch checklist.</p>` },
+
+  { tag:'situacional', q:'How do you manage multiple campaigns and priorities simultaneously?',
+    body:`<p class="ans">I work from a master trafficking tracker that lists every active campaign, its current status, next action required, and deadline. Each morning I prioritize based on go-live dates and client commitments — anything launching within 48 hours goes to the top.
+
+For recurring tasks like pacing checks and reporting, I schedule fixed time blocks in my day so they don't get displaced by reactive work. When a sudden issue comes in — a creative rejection, a discrepancy, a client escalation — I assess whether it blocks a launch or is tolerable until a scheduled slot, and communicate a realistic timeline immediately.
+
+The key habit is: never absorb a risk silently. If something is at risk of being late, I say so early with a plan, not at the last minute with an apology.</p>` },
+
+  { tag:'situacional', q:'Describe a time you had to explain a technical issue to a non-technical client',
+    body:`<p class="ans">A client asked why their campaign showed 500,000 impressions in DV360 but their publisher invoice showed 480,000. They assumed we were being charged for impressions we weren't receiving.
+
+I explained it this way: DV360 counts an impression when it sends the ad. The publisher counts when they receive the request. Network latency, ad blockers, and measurement timing differences always create a small gap — industry standard is within 10%, and their gap was under 5%.
+
+I sent a one-page summary: what causes the difference, why it's normal, and how our contract accounts for it (we pay on the lower number). They were satisfied and actually thanked me for proactively documenting it.
+
+The approach I use: lead with the conclusion ("you're not being overcharged"), then explain the mechanism simply, then provide evidence. Never lead with technical jargon when the person needs reassurance first.</p>` },
+
+  // ── BEHAVIORAL ──
+  { tag:'comportamental', q:'Why do you want to work at Goodway Group?',
+    body:`<p class="ans">A few specific reasons:
+
+First, the remote-first model is genuine — not a COVID accommodation, but how the company was designed. That aligns with how I work and where I want my career to go.
+
+Second, Goodway is a certified The Trade Desk partner and an AdAge Best Places to Work winner. Those aren't just badges — they signal that the company invests in its stack and its people. I want to work somewhere that's serious about the technology, not just using platforms as a checkbox.
+
+Third, the Global Ad Ops Manager role is genuinely global — multi-channel, multi-market, working alongside planning and strategy. That's the direction I want to grow: not just executing campaigns but shaping how ad operations works as a function.
+
+And honestly, being one of the priority candidates from Brazil for a US agency at this scale is the kind of opportunity I want to take seriously.</p>` },
+
+  { tag:'comportamental', q:'How do you work in a remote-first, asynchronous environment?',
+    body:`<p class="ans">I've been working remotely for several years, so asynchronous communication is already my default.
+
+My approach: I document everything — decisions, campaign setups, QA findings — in a shared space so my teammates in other timezones can pick up context without waiting for me to be online. I write clearly and completely the first time, anticipating the questions someone might ask before they ask them.
+
+For time-sensitive issues, I flag them early with a clear status ("blocked on X, need Y by Z to stay on schedule") rather than surfacing them when they've already become a crisis.
+
+I'm comfortable with the idea that my working hours in Brazil will overlap partially with a US team — typically late morning to early afternoon BRT overlaps with early CST. I'd plan to anchor my "synchronous" work — calls, collaborative reviews — in that window.</p>` },
+
+  { tag:'comportamental', q:'What do you consider your strongest technical skill in ad operations?',
+    body:`<p class="ans">CM360 and DV360 integration — specifically how to structure a campaign so that the ad server and the DSP work together cleanly, and how to investigate when they don't.
+
+A lot of practitioners use one or the other, but fewer have deep hands-on experience running both simultaneously and troubleshooting the gaps between them: impression discrepancies, Floodlight attribution, creative rotation behavior, and audience sharing.
+
+That's where I've built the most specialized knowledge, and it's also where most campaign problems actually live — not in any single platform, but in how they talk to each other.</p>` },
+
+  // ── SALARY ──
+  { tag:'salario', q:'Salary expectation — what to say and how to handle it',
+    body:`<div class="box warn"><div class="box-lbl">🎯 Let them name a number first</div>Before revealing any expectation, ask about the compensation structure: contractor or employment, USD or local currency, benefits included. Their answer reshapes your anchor.</div>
+
+    <div class="doc-h3">If they ask directly: "What are your salary expectations?"</div>
+    <p class="ans">Based on the scope of the Global Ad Ops Manager role and my 15 years of experience, I'm looking for something in the range of <strong>USD 2,500–3,500/month</strong>, but I'm open to discussing the full package — especially since the contractor model and remote flexibility are already meaningful to me.</p>
+
+    <div class="tbl-w" style="margin-top:12px"><table>
+      <thead><tr><th>Scenario</th><th>What to do</th></tr></thead>
+      <tbody>
+        <tr><td>They offer USD 2,000</td><td>Counter at 2,500 citing experience level. 2,200 is acceptable if they hold firm.</td></tr>
+        <tr><td>They offer USD 3,000+</td><td>Accept range, confirm payment structure and invoicing process for Brazil.</td></tr>
+        <tr><td>They ask in BRL</td><td>"R$ 12,000–15,000/month" — equivalent at current exchange rates.</td></tr>
+        <tr><td>They don't mention salary at all in screen 1</td><td>Normal — wait for the technical round. Ask at the end: "Could you share the budgeted range for this role?"</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tip"><strong>💡</strong> At USD 2,000+/month as a contractor (PJ), you net more than most R$12k CLT offers after taxes. The remote + dollar combination is the real value here.</div>` },
+];
+
+// ── render ──
+const tagLabel = {
+  adops:'AdOps', tech:'Technical', situacional:'Situational',
+  comportamental:'Behavioral', salario:'Salary', doc:'Context',
+  ott:'OTT/CTV/Audio', prog:'Programmatic'
+};
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function hi(s,q){if(!q)return s;const r=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');return s.replace(r,'<mark>$1</mark>')}
+
+let activeFilter='all', searchQ='';
+
+function render(){
+  const feed=document.getElementById('feed');
+  const q=searchQ.trim().toLowerCase();
+  const filtered=ITEMS.filter(it=>{
+    const tagOk=activeFilter==='all'||it.tag===activeFilter;
+    const qOk=!q||it.q.toLowerCase().includes(q)||it.body.toLowerCase().includes(q);
+    return tagOk&&qOk;
+  });
+  document.getElementById('count').textContent=filtered.length+' card'+(filtered.length!==1?'s':'');
+  if(!filtered.length){feed.innerHTML='<div class="empty">No cards match.</div>';return;}
+  feed.innerHTML=filtered.map((it,i)=>{
+    const cls=`t-${it.tag==='situacional'?'situacional':it.tag==='comportamental'?'comportamental':it.tag}`;
+    const lbl=tagLabel[it.tag]||it.tag;
+    return`<div class="card" id="c${i}">
+      <div class="ch" onclick="toggle('c${i}')">
+        <span class="ctag ${cls}">${lbl}</span>
+        <span class="cq">${hi(esc(it.q),q)}</span>
+        <svg class="chev" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+      </div>
+      <div class="cb">${it.body}</div>
+    </div>`;
+  }).join('');
+}
+
+function toggle(id){
+  const c=document.getElementById(id);
+  if(c)c.classList.toggle('open');
+}
+
+function clearQ(){
+  document.getElementById('q').value='';
+  searchQ='';
+  document.getElementById('clr').style.display='none';
+  render();
+}
+
+document.getElementById('q').addEventListener('input',e=>{
+  searchQ=e.target.value;
+  document.getElementById('clr').style.display=searchQ?'block':'none';
+  render();
+});
+
+document.getElementById('filters').addEventListener('click',e=>{
+  const btn=e.target.closest('.fb');
+  if(!btn)return;
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  activeFilter=btn.dataset.f;
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
