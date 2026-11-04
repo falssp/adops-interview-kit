@@ -22,3 +22,9 @@ Prep material por processo seletivo.
 | Arquivo | Link |
 |---|---|
 | Prep (publisher-side AdOps) | [interview-prep-deep.html](https://falssp.github.io/adops-interview-kit/Entrevistas/Deep/interview-prep-deep.html) |
+
+## Goodway Group — Nov 2026
+
+| Arquivo | Link |
+|---|---|
+| Prep (Global Ad Ops Manager, em inglês) | [interview-prep-goodway.html](https://falssp.github.io/adops-interview-kit/Entrevistas/Goodway/interview-prep-goodway.html) |
