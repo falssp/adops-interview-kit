@@ -427,6 +427,49 @@ That's where I've built the most specialized knowledge, and it's also where most
     body:`<p>Manager-level question about initiative and leadership beyond day-to-day execution.</p>
     <div class="tip"><strong>Answer:</strong> "At StormX, we were trafficking high volumes for Unilever Brazil across multiple platforms — CM360, DV360, and social — and the QA process was entirely manual and inconsistent across team members. I designed a standardized pre-launch checklist covering 23 checkpoints across naming convention, creative specs, pixel firing, targeting parameters, and budget pacing. I built it as a shared Google Sheet template that became mandatory before any campaign went live. Within the first quarter we reduced post-launch errors by roughly 80% and cut the average time-to-launch by 30 minutes per campaign. It also made onboarding new team members faster because the process was documented and repeatable."</div>
     <div class="tip"><strong>💡</strong> This maps directly to Goodway's scale — as a large agency they need standardized, repeatable AdOps processes. Show you think systemically, not just tactically.</div>` },
+
+  { tag:'tech', q:'What is your experience with programmatic audio?',
+    body:`<p>Goodway runs full-channel programmatic including audio (Spotify, podcast, streaming radio). Knowing the basics signals genuine omnichannel experience.</p>
+    <div class="tip"><strong>Answer:</strong> "Programmatic audio is a channel I've followed closely and worked with on select campaigns. The mechanics mirror display programmatic — RTB, deal IDs, frequency capping — but the creative and measurement stack is different. Audio ads are served via DAAST (Digital Audio Ad Serving Template), the audio equivalent of VAST. Targeting is primarily contextual and behavioral: genre, mood, time of day, device (mobile vs smart speaker vs desktop). Completion rate is the primary engagement metric since there's no click on a smart speaker. For attribution, we use pixel-less methods — Spotify's conversion tracking, or matching exposed users to site visits via IP-based graphs. I've activated programmatic audio through DV360 (which supports audio line items) and direct deals with Spotify for brand campaigns."</div>
+    <ul>
+      <li><strong>DAAST</strong> — Digital Audio Ad Serving Template; equivalent of VAST for audio</li>
+      <li><strong>Key platforms:</strong> Spotify (direct + programmatic), Pandora/SXM Media, iHeart, Amazon Music, podcast networks</li>
+      <li><strong>Targeting:</strong> Genre/playlist context, behavioral (music taste), time of day, device type, geo</li>
+      <li><strong>Key metrics:</strong> Completion rate (CR), audio quartile reporting (Q1/Q2/Q3/Q4), reach/frequency</li>
+      <li><strong>Attribution:</strong> Pixel-less — platform-native conversion, IP graph, brand lift studies</li>
+      <li><strong>DV360:</strong> Supports audio inventory via Display &amp; Video 360 audio line items; can run Spotify and podcast buys programmatically</li>
+      <li><strong>Formats:</strong> :15 and :30 non-skippable spots; companion banner on mobile (visual + audio)</li>
+    </ul>` },
+
+  { tag:'tech', q:'What is your experience with programmatic DOOH (Digital Out-of-Home)?',
+    body:`<p>pDOOH is a growing channel in US agencies. Showing awareness of it — even without deep hands-on — differentiates a Senior/Manager candidate.</p>
+    <div class="tip"><strong>Answer:</strong> "Programmatic DOOH is a channel I've explored in depth even if direct execution has been limited — the Brazilian market is earlier-stage on pDOOH than the US. The core concept: digital screens in physical spaces (billboards, transit, retail) bought programmatically via DSPs instead of direct IO. The key difference from online programmatic is that DOOH is an impression shared across multiple viewers simultaneously — targeting is contextual and location-based, not user-level. In DV360, DOOH inventory is activated as a separate line item type with geo-radius, day-part, venue type (airport, gas station, gym), and audience density targeting. Measurement uses foot traffic attribution — brands like Foursquare or Liveramp match mobile device IDs of people exposed near a screen to store visit uplift. For Goodway's US market clients this is an increasingly important complement to CTV for upper-funnel reach."</div>
+    <ul>
+      <li><strong>Key distinction:</strong> DOOH impression = multiple viewers simultaneously; no user-level targeting or cookies</li>
+      <li><strong>Targeting levers:</strong> Geo radius, venue type (airport/gym/retail), day-part, audience density index, weather triggers</li>
+      <li><strong>DV360 DOOH:</strong> Dedicated line item type; supports pDOOH via curated marketplace deals</li>
+      <li><strong>Key SSPs:</strong> Vistar Media, Place Exchange, Broadsign, Hivestack</li>
+      <li><strong>Measurement:</strong> Foot traffic lift (Foursquare, NinthDecimal), brand lift, reach modeling</li>
+      <li><strong>Creative specs:</strong> Static images and video (looping, usually :06–:15, no audio); aspect ratio varies by screen type</li>
+      <li><strong>Best use:</strong> Upper funnel alongside CTV for omnichannel reach; retail media activation near point of sale</li>
+    </ul>` },
+
+  { tag:'tech', q:'How do you approach audience strategy and first-party data activation?',
+    body:`<p>As cookies deprecate, audience strategy is becoming a core AdOps competency — not just a planning function. Manager-level candidates are expected to own this.</p>
+    <div class="tip"><strong>Answer:</strong> "Audience strategy starts with a data taxonomy: I work with the client to map their first-party assets — CRM lists, site visitors by intent signal, converters, lapsed customers — and then layer in second and third-party data to extend reach. In DV360, I activate first-party audiences via Google Audience Center, using Floodlight-based segments for site retargeting and Customer Match for CRM list targeting. For prospecting I use in-market and affinity audiences, then suppress converters to avoid waste. I build a full audience waterfall — 1P retargeting at the highest CPM, lookalikes in the middle, broad contextual at the base — and optimize allocation based on CPA performance by audience segment. With the deprecation of third-party cookies I've shifted more budget toward contextual signals and first-party lookalikes built on hashed email via Customer Match."</div>
+    <ul>
+      <li><strong>Audience waterfall:</strong> 1P retargeting → CRM match → 1P lookalike → 3P in-market → contextual</li>
+      <li><strong>DV360 audience tools:</strong> Floodlight segments, Customer Match, Similar Audiences, Google Audiences (in-market/affinity)</li>
+      <li><strong>CM360:</strong> Audience Center for cross-campaign audience creation; Floodlight grouping for intent signals</li>
+      <li><strong>Suppression:</strong> Always suppress recent converters from prospecting line items to protect efficiency</li>
+      <li><strong>Frequency strategy:</strong> 1P retargeting = tighter cap (3–5/week); prospecting = looser (1–2/day)</li>
+      <li><strong>Post-cookie pivot:</strong> Customer Match (hashed email) + contextual + UID2 for cookieless environments</li>
+    </ul>` },
+
+  { tag:'comportamental', q:'How do you stay current with the ad tech landscape?',
+    body:`<p>A "Global Ad Operations Manager" is expected to bring market awareness, not just platform execution. Lauren may ask this to gauge intellectual curiosity and industry engagement.</p>
+    <div class="tip"><strong>Answer:</strong> "I follow a mix of industry sources consistently: AdExchanger and Digiday for industry news and platform changes; the official DV360 and CM360 release notes for product updates; IAB and MRC for measurement standards; and The Trade Desk's Programmatic IQ newsletter since I'm actively ramping on TTD. I also learn a lot from campaign data — when I see an unexpected pattern in performance or delivery, I dig into the why, and those investigations have taught me more about how the ad stack actually works than any article. I've recently been focused on the cookieless transition timeline, UID2 adoption, and how CTV measurement is evolving beyond completion rate toward outcome-based metrics."</div>
+    <div class="tip"><strong>💡 Resources to name-drop:</strong> AdExchanger · Digiday · IAB Tech Lab · DV360/CM360 release notes · TTD Programmatic IQ · Cynopsis Media (for CTV) · Marketing Brew</div>` },
 ];
 
 // ── render ──
