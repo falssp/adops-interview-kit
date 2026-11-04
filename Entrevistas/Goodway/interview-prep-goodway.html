@@ -373,6 +373,60 @@ That's where I've built the most specialized knowledge, and it's also where most
       </tbody>
     </table></div>
     <div class="tip"><strong>💡</strong> At USD 2,000+/month as a contractor (PJ), you net more than most R$12k CLT offers after taxes. The remote + dollar combination is the real value here.</div>` },
+
+  { tag:'tech', q:'What is your experience with The Trade Desk?',
+    body:`<p>Goodway is one of The Trade Desk's top certified partners — this will likely come up. Lead with the platform overlap between TTD and DV360, then highlight transferable depth.</p>
+    <div class="tip"><strong>Answer:</strong> "My primary DSP has been DV360, where I've built deep expertise in audience targeting, deal ID management, and CM360 integration. The Trade Desk shares the same programmatic principles — RTB mechanics, bid strategies, frequency management, brand safety layers — just with a different interface and some proprietary features like Koa AI and UID2. I've reviewed TTD's documentation and understand its deal management workflow. Given that Goodway is a TTD-first house, I'm committed to getting TTD-certified within the first 60 days and would use my DV360 depth as the foundation to ramp quickly."</div>
+    <p><strong>Key TTD concepts to mention if asked further:</strong></p>
+    <ul>
+      <li><strong>Koa AI</strong> — TTD's predictive bidding engine; analogous to Smart Bidding in DV360</li>
+      <li><strong>UID2</strong> — unified ID 2.0, TTD's cookieless identity solution (open-source, email-based)</li>
+      <li><strong>Solimar</strong> — TTD's platform update with improved measurement and planning tools</li>
+      <li><strong>Deal ID / PMP</strong> — same concept as DV360, managed in Inventory → My Deals</li>
+      <li><strong>CTV targeting</strong> — TTD is market leader in CTV; household-level targeting, IP-based, ACR data</li>
+    </ul>` },
+
+  { tag:'tech', q:'How do you approach CTV and streaming campaigns?',
+    body:`<p>Goodway is known for CTV expertise. This is likely a technical differentiator question.</p>
+    <div class="tip"><strong>Answer:</strong> "CTV has become central to programmatic strategy. My approach: I start by aligning the CTV buy to the full-funnel — CTV at upper funnel for reach and brand awareness, with cross-device retargeting on display/digital to close the loop. For targeting I use household-level IP matching, ACR (Automatic Content Recognition) data where available through deals, and lookalike audiences based on first-party data. For measurement I set up brand lift studies, reach/frequency reporting, and cross-channel attribution to capture view-through conversions on mobile and desktop after CTV exposure. Quality control is critical — I apply VAST 4.x, verify inventory is app-streamed (not browser-based), and use IAS/DV for content verification and brand safety at the placement level."</div>
+    <ul>
+      <li><strong>VAST 4.x</strong> — industry standard for CTV video ad serving; supports server-side stitching</li>
+      <li><strong>SSAI (Server-Side Ad Insertion)</strong> — preferred for CTV; no ad blockers, seamless playback</li>
+      <li><strong>OTT vs CTV</strong> — OTT = streaming service (Netflix, Hulu); CTV = the device (smart TV, Roku, FireTV)</li>
+      <li><strong>ACR data</strong> — smart TV viewing history used for targeting; available via LiveRamp / data marketplaces</li>
+      <li><strong>Cross-device attribution</strong> — CTV impression → mobile/desktop conversion; measured via IP graph or deterministic match</li>
+    </ul>` },
+
+  { tag:'tech', q:'How do you handle the cookieless transition and identity in campaigns?',
+    body:`<p>Post-cookie identity is a hot topic at any US agency in 2024–2025.</p>
+    <div class="tip"><strong>Answer:</strong> "We've been preparing for this transition for a few years. My approach has three layers: first, maximize first-party data — work with clients to build Floodlight audiences, CRM lists via Customer Match, and email-based IDs before the cookie fully goes away. Second, adopt privacy-preserving signals — in DV360 this means leveraging Google's Privacy Sandbox APIs (Topics, FLEDGE/Protected Audience) where available, and enabling UID2 for campaigns that run on TTD. Third, shift measurement to incrementality and MMM for upper-funnel where attribution becomes harder. For DV360 specifically, I've enabled Enhanced Conversions and use Google Signals for cross-device tracking as first-party alternatives."</div>
+    <ul>
+      <li><strong>UID2</strong> — email-based hashed ID; persistent across cookieless environments; TTD's standard</li>
+      <li><strong>Enhanced Conversions (CM360)</strong> — hashed first-party signals sent to Google for better attribution</li>
+      <li><strong>Customer Match</strong> — CRM list upload to DV360/Google Ads for first-party targeting</li>
+      <li><strong>Privacy Sandbox</strong> — Google's browser-based API replacing 3P cookies: Topics (interest), Protected Audience (retargeting)</li>
+      <li><strong>Contextual targeting</strong> — fallback for cookieless; keyword and content-based, no user ID needed</li>
+    </ul>` },
+
+  { tag:'comportamental', q:'How do you manage and develop relationships with clients or internal stakeholders?',
+    body:`<p>"Global Ad Operations Manager" implies cross-functional and potentially client-facing responsibility. Expect a stakeholder management question.</p>
+    <div class="tip"><strong>Answer:</strong> "I treat stakeholder communication as a core part of the job, not an afterthought. My approach: I establish a regular cadence early — weekly campaign status updates, a shared dashboard for metrics, and a clear escalation path for issues. I proactively surface problems before they become crises, always paired with a proposed solution. With clients, I adapt my language — business outcomes with executives, platform mechanics with their marketing ops teams. At StormX, I managed the relationship with Unilever Brazil's digital media team directly, fielding questions on discrepancies, creative QA, and attribution across a high-volume multi-platform account. The result was a consistent renewal and expansion of scope year over year."</div>
+    <div class="tip"><strong>💡 For Goodway specifically:</strong> They're a managed-service agency — their AdOps team is likely client-facing or works closely with account managers who are. Showing you can communicate clearly and proactively under pressure is key.</div>` },
+
+  { tag:'tech', q:'How do you approach reporting and campaign optimization?',
+    body:`<p>Optimization mindset is a differentiator between a trafficker and a true AdOps manager.</p>
+    <div class="tip"><strong>Answer:</strong> "Reporting starts with aligning on KPIs before the campaign launches — not after. I build a reporting structure around the client's goal: for brand awareness it's reach, frequency, viewability and VCR; for performance it's CPA, ROAS, and view-through vs click-through attribution. During the campaign I run weekly optimization cycles: check delivery pacing, CPM trends by placement/creative, audience performance, and frequency caps. If CPA is tracking above goal I look at creative fatigue first, then audience overlap, then bid strategy. I document every optimization and the result — this creates a learning repository for future flights. In CM360 I use custom channels and floodlight groups to build clean cross-channel reports that give clients a single view across all buys."</div>
+    <ul>
+      <li><strong>Key metrics by objective:</strong> Awareness → Reach/Freq/VCR/Viewability | Performance → CPA/ROAS/CTR</li>
+      <li><strong>Optimization levers:</strong> Creative rotation → Audience refinement → Bid strategy → Placement exclusions → Frequency</li>
+      <li><strong>CM360 reporting:</strong> Custom channels, cross-channel reach dedup, Floodlight attribution windows</li>
+      <li><strong>DV360 reporting:</strong> Performance center, insertion order-level pacing, audience insights, brand safety reporting</li>
+    </ul>` },
+
+  { tag:'situacional', q:'Tell me about a time you led a process improvement that made the team more efficient.',
+    body:`<p>Manager-level question about initiative and leadership beyond day-to-day execution.</p>
+    <div class="tip"><strong>Answer:</strong> "At StormX, we were trafficking high volumes for Unilever Brazil across multiple platforms — CM360, DV360, and social — and the QA process was entirely manual and inconsistent across team members. I designed a standardized pre-launch checklist covering 23 checkpoints across naming convention, creative specs, pixel firing, targeting parameters, and budget pacing. I built it as a shared Google Sheet template that became mandatory before any campaign went live. Within the first quarter we reduced post-launch errors by roughly 80% and cut the average time-to-launch by 30 minutes per campaign. It also made onboarding new team members faster because the process was documented and repeatable."</div>
+    <div class="tip"><strong>💡</strong> This maps directly to Goodway's scale — as a large agency they need standardized, repeatable AdOps processes. Show you think systemically, not just tactically.</div>` },
 ];
 
 // ── render ──
