@@ -38,3 +38,4 @@ adops-interview-kit/
 ---
 
 © Falsp. Uso pessoal — não distribuir.
+<!-- redeploy -->
