@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RTB House — Interview Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg:    #F5F6F8;
+  --surf:  #FFFFFF;
+  --fg:    #111318;
+  --fg2:   #4B5060;
+  --fg3:   #8A8F9E;
+  --bdr:   #E2E4EA;
+  --acc:   #2563EB;
+  --acc-bg:#EFF4FF;
+  --grn:   #16A34A;
+  --grn-bg:#F0FDF4;
+  --warn:  #D97706;
+  --warn-bg:#FFFBEB;
+  --tag-bg:#F1F3F7;
+
+  --t-adops:   #0369A1; --t-adops-bg:   #E0F2FE;
+  --t-tech:    #7C3AED; --t-tech-bg:    #EDE9FE;
+  --t-sit:     #BE185D; --t-sit-bg:     #FCE7F3;
+  --t-com:     #065F46; --t-com-bg:     #D1FAE5;
+  --t-sal:     #9A3412; --t-sal-bg:     #FFEDD5;
+  --t-doc:     #1E40AF; --t-doc-bg:     #DBEAFE;
+  --t-prog:    #0F766E; --t-prog-bg:    #CCFBF1;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0E1117; --surf:#181C27; --fg:#E8EAF0; --fg2:#9BA3B8; --fg3:#555C74;
+    --bdr:#252A3A; --acc:#3B82F6; --acc-bg:#1E2D50; --grn:#22C55E; --grn-bg:#052E16;
+    --warn:#FCD34D; --warn-bg:#2C1810; --tag-bg:#1C2133;
+    --t-adops:#38BDF8; --t-adops-bg:#082F49;
+    --t-tech:#A78BFA; --t-tech-bg:#2E1065;
+    --t-sit:#F472B6; --t-sit-bg:#500724;
+    --t-com:#34D399; --t-com-bg:#022C22;
+    --t-sal:#FB923C; --t-sal-bg:#431407;
+    --t-doc:#60A5FA; --t-doc-bg:#1E3A8A;
+    --t-prog:#2DD4BF; --t-prog-bg:#042F2E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0E1117; --surf:#181C27; --fg:#E8EAF0; --fg2:#9BA3B8; --fg3:#555C74;
+  --bdr:#252A3A; --acc:#3B82F6; --acc-bg:#1E2D50; --grn:#22C55E; --grn-bg:#052E16;
+  --warn:#FCD34D; --warn-bg:#2C1810; --tag-bg:#1C2133;
+  --t-adops:#38BDF8; --t-adops-bg:#082F49;
+  --t-tech:#A78BFA; --t-tech-bg:#2E1065;
+  --t-sit:#F472B6; --t-sit-bg:#500724;
+  --t-com:#34D399; --t-com-bg:#022C22;
+  --t-sal:#FB923C; --t-sal-bg:#431407;
+  --t-doc:#60A5FA; --t-doc-bg:#1E3A8A;
+  --t-prog:#2DD4BF; --t-prog-bg:#042F2E;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);font-size:14px;line-height:1.6}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:var(--surf);border-bottom:1px solid var(--bdr);padding:10px 24px}
+.bar-inner{max-width:1400px;margin-inline:auto;display:flex;align-items:center;gap:12px}
+.brand{font-size:15px;font-weight:700;white-space:nowrap;color:var(--fg)}
+.pill{display:inline-block;background:var(--acc);color:#fff;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.search-wrap{flex:1;position:relative;display:flex;align-items:center}
+.search-wrap svg{position:absolute;left:10px;width:16px;height:16px;color:var(--fg3)}
+#q{width:100%;padding:7px 32px 7px 32px;border:1.5px solid var(--bdr);border-radius:8px;background:var(--bg);color:var(--fg);font-family:inherit;font-size:13px;outline:none;transition:border-color .15s}
+#q:focus{border-color:var(--acc)}
+#q::placeholder{color:var(--fg3)}
+.clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--fg3);cursor:pointer;font-size:16px;line-height:1;padding:2px 4px}
+#count{font-size:12px;color:var(--fg3);white-space:nowrap}
+
+.filters{max-width:1400px;margin-inline:auto;padding:10px 24px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr)}
+.fb{padding:4px 11px;border-radius:20px;border:1.5px solid var(--bdr);background:transparent;color:var(--fg3);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
+.fb:hover{border-color:var(--acc);color:var(--acc)}
+.fb.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.fb[data-f="adops"].on{background:var(--t-adops);border-color:var(--t-adops)}
+.fb[data-f="tech"].on{background:var(--t-tech);border-color:var(--t-tech)}
+.fb[data-f="prog"].on{background:var(--t-prog);border-color:var(--t-prog)}
+
+.feed{max-width:1400px;margin-inline:auto;padding:16px 24px 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:10px;align-items:start}
+.card{background:var(--surf);border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:var(--acc)}
+.ch{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;cursor:pointer;user-select:none}
+.ctag{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:4px;margin-top:2px}
+.t-adops      {background:var(--t-adops-bg);color:var(--t-adops)}
+.t-tech       {background:var(--t-tech-bg);color:var(--t-tech)}
+.t-situacional{background:var(--t-sit-bg);color:var(--t-sit)}
+.t-comportamental{background:var(--t-com-bg);color:var(--t-com)}
+.t-salario    {background:var(--t-sal-bg);color:var(--t-sal)}
+.t-doc        {background:var(--t-doc-bg);color:var(--t-doc)}
+.t-prog       {background:var(--t-prog-bg);color:var(--t-prog)}
+.cq{flex:1;min-width:0;font-size:14px;font-weight:600}
+.chev{flex-shrink:0;width:18px;height:18px;color:var(--fg3);transition:transform .2s;margin-top:2px}
+.card.open .chev{transform:rotate(180deg)}
+.cb{display:none;padding:0 16px 16px;border-top:1px solid var(--bdr);padding-top:14px}
+.card.open .cb{display:block}
+
+.cb p{margin-bottom:10px;font-size:14px;max-width:65ch}
+.cb p:last-child{margin-bottom:0}
+.cb ul,.cb ol{padding-left:20px;margin-bottom:10px}
+.cb li{margin-bottom:3px;font-size:13px}
+.cb strong{font-weight:600}
+.cb code{font-size:.85em;background:var(--tag-bg);padding:1px 5px;border-radius:3px}
+.cb pre{background:var(--tag-bg);padding:12px;border-radius:6px;overflow-x:auto;font-size:12px;margin-bottom:10px}
+.ans{font-size:14px;line-height:1.7;white-space:pre-wrap}
+.tip{margin-top:10px;padding:8px 12px;background:var(--grn-bg);border-left:3px solid var(--grn);border-radius:0 6px 6px 0;font-size:13px}
+.tip strong{color:var(--grn)}
+.box{border-radius:8px;padding:12px 14px;margin:10px 0;font-size:13px;line-height:1.6}
+.box-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}
+.box.warn{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn)}
+.box.info{background:var(--acc-bg);color:var(--acc);border:1px solid var(--acc)}
+.box.ok{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn)}
+.steps{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.step{display:flex;gap:10px;align-items:flex-start;font-size:13px}
+.sn{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.sb{flex:1;min-width:0}
+.sb strong{display:block;font-weight:600;margin-bottom:1px}
+.tbl-w{overflow-x:auto;margin-bottom:10px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{background:var(--tag-bg);color:var(--fg2);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:7px 10px;text-align:left;border-bottom:1px solid var(--bdr)}
+td{padding:8px 10px;border-bottom:1px solid var(--bdr);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.green{color:var(--grn);font-weight:600}
+.med{color:var(--warn);font-weight:600}
+.muted{color:var(--fg3)}
+.doc-h{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--bdr)}
+.empty{text-align:center;color:var(--fg3);padding:48px;font-size:14px}
+mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) mark{background:#7C6800;color:#EDEBE6}}
+:root[data-theme="dark"] mark{background:#7C6800;color:#EDEBE6}
+@media(max-width:480px){.bar-inner{gap:8px}.brand{font-size:13px}#count{display:none}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-inner">
+    <div class="brand">RTB House <span class="pill">Prep</span></div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/></svg>
+      <input id="q" type="search" placeholder="Search question, topic or keyword…" autocomplete="off">
+      <button class="clr" id="clr" style="display:none" onclick="clearQ()">✕</button>
+    </div>
+    <span id="count"></span>
+  </div>
+</div>
+
+<div class="filters" id="filters">
+  <button class="fb on" data-f="all">All</button>
+  <button class="fb" data-f="doc">Context</button>
+  <button class="fb" data-f="adops">AdOps</button>
+  <button class="fb" data-f="tech">Technical</button>
+  <button class="fb" data-f="prog">Programmatic</button>
+  <button class="fb" data-f="situacional">Situational</button>
+  <button class="fb" data-f="comportamental">Behavioral</button>
+  <button class="fb" data-f="salario">Salary</button>
+</div>
+
+<div class="feed" id="feed"></div>
+
+<script>
+const ITEMS = [
+
+  // ── CONTEXT ──
+  { tag:'doc', q:'Pre-call checklist — what to do before the screen',
+    body:`<div class="steps">
+    <div class="step"><div class="sn">1</div><div class="sb"><strong>Find Mary Joyce on LinkedIn</strong> Talent Acquisition Partner at RTB House, based in Boston. This is a recruiter screen — not technical. Focus on fit, communication, motivation.</div></div>
+    <div class="step"><div class="sn">2</div><div class="sb"><strong>Read rtbhouse.com</strong> Global ad tech, Deep Learning-powered DSP, 90+ markets, 1,500+ people. Founded in Poland (2012), now global. Known for retargeting at scale using proprietary algorithms — not a standard DSP.</div></div>
+    <div class="step"><div class="sn">3</div><div class="sb"><strong>Understand the role</strong> TAM = Technical Account Manager. Hybrid of AdOps execution + client-facing support. You own the technical relationship with a book of business. Not pure trafficking — includes troubleshooting, discrepancy investigation, client communication.</div></div>
+    <div class="step"><div class="sn">4</div><div class="sb"><strong>LATAM + US team context</strong> Role is based in Brazil, works closely with the US team. Expect English-language work and US-timezone overlap. Same pattern as Goodway.</div></div>
+    <div class="step"><div class="sn">5</div><div class="sb"><strong>Key differentiator to mention</strong> RTB House uses Deep Learning, not standard ML. Their retargeting engine learns continuously from user behavior. Knowing this — and being curious about it — signals genuine interest beyond the job spec.</div></div>
+    </div>` },
+
+  { tag:'doc', q:'About RTB House — company context',
+    body:`<div class="doc-h">RTB House at a glance</div>
+    <ul>
+      <li><strong>Founded:</strong> 2012, Warsaw, Poland</li>
+      <li><strong>Scope:</strong> Global — 90+ markets, offices in Americas, EMEA, APAC</li>
+      <li><strong>Team:</strong> 1,500+ people globally; 80+ on the US team</li>
+      <li><strong>Core product:</strong> Proprietary DSP powered entirely by Deep Learning algorithms</li>
+      <li><strong>Focus:</strong> Retargeting and full-funnel performance campaigns for e-commerce, retail, travel, finance</li>
+      <li><strong>Recognition:</strong> Built In's 2026 Best Places to Work (remote + large company categories)</li>
+      <li><strong>LATAM role context:</strong> Brazil-based TAM supporting US clients/team — remote, English-primary</li>
+    </ul>
+    <div class="tip"><strong>What makes RTB House different:</strong> Most DSPs use standard ML/bidding algorithms. RTB House claims their Deep Learning engine delivers better performance — especially for retargeting — by modeling complex behavioral patterns. In practice: they compete with Criteo in retargeting but pitch a more sophisticated algorithmic approach.</div>
+    <p style="margin-top:10px"><strong>Questions to ask Mary:</strong></p>
+    <ul>
+      <li>"How does the TAM team interact with the US account management side — is it mostly async or do you have regular syncs?"</li>
+      <li>"What does the ramp-up period look like for a new TAM coming from DV360/CM360 experience?"</li>
+      <li>"Is the book of business regional or mixed US + LATAM clients?"</li>
+      <li>"What's the comp structure — fixed + variable, or base only?"</li>
+    </ul>` },
+
+  { tag:'doc', q:'Tell me about yourself — how to open the conversation',
+    body:`<p>Same structure as always: Past → Present → Why here. Keep it under 90 seconds.</p>
+    <div class="tip"><strong>Answer:</strong><br><br>
+    "Sure. I've been in ad operations for about 15 years, primarily on the agency side in Brazil. I started in trafficking and campaign management and moved into more complex, platform-heavy work — running high-volume programmatic campaigns in DV360 and CM360 for large brands, owning the full AdOps function including pixel implementation, discrepancy investigation, and cross-channel reporting.<br><br>
+    What I've built over that time is deep hands-on experience with the technical layer of digital campaigns — not just setting them up but diagnosing what goes wrong when delivery breaks, CPMs spike, or attribution doesn't match. That investigative side is actually what I find most engaging about the work.<br><br>
+    RTB House caught my attention because the TAM role is exactly that combination — technical depth plus direct client ownership. And the fact that you're running a proprietary Deep Learning engine rather than a standard DSP makes the technical environment genuinely interesting. I'd want to understand that stack and bring that level of rigor to the accounts I support."</div>
+    <ul>
+      <li><strong>Past:</strong> 15 years, agency, complex work — credibility</li>
+      <li><strong>Present:</strong> technical depth, discrepancy/investigation angle — matches the job spec directly</li>
+      <li><strong>Why here:</strong> TAM fit + Deep Learning DSP curiosity — specific, not generic</li>
+    </ul>
+    <div class="tip"><strong>💡</strong> The JD says "someone who thrives on problem-solving and loves getting into the technical weeds." Mirror that language naturally in your answer.</div>` },
+
+  // ── ADOPS ──
+  { tag:'adops', q:'Walk me through your ad operations experience',
+    body:`<div class="tip"><strong>Answer:</strong> "I've spent 15 years in AdOps, mostly agency-side. The core of my work has been trafficking and managing campaigns in CM360 and DV360 — building out campaign structures, naming conventions, QA processes, and managing creative rotations at scale. I've worked with high-volume accounts like Unilever Brazil, where we ran simultaneous campaigns across display, video, and programmatic with tight deadlines and complex tracking requirements. Beyond execution, I've taken ownership of the technical infrastructure — Floodlight configuration, pixel audits, discrepancy investigations across ad servers and DSPs, and building reports that connect platform data to business outcomes."</div>
+    <p><strong>Specific to TAM context — emphasize:</strong></p>
+    <ul>
+      <li>Client-facing communication experience (you've explained technical issues to non-technical stakeholders)</li>
+      <li>Discrepancy investigation (this is explicitly in the RTB House JD)</li>
+      <li>Tracking/pixel troubleshooting (also explicitly listed)</li>
+      <li>Comfort with data in Excel / reporting tools</li>
+    </ul>` },
+
+  { tag:'adops', q:'How do you investigate and resolve campaign discrepancies?',
+    body:`<p>This is explicitly in the RTB House JD — "investigate and troubleshoot complex discrepancies." Expect a detailed question here.</p>
+    <div class="tip"><strong>Answer:</strong> "Discrepancy investigation starts with isolating the gap. I always check the time window first — are we comparing the same date range and timezone? Then I look at methodology: different platforms count impressions differently — served vs viewable, win vs delivery confirmation. A 10–15% discrepancy between CM360 and a DSP is normal and explainable. Above that I dig into: (1) tag implementation — is the CM360 tag firing correctly? I check with browser dev tools, Charles Proxy, or the platform's tag debugger. (2) Ad blocker impact — especially on direct site buys. (3) Redirect latency — if there are multiple redirects in the tag chain, some impressions fire the first tag but time out before firing the downstream one. (4) Clock skew — server time differences between the DSP and the ad server can shift impressions across days. I document every investigation with a clear before/after and share it with the client in plain language — not 'there was a discrepancy' but 'here's what caused it and what we changed.'"</div>
+    <ul>
+      <li><strong>Normal range:</strong> 10–15% between DSP and CM360 is industry standard</li>
+      <li><strong>Red flags:</strong> &gt;20% gap, sudden spike mid-flight, or one platform showing 0</li>
+      <li><strong>Tools:</strong> Browser dev tools (Network tab), Charles Proxy, CM360 Tag Inspector, platform delivery logs</li>
+      <li><strong>Client communication:</strong> Always explain in business terms — impact on delivered impressions, what was done, what to expect going forward</li>
+    </ul>` },
+
+  { tag:'adops', q:'How do you monitor pacing and ensure campaigns deliver on budget and goal?',
+    body:`<div class="tip"><strong>Answer:</strong> "Pacing is a daily discipline, not a weekly check. I build a master tracker for each active campaign with daily delivery targets — total budget divided across the flight, adjusted for weekday/weekend traffic patterns and historical delivery indexes. Each morning I pull pacing data from the DSP and flag anything more than 10% off target. For under-delivery I first check whether it's a budget cap issue, a frequency cap that's too tight, or a targeting set that's too narrow. For over-delivery I check if daily caps are set correctly and whether the algorithm is front-loading. On CM360-to-DSP buys I reconcile both numbers. I always flag pacing issues to the client before they ask — a proactive 'we're 8% under, here's what I'm adjusting' builds more trust than a reactive explanation at the end of the month."</div>
+    <ul>
+      <li><strong>Under-delivery causes:</strong> Narrow targeting, low bid, creative rejection, publisher underperformance, frequency cap too tight</li>
+      <li><strong>Over-delivery causes:</strong> Missing daily cap, algorithm front-loading, broader audience than expected</li>
+      <li><strong>Key metric:</strong> Daily pacing index = actual delivered / expected delivered × 100. Target: 90–110.</li>
+    </ul>` },
+
+  { tag:'adops', q:'How do you ensure tracking codes are functioning correctly for clients?',
+    body:`<p>RTB House explicitly lists this: "work closely with clients to ensure RTB House tracking codes are functioning across websites." Pixel QA is core to this role.</p>
+    <div class="tip"><strong>Answer:</strong> "Pixel QA is a structured process, not a spot check. When a client implements a tracking code, I verify it in three layers: (1) Tag presence — I use browser dev tools (Network tab, filtered by the tag domain) to confirm the pixel fires on the correct pages. (2) Parameter accuracy — I verify that dynamic parameters like revenue, order ID, and event type are passing correctly. A pixel that fires but sends revenue=0 on every conversion is useless for optimization. (3) Attribution window — I confirm the lookback window and de-duplication logic match what the client expects. For RTB House-specific tags I'd follow the same methodology, learning their tag structure and debugging parameters the same way I would for Floodlight or a standard 1x1 pixel."</div>
+    <ul>
+      <li><strong>Tools:</strong> Chrome DevTools (Network tab), Tag Assistant, ObservePoint, Charles Proxy</li>
+      <li><strong>Common issues:</strong> Tag fires on wrong page, dynamic parameters not populating, duplicate firing, tag blocked by CSP</li>
+      <li><strong>Client communication:</strong> Provide a simple QA report — URL tested, expected behavior, actual behavior, status (pass/fail)</li>
+    </ul>` },
+
+  // ── TECHNICAL ──
+  { tag:'tech', q:'What DSP experience do you have and how transferable is it to RTB House?',
+    body:`<p>RTB House runs a proprietary DSP — not DV360, TTD, or Xandr. The question is whether your DSP experience transfers.</p>
+    <div class="tip"><strong>Answer:</strong> "My primary DSPs have been DV360 and CM360 on the ad server side. The core competencies — campaign structure, bid strategy configuration, audience targeting, frequency management, brand safety, deal ID activation, and delivery troubleshooting — transfer directly to any DSP. The interface and specific features differ, but the programmatic logic underneath is the same: RTB, impression-level decision making, win rates, CPM dynamics. What's specific to RTB House is the Deep Learning engine — I'd ramp on that actively in the first weeks, learning how their algorithm handles bid adjustments, audience learning periods, and performance signals differently from DV360's Smart Bidding. The JD says you value people who learn new products quickly and have intuitive knowledge of how features work — that's exactly how I approach a new platform."</div>
+    <div class="tip"><strong>💡 RTB House DSP specifics to research before the technical round:</strong>
+    <ul style="margin-top:6px">
+      <li>Their retargeting engine uses Deep Learning to model individual user behavior — not just segment-level targeting</li>
+      <li>Campaigns are typically retargeting-first (dynamic product ads, catalog-based creative)</li>
+      <li>Performance focus: ROAS, CPA, conversion rate — not just impressions/reach</li>
+      <li>Clients are typically e-commerce, retail, travel, finance</li>
+    </ul></div>` },
+
+  { tag:'tech', q:'How comfortable are you with data analysis and Excel?',
+    body:`<p>JD explicitly asks for "ability to interpret data in Microsoft Excel and/or data analysis tools." TAM role involves a lot of data work.</p>
+    <div class="tip"><strong>Answer:</strong> "Excel is my primary analysis tool — I use it daily for pacing trackers, discrepancy analysis, and performance reporting. I'm comfortable with pivot tables, VLOOKUP/XLOOKUP, INDEX-MATCH, conditional formatting for dashboards, and building formulas that pull and transform raw export data into something a client can act on. For programmatic campaigns I regularly build delivery vs. goal trackers with daily target calculations, CPM/CPA trend analysis by audience segment, and cross-platform reconciliation tables. I also work with Google Sheets for collaborative reporting and have used Apps Script to automate repetitive pulls. I haven't used Python for data analysis professionally, but I understand its value and have used it for basic scripting."</div>
+    <ul>
+      <li><strong>Key Excel skills for TAM:</strong> Pivot tables, XLOOKUP, data validation, conditional formatting, basic charting</li>
+      <li><strong>Common TAM data tasks:</strong> Delivery vs. goal reconciliation, CPM/CPA trend by placement, discrepancy tables, pacing forecasts</li>
+    </ul>` },
+
+  { tag:'tech', q:'Do you have experience reading code — HTML, JavaScript, or similar?',
+    body:`<p>JD says "ideally you understand how to read code" — this is a plus, not a requirement. Answer honestly about your level.</p>
+    <div class="tip"><strong>Answer:</strong> "I have practical, functional experience with HTML and JavaScript in the context of ad tech — not as a developer, but as someone who needs to understand what tags are doing. I can read a Floodlight tag and identify whether the event snippet is on the right page, whether a custom variable is wired up correctly, or whether a dynamic parameter is populating. I've worked with JavaScript-based pixels, iFrame vs. JS tag differences, and can follow a tag chain through Network requests. I've also built lightweight HTML tools and dashboards using Google Apps Script and vanilla JS, so I understand the fundamentals. Python I haven't used professionally, but I can read basic scripts."</div>
+    <div class="tip"><strong>💡</strong> Don't oversell this. TAM at RTB House doesn't require engineering — it requires being able to debug a pixel and read a tag. That you clearly can do.</div>` },
+
+  { tag:'tech', q:'What is your experience with Google Analytics?',
+    body:`<p>JD asks for "familiarity with Google Analytics — configure and interpret data at a high level."</p>
+    <div class="tip"><strong>Answer:</strong> "I use GA4 (and previously Universal Analytics) primarily for campaign attribution validation and site behavior context. In the TAM context, GA is useful for two things: (1) cross-referencing conversion data — when RTB House reports X conversions and the client says they see fewer in GA, I investigate the attribution window, de-duplication logic, and whether post-view vs. post-click conversions are set up consistently. (2) Understanding the client's funnel — bounce rate, session duration, and goal completion by landing page helps contextualize why a campaign might have a high CTR but poor conversion rate. I can configure basic goals, understand channel groupings, and interpret acquisition and behavior reports. I'm not a GA developer, but I know enough to have an intelligent conversation with the client's analytics team."</div>` },
+
+  // ── PROGRAMMATIC ──
+  { tag:'prog', q:'Explain the programmatic landscape — RTB, DSPs, SSPs, and how they connect',
+    body:`<p>Foundation question for a programmatic-first company. Answer crisply and show you understand the full stack.</p>
+    <div class="tip"><strong>Answer:</strong> "The programmatic ecosystem works like this: a publisher makes inventory available through an SSP (Supply-Side Platform). When a user loads a page, the SSP sends a bid request to multiple DSPs (Demand-Side Platforms) simultaneously — this is Real-Time Bidding (RTB). Each DSP evaluates the user, the context, and the available audience data, and submits a bid in milliseconds. The highest bid wins the impression and serves the ad through an ad server (like CM360). The whole auction happens in under 100ms. RTB House sits on the DSP side — their engine receives those bid requests and uses Deep Learning to decide not just whether to bid, but how much, based on the predicted likelihood that this specific user will convert. That's their differentiation: the precision of that prediction model."</div>
+    <ul>
+      <li><strong>SSP examples:</strong> Magnite, PubMatic, Index Exchange, Google AdX</li>
+      <li><strong>DSP examples:</strong> DV360, The Trade Desk, Amazon DSP, Xandr, RTB House (proprietary)</li>
+      <li><strong>Ad server:</strong> CM360, Sizmek — serves the winning creative and measures delivery</li>
+      <li><strong>Data layer:</strong> DMPs (Lotame, Oracle), CDPs, first-party data feeds into DSP targeting</li>
+    </ul>` },
+
+  { tag:'prog', q:'How does RTB House\'s Deep Learning approach differ from standard programmatic?',
+    body:`<p>They will almost certainly ask about this — it's their core differentiator. Research it and show genuine curiosity.</p>
+    <div class="tip"><strong>Answer:</strong> "Most DSPs use rule-based or standard ML approaches — they segment audiences into buckets (in-market, lookalike) and apply bid adjustments based on historical averages for that segment. RTB House's Deep Learning engine works at the individual user level — it builds a behavioral model per user and predicts the probability of conversion for that specific person at that specific moment. Because Deep Learning models learn continuously and handle much more complexity than standard ML, RTB House can capture non-obvious patterns — like the fact that a user who browses a category page at 11pm on mobile converts at a very different rate than someone doing the same at 2pm on desktop. This is especially powerful for retargeting, where you have rich behavioral data to train on. The practical difference for clients: better ROAS and CPA, with less manual optimization needed."</div>
+    <div class="tip"><strong>💡</strong> You don't need to know the ML internals — showing you understand the business logic and why it matters to clients is enough for a recruiter screen and even a first technical round.</div>` },
+
+  // ── SITUATIONAL ──
+  { tag:'situacional', q:'Tell me about a time you resolved a complex technical issue for a client',
+    body:`<p>TAM role is fundamentally about solving technical problems for clients. Have a specific story ready.</p>
+    <div class="tip"><strong>Answer (Unilever Floodlight story):</strong> "On a major Unilever campaign, we were 10 days into the flight when I noticed the revenue variable in our Floodlight purchase tag was returning zero across all conversions. The campaign had been running and reporting conversions normally — the fire count looked right — but the revenue data was empty. That meant our ROAS optimization was running blind. I traced the issue to a site update the client's dev team had pushed that broke the dynamic variable passing. I documented the issue clearly — here's the tag, here's what should populate, here's what's actually firing — shared it with the client's technical team with a one-page brief, and we had it resolved within 24 hours. The key was not just finding the bug but communicating it in a way the client could action without a 30-minute call to explain the ad server architecture."</div>
+    <div class="tip"><strong>Structure: Situation → What you found → How you diagnosed → How you communicated → Resolution</strong></div>` },
+
+  { tag:'situacional', q:'How do you manage multiple client accounts simultaneously without things falling through the cracks?',
+    body:`<div class="tip"><strong>Answer:</strong> "I run a master tracker — one view across all active campaigns with status, pacing index, next action, and flags for anything that needs attention today vs. this week. Every morning I do a 10-minute scan: anything off pacing, any expiring creatives, any upcoming launches. I prioritize by impact — a campaign that's 20% under-delivering for a major client gets handled before a minor optimization on a stable campaign. I also set up automated alerts in the platforms where possible — DV360 has pacing alerts, CM360 has delivery notifications. The goal is that nothing surprises me; I surface issues before the client does. At StormX I managed 15–20 simultaneous campaigns at peak periods with this approach and maintained a clean launch record."</div>` },
+
+  { tag:'situacional', q:'Describe a time you had to explain a technical issue to a non-technical client',
+    body:`<div class="tip"><strong>Answer:</strong> "A client was seeing a 25% discrepancy between our reported impressions and what their internal dashboard showed. Their marketing director — not a technical person — was frustrated and asking why they should trust our numbers. I sent a one-page brief: 'Here's what each platform counts and why the numbers differ.' I used an analogy: imagine two checkout counters at a store — they both count customers, but one counts everyone who enters the lane, the other only counts those who complete the purchase. Neither is wrong — they're measuring different things. For this campaign, the difference was [X%], which is within industry standard. Within 24 hours the client replied saying that was the clearest explanation they'd ever received about discrepancies. That brief became a template we used with all new clients going forward."</div>
+    <div class="tip"><strong>💡</strong> RTB House TAMs are client-facing. This kind of communication skill is as important as the technical knowledge itself.</div>` },
+
+  // ── BEHAVIORAL ──
+  { tag:'comportamental', q:'Why RTB House — why this role, why now?',
+    body:`<div class="tip"><strong>Answer:</strong> "Two things stand out. First, the TAM structure — it's the right next step for me. I've been in AdOps for 15 years doing the technical work; now I want to own the client relationship on top of it. The TAM role at RTB House is exactly that combination — technical depth with direct account responsibility. Second, the product itself. Most of my experience has been on standard DSPs. The fact that RTB House runs a proprietary Deep Learning engine is genuinely interesting to me — I want to understand how that changes campaign behavior, what optimizations become possible, and how to explain that value to clients. I'm not just looking for a job title change; I'm looking for a technical environment that's worth learning."</div>` },
+
+  { tag:'comportamental', q:'How do you work in a cross-functional, global remote environment?',
+    body:`<div class="tip"><strong>Answer:</strong> "Remote-first is how I've worked best. My approach: documentation over verbal-only communication, async-first for anything that doesn't need a live decision, and proactive status updates so colleagues in different timezones aren't blocked waiting for me. For collaboration with the US team from Brazil, the overlap window (roughly 2–6pm BRT / 11am–3pm EST) is the synchronous zone — I protect that time for calls and decisions. Everything else I handle with clear written handoffs. I've worked this way at StormX on cross-functional campaigns with clients in multiple timezones and it's become my natural default."</div>` },
+
+  // ── SALARY ──
+  { tag:'salario', q:'Salary expectation — what to say and how to handle it',
+    body:`<div class="doc-h">Salary Strategy — RTB House TAM</div>
+    <p>RTB House is a Polish company with LATAM operations. This role is likely CLT or PJ Brazil — not USD like Goodway. Benefits package mentioned: VR, health insurance, Gympass, language budget.</p>
+    <div class="tbl-w"><table>
+      <thead><tr><th>Scenario</th><th>What to say</th></tr></thead>
+      <tbody>
+        <tr><td>They ask first</td><td>"Based on the seniority and scope of the role, I'm looking at R$ 12,000–14,000/month. Happy to discuss once I understand the full package."</td></tr>
+        <tr><td>They offer R$ 8–9k</td><td>"I appreciate the offer. Given my 15 years of experience and the technical depth the role requires, I was expecting something closer to R$ 12k. Is there flexibility there?"</td></tr>
+        <tr><td>They offer R$ 10–11k</td><td>Acceptable range — counter at 12k once, then decide.</td></tr>
+        <tr><td>They offer R$ 12k+</td><td>Accept. Focus on confirming contract type and benefits.</td></tr>
+        <tr><td>They don't mention salary in screen 1</td><td>Normal — wait for the technical round. Ask at the end: "Could you share the budgeted range for this role?"</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tip"><strong>💡</strong> This is a recruiter screen — salary may not come up at all. If it does, anchor high and defer detail to the offer stage. Don't negotiate against yourself.</div>` },
+];
+
+// ── render ──
+const tagLabel = {
+  adops:'AdOps', tech:'Technical', situacional:'Situational',
+  comportamental:'Behavioral', salario:'Salary', doc:'Context', prog:'Programmatic'
+};
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function hi(s,q){if(!q)return s;const r=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');return s.replace(r,'<mark>$1</mark>')}
+
+let activeFilter='all', searchQ='';
+
+function render(){
+  const feed=document.getElementById('feed');
+  const q=searchQ.trim().toLowerCase();
+  const filtered=ITEMS.filter(it=>{
+    const tagOk=activeFilter==='all'||it.tag===activeFilter;
+    const qOk=!q||it.q.toLowerCase().includes(q)||it.body.toLowerCase().includes(q);
+    return tagOk&&qOk;
+  });
+  document.getElementById('count').textContent=filtered.length+' card'+(filtered.length!==1?'s':'');
+  if(!filtered.length){feed.innerHTML='<div class="empty">No cards match.</div>';return;}
+  feed.innerHTML=filtered.map((it,i)=>{
+    const lbl=tagLabel[it.tag]||it.tag;
+    return`<div class="card" id="c${i}">
+      <div class="ch" onclick="toggle('c${i}')">
+        <span class="ctag t-${it.tag}">${lbl}</span>
+        <span class="cq">${hi(esc(it.q),q)}</span>
+        <svg class="chev" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+      </div>
+      <div class="cb">${it.body}</div>
+    </div>`;
+  }).join('');
+}
+
+function toggle(id){
+  const c=document.getElementById(id);
+  if(c)c.classList.toggle('open');
+}
+
+function clearQ(){
+  document.getElementById('q').value='';
+  searchQ='';
+  document.getElementById('clr').style.display='none';
+  render();
+}
+
+document.getElementById('q').addEventListener('input',e=>{
+  searchQ=e.target.value;
+  document.getElementById('clr').style.display=searchQ?'block':'none';
+  render();
+});
+
+document.getElementById('filters').addEventListener('click',e=>{
+  const btn=e.target.closest('.fb');
+  if(!btn)return;
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  activeFilter=btn.dataset.f;
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

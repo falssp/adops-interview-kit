@@ -28,3 +28,9 @@ Prep material por processo seletivo.
 | Arquivo | Link |
 |---|---|
 | Prep (Global Ad Ops Manager, em inglês) | [interview-prep-goodway.html](https://falssp.github.io/adops-interview-kit/Entrevistas/Goodway/interview-prep-goodway.html) |
+
+## RTB House — Nov 2026
+
+| Arquivo | Link |
+|---|---|
+| Prep (Technical Account Manager, em inglês) | [interview-prep-rtbhouse.html](https://falssp.github.io/adops-interview-kit/Entrevistas/RTBHouse/interview-prep-rtbhouse.html) |
