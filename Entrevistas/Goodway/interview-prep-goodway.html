@@ -142,6 +142,9 @@ mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) mark{background:#7C6800;color:#EDEBE6}}
 :root[data-theme="dark"] mark{background:#7C6800;color:#EDEBE6}
 @media(max-width:480px){.bar-inner{gap:8px}.brand{font-size:13px}#count{display:none}}
+.ht{display:flex;flex-wrap:wrap;gap:4px;padding:8px 0 4px;border-top:1px solid var(--bdr);margin-top:10px}
+.ht::before{content:'🔍';font-size:11px;color:var(--fg3);margin-right:2px;align-self:center}
+.ht span{font-size:10px;background:var(--tag-bg);color:var(--fg3);border-radius:3px;padding:2px 6px;cursor:default}
 </style>
 </head>
 <body>
@@ -176,7 +179,7 @@ const ITEMS = [
 
   // ── CONTEXT ──
   { tag:'doc', q:'Pre-call checklist — what to do before the screen',
-    body:`<div class="steps">
+    body:`<div class="ht"><span>checklist</span><span>prepare</span><span>before</span><span>interview</span><span>Lauren</span><span>screen</span><span>steps</span><span>todo</span></div><div class="steps">
     <div class="step"><div class="sn">1</div><div class="sb"><strong>Find Lauren Young on LinkedIn</strong> Recruiter / Talent Acquisition at Goodway Group. 30-min video screen. CST timezone (UTC-6) — 9am–4pm CST = 12pm–7pm BRT.</div></div>
     <div class="step"><div class="sn">2</div><div class="sb"><strong>Read goodwaygroup.com</strong> Independent agency, 90+ years, remote-first, certified The Trade Desk partner. AdAge Best Places to Work 2026. Teams in US + UK. Know their story in 2 sentences.</div></div>
     <div class="step"><div class="sn">3</div><div class="sb"><strong>Check their recent LinkedIn posts</strong> What campaigns, verticals or tech are they highlighting right now? Drop a natural reference in conversation.</div></div>
@@ -187,7 +190,7 @@ const ITEMS = [
     <div class="box warn"><div class="box-lbl">⚠️ English is the entire interview</div>All communication with Goodway will be in English — including this screen, any technical rounds, and future day-to-day work. If you feel shaky on any answer, practice it out loud before the call.</div>` },
 
   { tag:'doc', q:'About Goodway Group — company context',
-    body:`<div class="tbl-w"><table><tbody>
+    body:`<div class="ht"><span>Goodway</span><span>company</span><span>agency</span><span>remote</span><span>TTD</span><span>DV360</span><span>background</span><span>overview</span></div><div class="tbl-w"><table><tbody>
       <tr><td style="width:130px;color:var(--fg3);font-size:12px">Company</td><td><strong>Goodway Group</strong> — independent, remote-first digital media &amp; marketing services agency. 90+ year history, start-up culture. Teams in US and UK.</td></tr>
       <tr><td style="color:var(--fg3);font-size:12px">Role</td><td><strong>Global Ad Operations Manager</strong> — end-to-end campaign execution across programmatic, social, display, video, CTV, audio, native. Reports to Associate Media Director.</td></tr>
       <tr><td style="color:var(--fg3);font-size:12px">Work model</td><td><strong>Fully remote</strong>, outside the US. Priority: Brazil, Colombia, Mexico, Peru.</td></tr>
@@ -206,7 +209,7 @@ const ITEMS = [
     </ul></div>` },
 
   { tag:'doc', q:'Questions to ask Lauren — let her talk first',
-    body:`<div class="box warn"><div class="box-lbl">🎯 Strategy: gather intel before revealing expectations</div>Before mentioning any number or preference, let Lauren describe the role, team, compensation structure, and timezone expectations. Everything she says helps you anchor better.</div>
+    body:`<div class="ht"><span>questions</span><span>ask</span><span>salary</span><span>structure</span><span>team</span><span>timezone</span><span>intel</span><span>Lauren</span></div><div class="box warn"><div class="box-lbl">🎯 Strategy: gather intel before revealing expectations</div>Before mentioning any number or preference, let Lauren describe the role, team, compensation structure, and timezone expectations. Everything she says helps you anchor better.</div>
     <div class="doc-h3">Good questions for a first screen</div>
     <ul>
       <li>Can you tell me more about the team structure — who would I be working with day-to-day, and who does this role report into?</li>
@@ -220,7 +223,7 @@ const ITEMS = [
 
   // ── ADOPS ──
   { tag:'adops', q:'Walk me through your ad operations experience',
-    body:`<div class="box info"><div class="box-lbl">ℹ️ This is your opening — be concrete and global-sounding</div>They want someone who can run operations independently. Lead with scope and ownership, not titles.</div>
+    body:`<div class="ht"><span>experience</span><span>background</span><span>adops</span><span>career</span><span>overview</span><span>15 years</span><span>opening</span><span>intro</span></div><div class="box info"><div class="box-lbl">ℹ️ This is your opening — be concrete and global-sounding</div>They want someone who can run operations independently. Lead with scope and ownership, not titles.</div>
     <p class="ans">I have 15 years of experience in digital advertising operations, working primarily on the agency side in Brazil. My core stack is DV360 and CM360, where I handle end-to-end campaign setup — from trafficking and tag generation to QA, pixel implementation, and troubleshooting discrepancies.
 
 I've managed campaigns for large advertisers including Unilever Brazil, running display, video, programmatic, and influencer-side tracking across multiple channels simultaneously. I'm used to high-volume environments where accuracy and on-time launch are non-negotiable.
@@ -228,7 +231,7 @@ I've managed campaigns for large advertisers including Unilever Brazil, running 
 Beyond execution, I build internal processes — taxonomies, naming conventions, QA checklists — that keep operations clean across a team. I also work directly with clients to explain performance and troubleshoot issues, which I understand is a key part of this Global Ad Ops Manager role.</p>` },
 
   { tag:'adops', q:'What is your experience with campaign trafficking and QA?',
-    body:`<p class="ans">Trafficking is where I spend most of my operational time. In CM360, I build placement structures from scratch — naming the placements according to our taxonomy, generating tags, and coordinating with publishers or partners for tag implementation.
+    body:`<div class="ht"><span>trafficking</span><span>QA</span><span>CM360</span><span>tags</span><span>pixels</span><span>discrepancy</span><span>launch</span><span>quality</span></div><p class="ans">Trafficking is where I spend most of my operational time. In CM360, I build placement structures from scratch — naming the placements according to our taxonomy, generating tags, and coordinating with publishers or partners for tag implementation.
 
 QA is non-negotiable before any launch: I verify that creative assets are sized correctly, tracking pixels fire on the right events, Floodlight tags are attributed to the right activity groups, and landing pages match the intended destination.
 
@@ -238,14 +241,14 @@ Discrepancy investigation is something I handle routinely: comparing impression 
     <div class="tip"><strong>💡</strong> If they ask about a specific discrepancy you've solved, have a real example ready — Unilever campaign, mismatched Floodlight configuration, missing pixel on a specific URL.</div>` },
 
   { tag:'adops', q:'How do you ensure campaigns launch on time and without errors?',
-    body:`<p class="ans">I use a staged checklist process. Before any launch, I verify: creative assets are approved and trafficking-ready, tags are generated and tested (using the Chrome tag assistant or a similar tool), pixels are firing correctly in staging, all targeting settings are confirmed against the media plan, and the campaign status is set to active only after the final sign-off.
+    body:`<div class="ht"><span>launch</span><span>checklist</span><span>process</span><span>errors</span><span>timing</span><span>buffer</span><span>QA</span><span>deadline</span></div><p class="ans">I use a staged checklist process. Before any launch, I verify: creative assets are approved and trafficking-ready, tags are generated and tested (using the Chrome tag assistant or a similar tool), pixels are firing correctly in staging, all targeting settings are confirmed against the media plan, and the campaign status is set to active only after the final sign-off.
 
 I also build buffer time into my workflow — I never rely on same-day turnaround for a launch. If I'm receiving assets the morning of a go-live, I flag the risk in advance rather than absorbing it silently.
 
 For multi-channel campaigns, I keep a shared trafficking tracker so the team knows the status of each placement — especially important when different team members own different channels.</p>` },
 
   { tag:'adops', q:'Describe your experience with pixel implementation and troubleshooting',
-    body:`<p class="ans">In CM360, I work with Floodlight activities for conversion tracking — setting up activity groups, generating the Floodlight tag, coordinating placement on the client's site, and verifying that the tag fires correctly on the right pages and events.
+    body:`<div class="ht"><span>pixel</span><span>floodlight</span><span>tracking</span><span>troubleshoot</span><span>tag</span><span>implementation</span><span>verify</span><span>conversion</span></div><p class="ans">In CM360, I work with Floodlight activities for conversion tracking — setting up activity groups, generating the Floodlight tag, coordinating placement on the client's site, and verifying that the tag fires correctly on the right pages and events.
 
 For third-party verification, I implement IAS or DoubleVerify measurement tags alongside the ad creative — either as a wrapper or via direct placement — and confirm that impression, viewability, and brand safety data is populating in the verification dashboard.
 
@@ -253,14 +256,14 @@ Troubleshooting usually starts by isolating: is the issue with the tag itself (s
 
   // ── TECHNICAL ──
   { tag:'tech', q:'How advanced is your DV360 experience?',
-    body:`<p class="ans">Advanced and hands-on. In DV360, I work at the campaign, insertion order, and line item level. I configure bidding strategies — target CPM, target CPA, maximize viewable impressions — and select the appropriate inventory source, whether open auction, private marketplace deal, or programmatic guaranteed.
+    body:`<div class="ht"><span>DV360</span><span>DSP</span><span>programmatic</span><span>targeting</span><span>bidding</span><span>audience</span><span>reporting</span><span>advanced</span></div><p class="ans">Advanced and hands-on. In DV360, I work at the campaign, insertion order, and line item level. I configure bidding strategies — target CPM, target CPA, maximize viewable impressions — and select the appropriate inventory source, whether open auction, private marketplace deal, or programmatic guaranteed.
 
 I work with audience segments: first-party lists uploaded via CM360 audience, Google Audiences, and custom intent audiences. I also apply brand safety settings at the insertion order level and use brand safety targeting to exclude sensitive content categories.
 
 For reporting, I build custom reports in DV360 combining dimensions like creative, placement, exchange, and audience segment to find optimization opportunities. And I use the CM360 integration to reconcile impression and click data for unified reporting to the client.</p>` },
 
   { tag:'tech', q:'What is your experience with CM360 beyond trafficking?',
-    body:`<p class="ans">CM360 is my main ad server. Beyond placing tags and generating trafficking sheets, I use it for:
+    body:`<div class="ht"><span>CM360</span><span>floodlight</span><span>audience</span><span>remarketing</span><span>report</span><span>ad server</span><span>attribution</span><span>beyond</span></div><p class="ans">CM360 is my main ad server. Beyond placing tags and generating trafficking sheets, I use it for:
 
 - <strong>Floodlight configuration</strong>: setting up activity groups for different conversion events, coordinating with client web teams for implementation, and verifying attribution windows.
 - <strong>Audience creation</strong>: building remarketing lists from Floodlight activity and sharing them into DV360 for targeting.
@@ -270,7 +273,7 @@ For reporting, I build custom reports in DV360 combining dimensions like creativ
 I've also handled discrepancy investigations between CM360 and publisher ad servers — identifying the source of impression gaps and documenting findings for clients.</p>` },
 
   { tag:'tech', q:'Walk me through how you would set up a multi-channel campaign from scratch',
-    body:`<p class="ans">Starting from the media plan:
+    body:`<div class="ht"><span>multi-channel</span><span>setup</span><span>campaign</span><span>end-to-end</span><span>launch</span><span>structure</span><span>from scratch</span><span>trafficking</span></div><p class="ans">Starting from the media plan:
 
 1. <strong>Trafficking structure in CM360</strong> — create the advertiser (if new), set up the campaign with the correct date range, and build placements per channel following the taxonomy (channel, format, size, targeting).
 2. <strong>Creative assets</strong> — upload creatives in CM360, QA for size/specs/landing URL, associate to the correct placements.
@@ -283,7 +286,7 @@ I've also handled discrepancy investigations between CM360 and publisher ad serv
 
   // ── PROGRAMMATIC ──
   { tag:'prog', q:'Explain the difference between open auction, PMP, and programmatic guaranteed',
-    body:`<div class="tbl-w"><table>
+    body:`<div class="ht"><span>programmatic</span><span>RTB</span><span>PMP</span><span>deal</span><span>open auction</span><span>guaranteed</span><span>inventory</span><span>buying</span></div><div class="tbl-w"><table>
       <thead><tr><th>Model</th><th>How it works</th><th>Use case</th></tr></thead>
       <tbody>
         <tr><td><strong>Open Auction (RTB)</strong></td><td>Real-time bidding on open exchange inventory. All buyers compete simultaneously. Price discovery is dynamic.</td><td>Scale and reach at efficient CPM. Lower inventory quality control.</td></tr>
@@ -294,7 +297,7 @@ I've also handled discrepancy investigations between CM360 and publisher ad serv
     <p>In practice, I use all three depending on the campaign goal: open auction for efficiency and scale, PMP for brand-safe premium placements, and PG for guaranteed reach on critical launch periods.</p>` },
 
   { tag:'prog', q:'How do you handle brand safety in programmatic campaigns?',
-    body:`<p class="ans">Brand safety is configured at multiple levels:
+    body:`<div class="ht"><span>brand safety</span><span>IAS</span><span>DoubleVerify</span><span>blocklist</span><span>viewability</span><span>verification</span><span>CTV</span><span>exclusion</span></div><p class="ans">Brand safety is configured at multiple levels:
 
 <strong>In DV360:</strong> I apply content category exclusions at the insertion order level (IAB sensitive categories like adult content, violence, fake news). I also use brand safety targeting to restrict to specific inventory sources or apply verified inventory lists.
 
@@ -306,21 +309,21 @@ I always document brand safety settings in the campaign setup sheet so there's a
 
   // ── SITUATIONAL ──
   { tag:'situacional', q:'Tell me about a time you caught a major error before a campaign went live',
-    body:`<p class="ans">On a Unilever campaign, I was doing a final QA pass the evening before launch and noticed that the Floodlight tag was firing on the confirmation page but not passing the transaction value — the revenue field was blank. The client was running a conversion campaign, and without that data, attribution would be broken from day one.
+    body:`<div class="ht"><span>error</span><span>floodlight</span><span>QA</span><span>pre-launch</span><span>bug</span><span>Unilever</span><span>catch</span><span>fix</span></div><p class="ans">On a Unilever campaign, I was doing a final QA pass the evening before launch and noticed that the Floodlight tag was firing on the confirmation page but not passing the transaction value — the revenue field was blank. The client was running a conversion campaign, and without that data, attribution would be broken from day one.
 
 I flagged it immediately to the client's web team at around 7pm. We worked through the issue together — the developer had implemented the tag but hadn't wired the dynamic revenue variable correctly. We verified the fix by midnight, and the campaign launched correctly the next morning.
 
 The lesson I took from that: QA is not just "did the tag fire" but "is it firing with the right data." I now include data-layer validation as a standard step in my pre-launch checklist.</p>` },
 
   { tag:'situacional', q:'How do you manage multiple campaigns and priorities simultaneously?',
-    body:`<p class="ans">I work from a master trafficking tracker that lists every active campaign, its current status, next action required, and deadline. Each morning I prioritize based on go-live dates and client commitments — anything launching within 48 hours goes to the top.
+    body:`<div class="ht"><span>priority</span><span>multiple</span><span>tracker</span><span>deadline</span><span>workflow</span><span>escalation</span><span>manage</span><span>organize</span></div><p class="ans">I work from a master trafficking tracker that lists every active campaign, its current status, next action required, and deadline. Each morning I prioritize based on go-live dates and client commitments — anything launching within 48 hours goes to the top.
 
 For recurring tasks like pacing checks and reporting, I schedule fixed time blocks in my day so they don't get displaced by reactive work. When a sudden issue comes in — a creative rejection, a discrepancy, a client escalation — I assess whether it blocks a launch or is tolerable until a scheduled slot, and communicate a realistic timeline immediately.
 
 The key habit is: never absorb a risk silently. If something is at risk of being late, I say so early with a plan, not at the last minute with an apology.</p>` },
 
   { tag:'situacional', q:'Describe a time you had to explain a technical issue to a non-technical client',
-    body:`<p class="ans">A client asked why their campaign showed 500,000 impressions in DV360 but their publisher invoice showed 480,000. They assumed we were being charged for impressions we weren't receiving.
+    body:`<div class="ht"><span>explain</span><span>non-technical</span><span>client</span><span>discrepancy</span><span>impressions</span><span>communication</span><span>translate</span><span>gap</span></div><p class="ans">A client asked why their campaign showed 500,000 impressions in DV360 but their publisher invoice showed 480,000. They assumed we were being charged for impressions we weren't receiving.
 
 I explained it this way: DV360 counts an impression when it sends the ad. The publisher counts when they receive the request. Network latency, ad blockers, and measurement timing differences always create a small gap — industry standard is within 10%, and their gap was under 5%.
 
@@ -330,7 +333,7 @@ The approach I use: lead with the conclusion ("you're not being overcharged"), t
 
   // ── BEHAVIORAL ──
   { tag:'comportamental', q:'Why do you want to work at Goodway Group?',
-    body:`<p class="ans">A few specific reasons:
+    body:`<div class="ht"><span>why</span><span>motivation</span><span>fit</span><span>remote</span><span>TTD</span><span>culture</span><span>career</span><span>Goodway</span></div><p class="ans">A few specific reasons:
 
 First, the remote-first model is genuine — not a COVID accommodation, but how the company was designed. That aligns with how I work and where I want my career to go.
 
@@ -341,7 +344,7 @@ Third, the Global Ad Ops Manager role is genuinely global — multi-channel, mul
 And honestly, being one of the priority candidates from Brazil for a US agency at this scale is the kind of opportunity I want to take seriously.</p>` },
 
   { tag:'comportamental', q:'How do you work in a remote-first, asynchronous environment?',
-    body:`<p class="ans">I've been working remotely for several years, so asynchronous communication is already my default.
+    body:`<div class="ht"><span>remote</span><span>async</span><span>timezone</span><span>communication</span><span>overlap</span><span>documentation</span><span>CST</span><span>global</span></div><p class="ans">I've been working remotely for several years, so asynchronous communication is already my default.
 
 My approach: I document everything — decisions, campaign setups, QA findings — in a shared space so my teammates in other timezones can pick up context without waiting for me to be online. I write clearly and completely the first time, anticipating the questions someone might ask before they ask them.
 
@@ -350,7 +353,7 @@ For time-sensitive issues, I flag them early with a clear status ("blocked on X,
 I'm comfortable with the idea that my working hours in Brazil will overlap partially with a US team — typically late morning to early afternoon BRT overlaps with early CST. I'd plan to anchor my "synchronous" work — calls, collaborative reviews — in that window.</p>` },
 
   { tag:'comportamental', q:'What do you consider your strongest technical skill in ad operations?',
-    body:`<p class="ans">CM360 and DV360 integration — specifically how to structure a campaign so that the ad server and the DSP work together cleanly, and how to investigate when they don't.
+    body:`<div class="ht"><span>strongest</span><span>skill</span><span>strength</span><span>expertise</span><span>CM360</span><span>DV360</span><span>integration</span><span>technical</span></div><p class="ans">CM360 and DV360 integration — specifically how to structure a campaign so that the ad server and the DSP work together cleanly, and how to investigate when they don't.
 
 A lot of practitioners use one or the other, but fewer have deep hands-on experience running both simultaneously and troubleshooting the gaps between them: impression discrepancies, Floodlight attribution, creative rotation behavior, and audience sharing.
 
@@ -358,7 +361,7 @@ That's where I've built the most specialized knowledge, and it's also where most
 
   // ── SALARY ──
   { tag:'salario', q:'Salary expectation — what to say and how to handle it',
-    body:`<div class="box warn"><div class="box-lbl">🎯 Let them name a number first</div>Before revealing any expectation, ask about the compensation structure: contractor or employment, USD or local currency, benefits included. Their answer reshapes your anchor.</div>
+    body:`<div class="ht"><span>salary</span><span>expectation</span><span>USD</span><span>compensation</span><span>range</span><span>rate</span><span>money</span><span>negotiate</span></div><div class="box warn"><div class="box-lbl">🎯 Let them name a number first</div>Before revealing any expectation, ask about the compensation structure: contractor or employment, USD or local currency, benefits included. Their answer reshapes your anchor.</div>
 
     <div class="doc-h3">If they ask directly: "What are your salary expectations?"</div>
     <p class="ans">Based on the scope of the Global Ad Ops Manager role and my 15 years of experience, I'm looking for something in the range of <strong>USD 2,500–3,500/month</strong>, but I'm open to discussing the full package — especially since the contractor model and remote flexibility are already meaningful to me.</p>
@@ -375,7 +378,7 @@ That's where I've built the most specialized knowledge, and it's also where most
     <div class="tip"><strong>💡</strong> At USD 2,000+/month as a contractor (PJ), you net more than most R$12k CLT offers after taxes. The remote + dollar combination is the real value here.</div>` },
 
   { tag:'tech', q:'What is your experience with The Trade Desk?',
-    body:`<p>Goodway is one of The Trade Desk's top certified partners — this will likely come up. Lead with the platform overlap between TTD and DV360, then highlight transferable depth.</p>
+    body:`<div class="ht"><span>TTD</span><span>Trade Desk</span><span>DSP</span><span>Koa</span><span>UID2</span><span>programmatic</span><span>certified</span><span>ramp</span></div><p>Goodway is one of The Trade Desk's top certified partners — this will likely come up. Lead with the platform overlap between TTD and DV360, then highlight transferable depth.</p>
     <div class="tip"><strong>Answer:</strong> "My primary DSP has been DV360, where I've built deep expertise in audience targeting, deal ID management, and CM360 integration. The Trade Desk shares the same programmatic principles — RTB mechanics, bid strategies, frequency management, brand safety layers — just with a different interface and some proprietary features like Koa AI and UID2. I've reviewed TTD's documentation and understand its deal management workflow. Given that Goodway is a TTD-first house, I'm committed to getting TTD-certified within the first 60 days and would use my DV360 depth as the foundation to ramp quickly."</div>
     <p><strong>Key TTD concepts to mention if asked further:</strong></p>
     <ul>
@@ -387,7 +390,7 @@ That's where I've built the most specialized knowledge, and it's also where most
     </ul>` },
 
   { tag:'tech', q:'How do you approach CTV and streaming campaigns?',
-    body:`<p>Goodway is known for CTV expertise. This is likely a technical differentiator question.</p>
+    body:`<div class="ht"><span>CTV</span><span>streaming</span><span>television</span><span>OTT</span><span>video</span><span>SSAI</span><span>household</span><span>connected</span></div><p>Goodway is known for CTV expertise. This is likely a technical differentiator question.</p>
     <div class="tip"><strong>Answer:</strong> "CTV has become central to programmatic strategy. My approach: I start by aligning the CTV buy to the full-funnel — CTV at upper funnel for reach and brand awareness, with cross-device retargeting on display/digital to close the loop. For targeting I use household-level IP matching, ACR (Automatic Content Recognition) data where available through deals, and lookalike audiences based on first-party data. For measurement I set up brand lift studies, reach/frequency reporting, and cross-channel attribution to capture view-through conversions on mobile and desktop after CTV exposure. Quality control is critical — I apply VAST 4.x, verify inventory is app-streamed (not browser-based), and use IAS/DV for content verification and brand safety at the placement level."</div>
     <ul>
       <li><strong>VAST 4.x</strong> — industry standard for CTV video ad serving; supports server-side stitching</li>
@@ -398,7 +401,7 @@ That's where I've built the most specialized knowledge, and it's also where most
     </ul>` },
 
   { tag:'tech', q:'How do you handle the cookieless transition and identity in campaigns?',
-    body:`<p>Post-cookie identity is a hot topic at any US agency in 2024–2025.</p>
+    body:`<div class="ht"><span>cookieless</span><span>identity</span><span>cookie</span><span>UID2</span><span>privacy</span><span>first-party</span><span>attribution</span><span>sandbox</span></div><p>Post-cookie identity is a hot topic at any US agency in 2024–2025.</p>
     <div class="tip"><strong>Answer:</strong> "We've been preparing for this transition for a few years. My approach has three layers: first, maximize first-party data — work with clients to build Floodlight audiences, CRM lists via Customer Match, and email-based IDs before the cookie fully goes away. Second, adopt privacy-preserving signals — in DV360 this means leveraging Google's Privacy Sandbox APIs (Topics, FLEDGE/Protected Audience) where available, and enabling UID2 for campaigns that run on TTD. Third, shift measurement to incrementality and MMM for upper-funnel where attribution becomes harder. For DV360 specifically, I've enabled Enhanced Conversions and use Google Signals for cross-device tracking as first-party alternatives."</div>
     <ul>
       <li><strong>UID2</strong> — email-based hashed ID; persistent across cookieless environments; TTD's standard</li>
@@ -409,12 +412,12 @@ That's where I've built the most specialized knowledge, and it's also where most
     </ul>` },
 
   { tag:'comportamental', q:'How do you manage and develop relationships with clients or internal stakeholders?',
-    body:`<p>"Global Ad Operations Manager" implies cross-functional and potentially client-facing responsibility. Expect a stakeholder management question.</p>
+    body:`<div class="ht"><span>client</span><span>stakeholder</span><span>relationship</span><span>communication</span><span>manage</span><span>agency</span><span>Unilever</span><span>proactive</span></div><p>"Global Ad Operations Manager" implies cross-functional and potentially client-facing responsibility. Expect a stakeholder management question.</p>
     <div class="tip"><strong>Answer:</strong> "I treat stakeholder communication as a core part of the job, not an afterthought. My approach: I establish a regular cadence early — weekly campaign status updates, a shared dashboard for metrics, and a clear escalation path for issues. I proactively surface problems before they become crises, always paired with a proposed solution. With clients, I adapt my language — business outcomes with executives, platform mechanics with their marketing ops teams. At StormX, I managed the relationship with Unilever Brazil's digital media team directly, fielding questions on discrepancies, creative QA, and attribution across a high-volume multi-platform account. The result was a consistent renewal and expansion of scope year over year."</div>
     <div class="tip"><strong>💡 For Goodway specifically:</strong> They're a managed-service agency — their AdOps team is likely client-facing or works closely with account managers who are. Showing you can communicate clearly and proactively under pressure is key.</div>` },
 
   { tag:'tech', q:'How do you approach reporting and campaign optimization?',
-    body:`<p>Optimization mindset is a differentiator between a trafficker and a true AdOps manager.</p>
+    body:`<div class="ht"><span>reporting</span><span>optimization</span><span>KPI</span><span>pacing</span><span>creative</span><span>performance</span><span>metrics</span><span>campaign</span></div><p>Optimization mindset is a differentiator between a trafficker and a true AdOps manager.</p>
     <div class="tip"><strong>Answer:</strong> "Reporting starts with aligning on KPIs before the campaign launches — not after. I build a reporting structure around the client's goal: for brand awareness it's reach, frequency, viewability and VCR; for performance it's CPA, ROAS, and view-through vs click-through attribution. During the campaign I run weekly optimization cycles: check delivery pacing, CPM trends by placement/creative, audience performance, and frequency caps. If CPA is tracking above goal I look at creative fatigue first, then audience overlap, then bid strategy. I document every optimization and the result — this creates a learning repository for future flights. In CM360 I use custom channels and floodlight groups to build clean cross-channel reports that give clients a single view across all buys."</div>
     <ul>
       <li><strong>Key metrics by objective:</strong> Awareness → Reach/Freq/VCR/Viewability | Performance → CPA/ROAS/CTR</li>
@@ -424,12 +427,12 @@ That's where I've built the most specialized knowledge, and it's also where most
     </ul>` },
 
   { tag:'situacional', q:'Tell me about a time you led a process improvement that made the team more efficient.',
-    body:`<p>Manager-level question about initiative and leadership beyond day-to-day execution.</p>
+    body:`<div class="ht"><span>process</span><span>improvement</span><span>efficiency</span><span>checklist</span><span>team</span><span>Unilever</span><span>QA</span><span>leadership</span></div><p>Manager-level question about initiative and leadership beyond day-to-day execution.</p>
     <div class="tip"><strong>Answer:</strong> "At StormX, we were trafficking high volumes for Unilever Brazil across multiple platforms — CM360, DV360, and social — and the QA process was entirely manual and inconsistent across team members. I designed a standardized pre-launch checklist covering 23 checkpoints across naming convention, creative specs, pixel firing, targeting parameters, and budget pacing. I built it as a shared Google Sheet template that became mandatory before any campaign went live. Within the first quarter we reduced post-launch errors by roughly 80% and cut the average time-to-launch by 30 minutes per campaign. It also made onboarding new team members faster because the process was documented and repeatable."</div>
     <div class="tip"><strong>💡</strong> This maps directly to Goodway's scale — as a large agency they need standardized, repeatable AdOps processes. Show you think systemically, not just tactically.</div>` },
 
   { tag:'tech', q:'What is your experience with programmatic audio?',
-    body:`<p>Goodway runs full-channel programmatic including audio (Spotify, podcast, streaming radio). Knowing the basics signals genuine omnichannel experience.</p>
+    body:`<div class="ht"><span>audio</span><span>programmatic</span><span>Spotify</span><span>podcast</span><span>DAAST</span><span>completion</span><span>streaming</span><span>sound</span></div><p>Goodway runs full-channel programmatic including audio (Spotify, podcast, streaming radio). Knowing the basics signals genuine omnichannel experience.</p>
     <div class="tip"><strong>Answer:</strong> "Programmatic audio is a channel I've followed closely and worked with on select campaigns. The mechanics mirror display programmatic — RTB, deal IDs, frequency capping — but the creative and measurement stack is different. Audio ads are served via DAAST (Digital Audio Ad Serving Template), the audio equivalent of VAST. Targeting is primarily contextual and behavioral: genre, mood, time of day, device (mobile vs smart speaker vs desktop). Completion rate is the primary engagement metric since there's no click on a smart speaker. For attribution, we use pixel-less methods — Spotify's conversion tracking, or matching exposed users to site visits via IP-based graphs. I've activated programmatic audio through DV360 (which supports audio line items) and direct deals with Spotify for brand campaigns."</div>
     <ul>
       <li><strong>DAAST</strong> — Digital Audio Ad Serving Template; equivalent of VAST for audio</li>
@@ -442,7 +445,7 @@ That's where I've built the most specialized knowledge, and it's also where most
     </ul>` },
 
   { tag:'tech', q:'What is your experience with programmatic DOOH (Digital Out-of-Home)?',
-    body:`<p>pDOOH is a growing channel in US agencies. Showing awareness of it — even without deep hands-on — differentiates a Senior/Manager candidate.</p>
+    body:`<div class="ht"><span>DOOH</span><span>out-of-home</span><span>billboard</span><span>pDOOH</span><span>geo</span><span>foot traffic</span><span>location</span><span>screen</span></div><p>pDOOH is a growing channel in US agencies. Showing awareness of it — even without deep hands-on — differentiates a Senior/Manager candidate.</p>
     <div class="tip"><strong>Answer:</strong> "Programmatic DOOH is a channel I've explored in depth even if direct execution has been limited — the Brazilian market is earlier-stage on pDOOH than the US. The core concept: digital screens in physical spaces (billboards, transit, retail) bought programmatically via DSPs instead of direct IO. The key difference from online programmatic is that DOOH is an impression shared across multiple viewers simultaneously — targeting is contextual and location-based, not user-level. In DV360, DOOH inventory is activated as a separate line item type with geo-radius, day-part, venue type (airport, gas station, gym), and audience density targeting. Measurement uses foot traffic attribution — brands like Foursquare or Liveramp match mobile device IDs of people exposed near a screen to store visit uplift. For Goodway's US market clients this is an increasingly important complement to CTV for upper-funnel reach."</div>
     <ul>
       <li><strong>Key distinction:</strong> DOOH impression = multiple viewers simultaneously; no user-level targeting or cookies</li>
@@ -455,7 +458,7 @@ That's where I've built the most specialized knowledge, and it's also where most
     </ul>` },
 
   { tag:'tech', q:'How do you approach audience strategy and first-party data activation?',
-    body:`<p>As cookies deprecate, audience strategy is becoming a core AdOps competency — not just a planning function. Manager-level candidates are expected to own this.</p>
+    body:`<div class="ht"><span>audience</span><span>first-party</span><span>data</span><span>retargeting</span><span>CRM</span><span>waterfall</span><span>cookieless</span><span>activation</span></div><p>As cookies deprecate, audience strategy is becoming a core AdOps competency — not just a planning function. Manager-level candidates are expected to own this.</p>
     <div class="tip"><strong>Answer:</strong> "Audience strategy starts with a data taxonomy: I work with the client to map their first-party assets — CRM lists, site visitors by intent signal, converters, lapsed customers — and then layer in second and third-party data to extend reach. In DV360, I activate first-party audiences via Google Audience Center, using Floodlight-based segments for site retargeting and Customer Match for CRM list targeting. For prospecting I use in-market and affinity audiences, then suppress converters to avoid waste. I build a full audience waterfall — 1P retargeting at the highest CPM, lookalikes in the middle, broad contextual at the base — and optimize allocation based on CPA performance by audience segment. With the deprecation of third-party cookies I've shifted more budget toward contextual signals and first-party lookalikes built on hashed email via Customer Match."</div>
     <ul>
       <li><strong>Audience waterfall:</strong> 1P retargeting → CRM match → 1P lookalike → 3P in-market → contextual</li>
@@ -467,12 +470,12 @@ That's where I've built the most specialized knowledge, and it's also where most
     </ul>` },
 
   { tag:'comportamental', q:'How do you stay current with the ad tech landscape?',
-    body:`<p>A "Global Ad Operations Manager" is expected to bring market awareness, not just platform execution. Lauren may ask this to gauge intellectual curiosity and industry engagement.</p>
+    body:`<div class="ht"><span>industry</span><span>news</span><span>learning</span><span>AdExchanger</span><span>Digiday</span><span>TTD</span><span>updates</span><span>trends</span></div><p>A "Global Ad Operations Manager" is expected to bring market awareness, not just platform execution. Lauren may ask this to gauge intellectual curiosity and industry engagement.</p>
     <div class="tip"><strong>Answer:</strong> "I follow a mix of industry sources consistently: AdExchanger and Digiday for industry news and platform changes; the official DV360 and CM360 release notes for product updates; IAB and MRC for measurement standards; and The Trade Desk's Programmatic IQ newsletter since I'm actively ramping on TTD. I also learn a lot from campaign data — when I see an unexpected pattern in performance or delivery, I dig into the why, and those investigations have taught me more about how the ad stack actually works than any article. I've recently been focused on the cookieless transition timeline, UID2 adoption, and how CTV measurement is evolving beyond completion rate toward outcome-based metrics."</div>
     <div class="tip"><strong>💡 Resources to name-drop:</strong> AdExchanger · Digiday · IAB Tech Lab · DV360/CM360 release notes · TTD Programmatic IQ · Cynopsis Media (for CTV) · Marketing Brew</div>` },
 
   { tag:'doc', q:'Tell me about yourself — how to open the conversation',
-    body:`<p>Usually the very first question. It sets the tone for the entire call. Most candidates either go too long (full CV recap) or too short (awkward). The goal: 60–90 seconds, three acts, end with a bridge to <em>this</em> role.</p>
+    body:`<div class="ht"><span>yourself</span><span>intro</span><span>opening</span><span>elevator</span><span>pitch</span><span>background</span><span>overview</span><span>first question</span></div><p>Usually the very first question. It sets the tone for the entire call. Most candidates either go too long (full CV recap) or too short (awkward). The goal: 60–90 seconds, three acts, end with a bridge to <em>this</em> role.</p>
     <div class="tip"><strong>Structure: Past → Present → Why here</strong></div>
     <div class="tip"><strong>Answer (read aloud, adjust your own pace):</strong><br><br>
     "Sure — I've been working in ad operations for about 15 years, primarily on the agency and tech side in Brazil. I started in campaign management and trafficking, and over time I moved into more complex, platform-heavy work — building out programmatic setups in DV360 and CM360, running high-volume multi-channel campaigns for large brands like Unilever, and owning the full AdOps function at StormX, the agency where I currently work.<br><br>
