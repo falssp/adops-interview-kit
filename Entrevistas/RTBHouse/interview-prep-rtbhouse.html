@@ -130,7 +130,9 @@ tr:last-child td{border-bottom:none}
 .muted{color:var(--fg3)}
 .doc-h{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--bdr)}
 .empty{text-align:center;color:var(--fg3);padding:48px;font-size:14px}
-.ht{display:none}
+.ht{display:flex;flex-wrap:wrap;gap:4px;padding:8px 0 4px;border-top:1px solid var(--bdr);margin-top:10px}
+.ht::before{content:'🔍';font-size:11px;color:var(--fg3);margin-right:2px;align-self:center}
+.ht span{font-size:10px;background:var(--tag-bg);color:var(--fg3);border-radius:3px;padding:2px 6px;cursor:default}
 mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) mark{background:#7C6800;color:#EDEBE6}}
 :root[data-theme="dark"] mark{background:#7C6800;color:#EDEBE6}
@@ -195,7 +197,7 @@ const ITEMS = [
     </div>` },
 
   { tag:'doc', q:'What do you know about RTB House? — company background & research',
-    body:`<span class="ht">know about research background history company overview founded offices team size employees deep learning dsp retargeting performance ecommerce retail travel finance built in best places to work</span><div class="doc-h">RTB House at a glance</div>
+    body:`<div class="ht"><span>know</span><span>about</span><span>research</span><span>background</span><span>history</span><span>company</span><span>overview</span><span>founded</span><span>offices</span><span>team</span><span>size</span><span>employees</span><span>deep</span><span>learning</span><span>dsp</span><span>retargeting</span><span>performance</span><span>ecommerce</span><span>retail</span><span>travel</span><span>finance</span><span>built</span><span>in</span><span>best</span><span>places</span><span>to</span><span>work</span></div><div class="doc-h">RTB House at a glance</div>
     <ul>
       <li><strong>Founded:</strong> 2012, Warsaw, Poland</li>
       <li><strong>Scope:</strong> Global — 90+ markets, offices in Americas, EMEA, APAC</li>
@@ -215,7 +217,7 @@ const ITEMS = [
     </ul>` },
 
   { tag:'doc', q:'Tell me about yourself — how to open the conversation',
-    body:`<span class="ht">tell me about yourself intro opening who are you present yourself background experience summary pitch elevator self introduction</span><p>Same structure as always: Past → Present → Why here. Keep it under 90 seconds.</p>
+    body:`<div class="ht"><span>tell</span><span>me</span><span>about</span><span>yourself</span><span>intro</span><span>opening</span><span>who</span><span>are</span><span>you</span><span>present</span><span>yourself</span><span>background</span><span>experience</span><span>summary</span><span>pitch</span><span>elevator</span><span>self</span><span>introduction</span></div><p>Same structure as always: Past → Present → Why here. Keep it under 90 seconds.</p>
     <div class="tip"><strong>Answer:</strong><br><br>
     "Sure. I've been in ad operations for about 15 years, primarily on the agency side in Brazil. I started in trafficking and campaign management and moved into more complex, platform-heavy work — running high-volume programmatic campaigns in DV360 and CM360 for large brands, owning the full AdOps function including pixel implementation, discrepancy investigation, and cross-channel reporting.<br><br>
     What I've built over that time is deep hands-on experience with the technical layer of digital campaigns — not just setting them up but diagnosing what goes wrong when delivery breaks, CPMs spike, or attribution doesn't match. That investigative side is actually what I find most engaging about the work.<br><br>
@@ -239,7 +241,7 @@ const ITEMS = [
     </ul>` },
 
   { tag:'adops', q:'How do you investigate and resolve campaign discrepancies?',
-    body:`<span class="ht">discrepancy gap mismatch numbers differ impression count difference platform reconciliation investigate troubleshoot</span><p>This is explicitly in the RTB House JD — "investigate and troubleshoot complex discrepancies." Expect a detailed question here.</p>
+    body:`<div class="ht"><span>discrepancy</span><span>gap</span><span>mismatch</span><span>numbers</span><span>differ</span><span>impression</span><span>count</span><span>difference</span><span>platform</span><span>reconciliation</span><span>investigate</span><span>troubleshoot</span></div><p>This is explicitly in the RTB House JD — "investigate and troubleshoot complex discrepancies." Expect a detailed question here.</p>
     <div class="tip"><strong>Answer:</strong> "Discrepancy investigation starts with isolating the gap. I always check the time window first — are we comparing the same date range and timezone? Then I look at methodology: different platforms count impressions differently — served vs viewable, win vs delivery confirmation. A 10–15% discrepancy between CM360 and a DSP is normal and explainable. Above that I dig into: (1) tag implementation — is the CM360 tag firing correctly? I check with browser dev tools, Charles Proxy, or the platform's tag debugger. (2) Ad blocker impact — especially on direct site buys. (3) Redirect latency — if there are multiple redirects in the tag chain, some impressions fire the first tag but time out before firing the downstream one. (4) Clock skew — server time differences between the DSP and the ad server can shift impressions across days. I document every investigation with a clear before/after and share it with the client in plain language — not 'there was a discrepancy' but 'here's what caused it and what we changed.'"</div>
     <ul>
       <li><strong>Normal range:</strong> 10–15% between DSP and CM360 is industry standard</li>
@@ -249,7 +251,7 @@ const ITEMS = [
     </ul>` },
 
   { tag:'adops', q:'How do you monitor pacing and ensure campaigns deliver on budget and goal?',
-    body:`<span class="ht">pacing delivery budget under over spend monitor daily check flight campaign performance goal target</span><div class="tip"><strong>Answer:</strong> "Pacing is a daily discipline, not a weekly check. I build a master tracker for each active campaign with daily delivery targets — total budget divided across the flight, adjusted for weekday/weekend traffic patterns and historical delivery indexes. Each morning I pull pacing data from the DSP and flag anything more than 10% off target. For under-delivery I first check whether it's a budget cap issue, a frequency cap that's too tight, or a targeting set that's too narrow. For over-delivery I check if daily caps are set correctly and whether the algorithm is front-loading. On CM360-to-DSP buys I reconcile both numbers. I always flag pacing issues to the client before they ask — a proactive 'we're 8% under, here's what I'm adjusting' builds more trust than a reactive explanation at the end of the month."</div>
+    body:`<div class="ht"><span>pacing</span><span>delivery</span><span>budget</span><span>under</span><span>over</span><span>spend</span><span>monitor</span><span>daily</span><span>check</span><span>flight</span><span>campaign</span><span>performance</span><span>goal</span><span>target</span></div><div class="tip"><strong>Answer:</strong> "Pacing is a daily discipline, not a weekly check. I build a master tracker for each active campaign with daily delivery targets — total budget divided across the flight, adjusted for weekday/weekend traffic patterns and historical delivery indexes. Each morning I pull pacing data from the DSP and flag anything more than 10% off target. For under-delivery I first check whether it's a budget cap issue, a frequency cap that's too tight, or a targeting set that's too narrow. For over-delivery I check if daily caps are set correctly and whether the algorithm is front-loading. On CM360-to-DSP buys I reconcile both numbers. I always flag pacing issues to the client before they ask — a proactive 'we're 8% under, here's what I'm adjusting' builds more trust than a reactive explanation at the end of the month."</div>
     <ul>
       <li><strong>Under-delivery causes:</strong> Narrow targeting, low bid, creative rejection, publisher underperformance, frequency cap too tight</li>
       <li><strong>Over-delivery causes:</strong> Missing daily cap, algorithm front-loading, broader audience than expected</li>
@@ -257,7 +259,7 @@ const ITEMS = [
     </ul>` },
 
   { tag:'adops', q:'How do you ensure tracking codes are functioning correctly for clients?',
-    body:`<span class="ht">tracking pixel tag implementation code fire verify QA debug floodlight conversion event</span><p>RTB House explicitly lists this: "work closely with clients to ensure RTB House tracking codes are functioning across websites." Pixel QA is core to this role.</p>
+    body:`<div class="ht"><span>tracking</span><span>pixel</span><span>tag</span><span>implementation</span><span>code</span><span>fire</span><span>verify</span><span>QA</span><span>debug</span><span>floodlight</span><span>conversion</span><span>event</span></div><p>RTB House explicitly lists this: "work closely with clients to ensure RTB House tracking codes are functioning across websites." Pixel QA is core to this role.</p>
     <div class="tip"><strong>Answer:</strong> "Pixel QA is a structured process, not a spot check. When a client implements a tracking code, I verify it in three layers: (1) Tag presence — I use browser dev tools (Network tab, filtered by the tag domain) to confirm the pixel fires on the correct pages. (2) Parameter accuracy — I verify that dynamic parameters like revenue, order ID, and event type are passing correctly. A pixel that fires but sends revenue=0 on every conversion is useless for optimization. (3) Attribution window — I confirm the lookback window and de-duplication logic match what the client expects. For RTB House-specific tags I'd follow the same methodology, learning their tag structure and debugging parameters the same way I would for Floodlight or a standard 1x1 pixel."</div>
     <ul>
       <li><strong>Tools:</strong> Chrome DevTools (Network tab), Tag Assistant, ObservePoint, Charles Proxy</li>
@@ -306,7 +308,7 @@ const ITEMS = [
     </ul>` },
 
   { tag:'prog', q:'How does RTB House\'s Deep Learning approach differ from standard programmatic?',
-    body:`<span class="ht">deep learning machine learning ml algorithm dsp difference unique differentiation retargeting optimization bidding</span><p>They will almost certainly ask about this — it's their core differentiator. Research it and show genuine curiosity.</p>
+    body:`<div class="ht"><span>deep</span><span>learning</span><span>machine</span><span>learning</span><span>ml</span><span>algorithm</span><span>dsp</span><span>difference</span><span>unique</span><span>differentiation</span><span>retargeting</span><span>optimization</span><span>bidding</span></div><p>They will almost certainly ask about this — it's their core differentiator. Research it and show genuine curiosity.</p>
     <div class="tip"><strong>Answer:</strong> "Most DSPs use rule-based or standard ML approaches — they segment audiences into buckets (in-market, lookalike) and apply bid adjustments based on historical averages for that segment. RTB House's Deep Learning engine works at the individual user level — it builds a behavioral model per user and predicts the probability of conversion for that specific person at that specific moment. Because Deep Learning models learn continuously and handle much more complexity than standard ML, RTB House can capture non-obvious patterns — like the fact that a user who browses a category page at 11pm on mobile converts at a very different rate than someone doing the same at 2pm on desktop. This is especially powerful for retargeting, where you have rich behavioral data to train on. The practical difference for clients: better ROAS and CPA, with less manual optimization needed."</div>
     <div class="tip"><strong>💡</strong> You don't need to know the ML internals — showing you understand the business logic and why it matters to clients is enough for a recruiter screen and even a first technical round.</div>` },
 
@@ -325,14 +327,14 @@ const ITEMS = [
 
   // ── BEHAVIORAL ──
   { tag:'comportamental', q:'Why RTB House? Why this role, why now? — motivation',
-    body:`<span class="ht">why rtb house why this company why this role motivation interest reason applied looking for</span><div class="tip"><strong>Answer:</strong> "Two things stand out. First, the TAM structure — it's the right next step for me. I've been in AdOps for 15 years doing the technical work; now I want to own the client relationship on top of it. The TAM role at RTB House is exactly that combination — technical depth with direct account responsibility. Second, the product itself. Most of my experience has been on standard DSPs. The fact that RTB House runs a proprietary Deep Learning engine is genuinely interesting to me — I want to understand how that changes campaign behavior, what optimizations become possible, and how to explain that value to clients. I'm not just looking for a job title change; I'm looking for a technical environment that's worth learning."</div>` },
+    body:`<div class="ht"><span>why</span><span>rtb</span><span>house</span><span>why</span><span>this</span><span>company</span><span>why</span><span>this</span><span>role</span><span>motivation</span><span>interest</span><span>reason</span><span>applied</span><span>looking</span><span>for</span></div><div class="tip"><strong>Answer:</strong> "Two things stand out. First, the TAM structure — it's the right next step for me. I've been in AdOps for 15 years doing the technical work; now I want to own the client relationship on top of it. The TAM role at RTB House is exactly that combination — technical depth with direct account responsibility. Second, the product itself. Most of my experience has been on standard DSPs. The fact that RTB House runs a proprietary Deep Learning engine is genuinely interesting to me — I want to understand how that changes campaign behavior, what optimizations become possible, and how to explain that value to clients. I'm not just looking for a job title change; I'm looking for a technical environment that's worth learning."</div>` },
 
   { tag:'comportamental', q:'How do you work in a cross-functional, global remote environment?',
     body:`<div class="tip"><strong>Answer:</strong> "Remote-first is how I've worked best. My approach: documentation over verbal-only communication, async-first for anything that doesn't need a live decision, and proactive status updates so colleagues in different timezones aren't blocked waiting for me. For collaboration with the US team from Brazil, the overlap window (roughly 2–6pm BRT / 11am–3pm EST) is the synchronous zone — I protect that time for calls and decisions. Everything else I handle with clear written handoffs. I've worked this way at StormX on cross-functional campaigns with clients in multiple timezones and it's become my natural default."</div>` },
 
   // ── BEHAVIORAL (extra) ──
   { tag:'comportamental', q:'What\'s your biggest weakness?',
-    body:`<span class="ht">weakness weak point improvement area flaw challenge struggle develop grow</span><p>Classic recruiter question. Don't dodge it — give a real one that isn't disqualifying, and show self-awareness + what you do about it.</p>
+    body:`<div class="ht"><span>weakness</span><span>weak</span><span>point</span><span>improvement</span><span>area</span><span>flaw</span><span>challenge</span><span>struggle</span><span>develop</span><span>grow</span></div><p>Classic recruiter question. Don't dodge it — give a real one that isn't disqualifying, and show self-awareness + what you do about it.</p>
     <div class="tip"><strong>Answer:</strong> "I tend to over-document when I'm troubleshooting — I build detailed write-ups of every issue even when a quick Slack message would be enough. It comes from wanting to leave a clear record for the client and the team, but I've learned to calibrate: for a quick pacing flag, a two-line message is better than a one-pager. I've been more intentional about matching the depth of my communication to the urgency and complexity of the issue."</div>
     <div class="tip"><strong>Why this works:</strong> It's real, it's not a core competency gap, and the fix you describe (calibrating communication depth) is actually a strength in a client-facing TAM role.</div>
     <ul>
@@ -347,7 +349,7 @@ const ITEMS = [
     <div class="tip"><strong>💡</strong> This answer directly addresses the RTB House DSP learning curve without being asked. Plant the seed proactively.</div>` },
 
   { tag:'comportamental', q:'What questions do you have for us? — closing the call well',
-    body:`<span class="ht">questions ask closing end of interview questions for them curiosity perguntas</span><p>Always end with 2–3 strong questions. It signals preparation and genuine interest. Pick from this list based on how the conversation went.</p>
+    body:`<div class="ht"><span>questions</span><span>ask</span><span>closing</span><span>end</span><span>of</span><span>interview</span><span>questions</span><span>for</span><span>them</span><span>curiosity</span><span>perguntas</span></div><p>Always end with 2–3 strong questions. It signals preparation and genuine interest. Pick from this list based on how the conversation went.</p>
     <div class="tbl-w"><table>
       <thead><tr><th>Question</th><th>Why it's good</th></tr></thead>
       <tbody>
