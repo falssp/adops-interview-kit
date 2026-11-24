@@ -209,6 +209,8 @@ const ITEMS = [
       <tr><td style="color:var(--fg3);font-size:12px">Stack / tech</td><td>[PLATAFORMAS RELEVANTES]</td></tr>
       <tr><td style="color:var(--fg3);font-size:12px">Differentiator</td><td>[O QUE OS TORNA ÚNICOS]</td></tr>
       <tr><td style="color:var(--fg3);font-size:12px">Awards / signals</td><td>[PRÊMIOS, CERTIFICAÇÕES]</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Office BR?</td><td>[SIM / NÃO — se sim, onde e o que isso implica (CLT, idioma, fuso)]</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Interview language</td><td>[INGLÊS / PORTUGUÊS / ESPANHOL — confirmar na primeira call]</td></tr>
     </tbody></table></div>` },
 
   { tag:'empresa', q:'How the contact arrived — recruiter & channel',
@@ -220,9 +222,10 @@ const ITEMS = [
       <tr><td style="width:120px;color:var(--fg3);font-size:12px">Pessoa</td><td>[NOME] — [CARGO] na [EMPRESA]</td></tr>
       <tr><td style="color:var(--fg3);font-size:12px">Canal</td><td>[LinkedIn / Email / Referência / etc]</td></tr>
       <tr><td style="color:var(--fg3);font-size:12px">Data</td><td>[DATA DO CONTATO]</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Baseado em</td><td>[CIDADE / PAÍS DO RECRUTADOR — sinaliza fuso e idioma esperado]</td></tr>
       <tr><td style="color:var(--fg3);font-size:12px">Mensagem inicial</td><td>[RESUMO DO Q DISSERAM]</td></tr>
     </tbody></table>
-    <div class="tip"><strong>💡</strong> Se for recrutador de agência externa, pesquisar quem é o cliente real antes da call.</div></div>` },
+    <div class="tip"><strong>💡</strong> Recrutador global (US/UK) + escritório BR = provável CLT mas reporte em inglês. Confirmar idioma da entrevista logo no primeiro contato — não assumir.</div></div>` },
 
   { tag:'empresa', q:'Job description — role, requirements & link',
     body:`<div class="ht"><span>JD</span><span>job description</span><span>requirements</span><span>role</span><span>responsibilities</span><span>must have</span><span>stack</span></div>
@@ -311,16 +314,49 @@ The reason I'm excited about this conversation is [ADAPTAR: o q atrai nessa empr
   // TECHNICAL — preencher conforme a vaga pedir
   // ════════════════════════════════════════════
 
-  { tag:'tech', q:'[Technical question 1] — ADD TOPIC',
-    body:`<div class="ht"><span>technical</span><span>platform</span><span>setup</span><span>troubleshoot</span><span>experience</span></div>
-    <div class="box todo"><div class="box-lbl">📝 Preencher</div>
-    Adicionar pergunta técnica relevante para esta vaga + resposta preparada.
-    </div>` },
+  // — Respostas prontas de experiência (usar em qualquer entrevista, adaptar o fechamento) —
 
-  { tag:'tech', q:'[Technical question 2] — ADD TOPIC',
+  { tag:'tech', q:'What do you do at StormX — role and day-to-day responsibilities',
+    body:`<div class="ht"><span>StormX</span><span>current role</span><span>day-to-day</span><span>campaign governance</span><span>automation</span><span>data validation</span><span>QA</span></div>
+    <p style="font-size:13px;line-height:1.7">At StormX I function as the operational bridge between the data/tech layer and campaign execution. My day-to-day breaks down into three main areas.</p>
+    <p style="font-size:13px;line-height:1.7"><strong>Campaign governance:</strong> I own the end-to-end lifecycle of active campaigns — setup, QA, pacing checks, and troubleshooting. When something is off — a discrepancy, a tag misfiring, a placement delivering wrong — I'm the one diagnosing and resolving it.</p>
+    <p style="font-size:13px;line-height:1.7"><strong>Data validation:</strong> A big part of the role is making sure the numbers we report are trustworthy. I cross-check delivery data against platform reports, flag anomalies, and document discrepancies with root-cause notes so the team can track patterns.</p>
+    <p style="font-size:13px;line-height:1.7"><strong>Process automation:</strong> I've built Google Apps Script workflows to reduce manual reporting overhead — things like pulling CM360 data into structured sheets, flagging pacing issues automatically, and generating wrap-up summaries that would previously take hours by hand.</p>
+    <div class="tip"><strong>Connect to the role:</strong> This combination — operational precision + automation mindset — is what I'd bring here. I'm not just executing; I'm looking for ways to make the operation faster and more reliable over time.</div>` },
+
+  { tag:'tech', q:'How did you receive data from clients and report back — the full flow at EssenceMediacom',
+    body:`<div class="ht"><span>EssenceMediacom</span><span>data flow</span><span>briefing</span><span>CM360</span><span>QA</span><span>Looker Studio</span><span>reporting</span><span>clients</span></div>
+    <p style="font-size:13px;line-height:1.7">At EssenceMediacom the loop ran from media plan to live reporting. Here's the full flow:</p>
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><div class="sb"><strong>Briefing & media plan</strong> — Client or planner delivers the brief. I extract campaign parameters: placements, budgets, targeting, attribution model, tracking requirements.</div></div>
+      <div class="step"><div class="sn">2</div><div class="sb"><strong>CM360 trafficking</strong> — I build the full campaign structure: advertisers, campaigns, placements, creatives, Floodlight tags. For programmatic buys, I mirror the structure in DV360 linked to CM360.</div></div>
+      <div class="step"><div class="sn">3</div><div class="sb"><strong>Tag delivery & QA</strong> — I generate and send tags to publishers. After go-live, I run a 24–48h QA pass: impressions serving, clicks tracking, conversions firing, revenue values correct.</div></div>
+      <div class="step"><div class="sn">4</div><div class="sb"><strong>Pacing & mid-campaign monitoring</strong> — Weekly pacing checks. If a placement is under or over-delivering, I flag it to the client and either optimize the bid/budget or flag for creative swap.</div></div>
+      <div class="step"><div class="sn">5</div><div class="sb"><strong>Looker Studio dashboard</strong> — Live dashboards connected to CM360 data. Clients had read access. I managed the data schema so dimensions were consistent across campaigns and months.</div></div>
+      <div class="step"><div class="sn">6</div><div class="sb"><strong>Wrap-up report</strong> — End-of-flight summary: delivery vs goal, performance by placement, key insights, recommendations for next campaign.</div></div>
+    </div>
+    <div class="tip"><strong>Clients this ran for:</strong> Samsung, Airbnb, Mars, Reckitt, Colgate, BRF, Stellantis — multi-market, multi-channel, concurrent campaigns.</div>` },
+
+  { tag:'tech', q:'What was your client-facing work like — how did you interact with advertisers',
+    body:`<div class="ht"><span>client</span><span>advertiser</span><span>communication</span><span>EssenceMediacom</span><span>Samsung</span><span>Airbnb</span><span>stakeholder</span><span>discrepancy</span></div>
+    <p style="font-size:13px;line-height:1.7">At EssenceMediacom I was the AdOps point of contact for several large advertisers simultaneously — Samsung, Airbnb, Mars, Reckitt, among others. Client interaction happened at multiple levels.</p>
+    <p style="font-size:13px;line-height:1.7"><strong>Weekly status calls:</strong> I joined planning and status meetings to represent the AdOps function — explaining what was live, what was pending, what needed client action (tag implementation, creative approval, pixel access).</p>
+    <p style="font-size:13px;line-height:1.7"><strong>Troubleshooting:</strong> When something broke — a discrepancy, a tag issue, a creative not serving — I owned the communication. My rule: lead with the conclusion, then the data, then the solution. Clients don't want a technical walkthrough; they want to know what it means and what happens next.</p>
+    <p style="font-size:13px;line-height:1.7"><strong>Onboarding new advertisers:</strong> I ran the technical onboarding for new clients — explaining Floodlight implementation to their web teams, verifying pixel setup, aligning on naming conventions and report dimensions.</p>
+    <div class="box todo"><div class="box-lbl">📝 Adaptar fechamento</div>Conectar ao que esta empresa valoriza no papel — se for TAM/CS, enfatizar o rapport; se for AdOps operacional, enfatizar a precisão e resolução de discrepâncias.</div>` },
+
+  { tag:'tech', q:'Campaign trafficking and QA — your process end to end',
+    body:`<div class="ht"><span>trafficking</span><span>QA</span><span>CM360</span><span>tags</span><span>pixels</span><span>discrepancy</span><span>launch</span><span>quality</span></div>
+    <p style="font-size:13px;line-height:1.7">Trafficking is where I spend most of my operational time. My process in CM360 follows a consistent structure regardless of campaign type.</p>
+    <p style="font-size:13px;line-height:1.7"><strong>Setup:</strong> I build the account hierarchy (advertiser → campaign → placement → ad) following an established taxonomy so reports stay clean across flights. Naming conventions are non-negotiable — they're the only thing between readable data and chaos six months later.</p>
+    <p style="font-size:13px;line-height:1.7"><strong>Floodlight configuration:</strong> I set up activity groups and activities for each conversion event, verify the custom variables are mapped, and confirm the tag fires with the right data before anything goes to production.</p>
+    <p style="font-size:13px;line-height:1.7"><strong>QA checklist:</strong> Pre-launch pass covers impressions serving, creative rotation, tracking firing, revenue/transaction variables passing, and geographic/audience targeting confirmed. Post-launch 24h and 48h checks to catch any silent failures.</p>
+    <p style="font-size:13px;line-height:1.7"><strong>Discrepancies:</strong> I document and investigate any impression gap above ~5% between CM360 and the publisher's numbers. Usually it's cookie acceptance, creative caching, or publisher-side ad calls that never complete. I always document root cause so the team builds institutional knowledge, not just fixes the ticket.</p>` },
+
+  { tag:'tech', q:'[Technical question — ADD TOPIC]',
     body:`<div class="ht"><span>technical</span><span>platform</span><span>stack</span><span>hands-on</span></div>
     <div class="box todo"><div class="box-lbl">📝 Preencher</div>
-    Adicionar pergunta técnica relevante para esta vaga + resposta preparada.
+    Adicionar pergunta técnica específica para esta vaga + resposta preparada.
     </div>` },
 
   // ════════════════════════════════════════════
@@ -372,22 +408,32 @@ The reason I'm excited about this conversation is [ADAPTAR: o q atrai nessa empr
   // ════════════════════════════════════════════
 
   { tag:'salario', q:'Salary expectation — what to say and how to handle it',
-    body:`<div class="ht"><span>salary</span><span>expectation</span><span>compensation</span><span>range</span><span>negotiate</span><span>anchor</span><span>USD</span></div>
-    <div class="box warn"><div class="box-lbl">🎯 Deixa eles falarem primeiro</div>
+    body:`<div class="ht"><span>salary</span><span>expectation</span><span>compensation</span><span>range</span><span>negotiate</span><span>anchor</span><span>USD</span><span>CLT</span></div>
+    <div class="box warn"><div class="box-lbl">🎯 Deixa eles falarem primeiro — sempre</div>
     Antes de revelar qualquer número, perguntar sobre a estrutura: contractor ou CLT, USD ou BRL, benefícios incluídos.
+    Um pacote CLT completo (vale-refeição, plano de saúde, FGTS) pode valer R$2–3k/mês a mais que o bruto indica.
     </div>
-    <div class="box todo"><div class="box-lbl">📝 Definir anchor para esta empresa</div>
-    Preencher com o range pretendido e os cenários de resposta.
-    </div>
+    <div class="tbl-w"><table>
+      <thead><tr><th>Estrutura</th><th>Range target</th><th>Floor (mínimo)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CLT — Brasil</strong></td><td>R$ 10.000 – 12.000 bruto</td><td>R$ 8.000</td></tr>
+        <tr><td><strong>PJ / Contractor</strong></td><td>USD 2.800 – 3.500 / mês</td><td>USD 2.500</td></tr>
+        <tr><td><strong>CLT reporte US</strong><br><small style="color:var(--fg3)">ex: RTB House BR</small></td><td>R$ 10.000 – 12.000 + benefícios BR padrão</td><td>R$ 8.000 + benefícios completos</td></tr>
+      </tbody>
+    </table></div>
     <div class="tbl-w"><table>
       <thead><tr><th>Scenario</th><th>Response</th></tr></thead>
       <tbody>
-        <tr><td>They ask first: "What are your expectations?"</td><td>[ANCHOR RANGE] — mas primeiro perguntar sobre a estrutura.</td></tr>
-        <tr><td>They offer below your floor</td><td>Counter com justificativa de experiência. [FLOOR] é o mínimo aceitável.</td></tr>
-        <tr><td>They offer at or above your target</td><td>Aceitar range, confirmar estrutura e datas.</td></tr>
-        <tr><td>No salary talk in screen 1</td><td>Normal — perguntar ao final: "Could you share the budgeted range for this role?"</td></tr>
+        <tr><td>"What are your expectations?"</td><td>Primeiro confirmar estrutura (CLT/PJ, moeda). Depois: <em>"I'm looking at the R$10–12k range on CLT — though it depends on the full package."</em></td></tr>
+        <tr><td>Oferta abaixo do floor</td><td>Counter: <em>"Based on my 15 years and depth in CM360/DV360, I'd need to be at [floor] minimum. Is there room to adjust?"</em></td></tr>
+        <tr><td>Oferta dentro do range</td><td>Aceitar, confirmar benefícios, confirmar datas de início.</td></tr>
+        <tr><td>Nenhuma conversa de salário na screen 1</td><td>Normal. Perguntar ao final: <em>"Could you share the budgeted range for this role before we move to next steps?"</em></td></tr>
+        <tr><td>CLT mas reporte para o exterior</td><td>Verificar se pacote BR é completo (VR, VT, plano, FGTS). Se sim, tratar como CLT normal. Confirmar fuso de trabalho esperado.</td></tr>
       </tbody>
-    </table></div>` },
+    </table></div>
+    <div class="box info"><div class="box-lbl">ℹ️ CLT reports-to-US — o que aprendemos (RTB House, Nov 2024)</div>
+    Empresa com sede no exterior + contratação CLT no BR = normalmente pacote BR padrão. O reporte ser para o time de fora não muda a estrutura trabalhista. Confirmar quem é o empregador de registro antes de aceitar qualquer oferta.
+    </div>` },
 
   // ════════════════════════════════════════════
   // PERGUNTAS ABERTAS — preencher DURANTE/APÓS as calls
