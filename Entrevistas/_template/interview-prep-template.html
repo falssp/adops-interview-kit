@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[EMPRESA] — Interview Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg:    #F5F6F8;
+  --surf:  #FFFFFF;
+  --fg:    #111318;
+  --fg2:   #4B5060;
+  --fg3:   #8A8F9E;
+  --bdr:   #E2E4EA;
+  --acc:   #2563EB;
+  --acc-bg:#EFF4FF;
+  --grn:   #16A34A;
+  --grn-bg:#F0FDF4;
+  --warn:  #D97706;
+  --warn-bg:#FFFBEB;
+  --tag-bg:#F1F3F7;
+  --todo:  #7C3AED;
+  --todo-bg:#EDE9FE;
+
+  --t-empresa:  #1E40AF; --t-empresa-bg:  #DBEAFE;
+  --t-prep:     #065F46; --t-prep-bg:     #D1FAE5;
+  --t-tech:     #7C3AED; --t-tech-bg:     #EDE9FE;
+  --t-sit:      #BE185D; --t-sit-bg:      #FCE7F3;
+  --t-com:      #0369A1; --t-com-bg:      #E0F2FE;
+  --t-sal:      #9A3412; --t-sal-bg:      #FFEDD5;
+  --t-abertas:  #4D7C0F; --t-abertas-bg:  #ECFCCB;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:#0E1117; --surf:#181C27; --fg:#E8EAF0; --fg2:#9BA3B8; --fg3:#555C74;
+    --bdr:#252A3A; --acc:#3B82F6; --acc-bg:#1E2D50; --grn:#22C55E; --grn-bg:#052E16;
+    --warn:#FCD34D; --warn-bg:#2C1810; --tag-bg:#1C2133; --todo:#A78BFA; --todo-bg:#2E1065;
+    --t-empresa:#60A5FA; --t-empresa-bg:#1E3A8A;
+    --t-prep:#34D399; --t-prep-bg:#022C22;
+    --t-tech:#A78BFA; --t-tech-bg:#2E1065;
+    --t-sit:#F472B6; --t-sit-bg:#500724;
+    --t-com:#38BDF8; --t-com-bg:#082F49;
+    --t-sal:#FB923C; --t-sal-bg:#431407;
+    --t-abertas:#A3E635; --t-abertas-bg:#1A2E05;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#0E1117; --surf:#181C27; --fg:#E8EAF0; --fg2:#9BA3B8; --fg3:#555C74;
+  --bdr:#252A3A; --acc:#3B82F6; --acc-bg:#1E2D50; --grn:#22C55E; --grn-bg:#052E16;
+  --warn:#FCD34D; --warn-bg:#2C1810; --tag-bg:#1C2133; --todo:#A78BFA; --todo-bg:#2E1065;
+  --t-empresa:#60A5FA; --t-empresa-bg:#1E3A8A;
+  --t-prep:#34D399; --t-prep-bg:#022C22;
+  --t-tech:#A78BFA; --t-tech-bg:#2E1065;
+  --t-sit:#F472B6; --t-sit-bg:#500724;
+  --t-com:#38BDF8; --t-com-bg:#082F49;
+  --t-sal:#FB923C; --t-sal-bg:#431407;
+  --t-abertas:#A3E635; --t-abertas-bg:#1A2E05;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);font-size:14px;line-height:1.6}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:var(--surf);border-bottom:1px solid var(--bdr);padding:10px 24px}
+.bar-inner{max-width:1400px;margin-inline:auto;display:flex;align-items:center;gap:12px}
+.brand{font-size:15px;font-weight:700;white-space:nowrap;color:var(--fg)}
+.pill{display:inline-block;background:var(--acc);color:#fff;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.search-wrap{flex:1;position:relative;display:flex;align-items:center}
+.search-wrap svg{position:absolute;left:10px;width:16px;height:16px;color:var(--fg3)}
+#q{width:100%;padding:7px 32px 7px 32px;border:1.5px solid var(--bdr);border-radius:8px;background:var(--bg);color:var(--fg);font-family:inherit;font-size:13px;outline:none;transition:border-color .15s}
+#q:focus{border-color:var(--acc)}
+#q::placeholder{color:var(--fg3)}
+.clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--fg3);cursor:pointer;font-size:16px;line-height:1;padding:2px 4px}
+#count{font-size:12px;color:var(--fg3);white-space:nowrap}
+
+.filters{max-width:1400px;margin-inline:auto;padding:10px 24px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr)}
+.fb{padding:4px 11px;border-radius:20px;border:1.5px solid var(--bdr);background:transparent;color:var(--fg3);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s}
+.fb:hover{border-color:var(--acc);color:var(--acc)}
+.fb.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.fb[data-f="empresa"].on{background:var(--t-empresa);border-color:var(--t-empresa)}
+.fb[data-f="prep"].on{background:var(--t-prep);border-color:var(--t-prep)}
+.fb[data-f="tech"].on{background:var(--t-tech);border-color:var(--t-tech)}
+.fb[data-f="situacional"].on{background:var(--t-sit);border-color:var(--t-sit)}
+.fb[data-f="comportamental"].on{background:var(--t-com);border-color:var(--t-com)}
+.fb[data-f="salario"].on{background:var(--t-sal);border-color:var(--t-sal)}
+.fb[data-f="abertas"].on{background:var(--t-abertas);border-color:var(--t-abertas)}
+
+.feed{max-width:1400px;margin-inline:auto;padding:16px 24px 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:10px;align-items:start}
+.card{background:var(--surf);border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden;transition:border-color .15s}
+.card:hover{border-color:var(--acc)}
+.card.todo-card{border-color:var(--todo);opacity:.75}
+.ch{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;cursor:pointer;user-select:none}
+.ctag{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:4px;margin-top:2px}
+.t-empresa     {background:var(--t-empresa-bg);color:var(--t-empresa)}
+.t-prep        {background:var(--t-prep-bg);color:var(--t-prep)}
+.t-tech        {background:var(--t-tech-bg);color:var(--t-tech)}
+.t-situacional {background:var(--t-sit-bg);color:var(--t-sit)}
+.t-comportamental{background:var(--t-com-bg);color:var(--t-com)}
+.t-salario     {background:var(--t-sal-bg);color:var(--t-sal)}
+.t-abertas     {background:var(--t-abertas-bg);color:var(--t-abertas)}
+.cq{flex:1;min-width:0;font-size:14px;font-weight:600}
+.chev{flex-shrink:0;width:18px;height:18px;color:var(--fg3);transition:transform .2s;margin-top:2px}
+.card.open .chev{transform:rotate(180deg)}
+.cb{display:none;padding:0 16px 16px;border-top:1px solid var(--bdr);padding-top:14px}
+.card.open .cb{display:block}
+
+.cb p{margin-bottom:10px;font-size:14px;max-width:65ch}
+.cb p:last-child{margin-bottom:0}
+.cb ul,.cb ol{padding-left:20px;margin-bottom:10px}
+.cb li{margin-bottom:3px;font-size:13px}
+.cb strong{font-weight:600}
+.cb code{font-size:.85em;background:var(--tag-bg);padding:1px 5px;border-radius:3px}
+.tip{margin-top:10px;padding:8px 12px;background:var(--grn-bg);border-left:3px solid var(--grn);border-radius:0 6px 6px 0;font-size:13px}
+.tip strong{color:var(--grn)}
+.box{border-radius:8px;padding:12px 14px;margin:10px 0;font-size:13px;line-height:1.6}
+.box-lbl{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}
+.box.warn{background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn)}
+.box.info{background:var(--acc-bg);color:var(--acc);border:1px solid var(--acc)}
+.box.ok{background:var(--grn-bg);color:var(--grn);border:1px solid var(--grn)}
+.box.todo{background:var(--todo-bg);color:var(--todo);border:1px solid var(--todo)}
+.box strong{color:inherit}
+.steps{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.step{display:flex;gap:10px;align-items:flex-start;font-size:13px}
+.sn{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.sb{flex:1;min-width:0}
+.sb strong{display:block;font-weight:600;margin-bottom:1px}
+.tbl-w{overflow-x:auto;margin-bottom:10px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{background:var(--tag-bg);color:var(--fg2);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:7px 10px;text-align:left;border-bottom:1px solid var(--bdr)}
+td{padding:8px 10px;border-bottom:1px solid var(--bdr);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.doc-h{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--bdr)}
+.doc-h3{font-size:14px;font-weight:600;margin:16px 0 8px}
+.empty{text-align:center;color:var(--fg3);padding:48px;font-size:14px}
+mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) mark{background:#7C6800;color:#EDEBE6}}
+:root[data-theme="dark"] mark{background:#7C6800;color:#EDEBE6}
+@media(max-width:480px){.bar-inner{gap:8px}.brand{font-size:13px}#count{display:none}}
+
+/* keyword chips */
+.ht{display:flex;flex-wrap:wrap;gap:4px;padding:8px 0 4px;border-top:1px solid var(--bdr);margin-top:10px}
+.ht::before{content:'🔍';font-size:11px;color:var(--fg3);margin-right:2px;align-self:center}
+.ht span{font-size:10px;background:var(--tag-bg);color:var(--fg3);border-radius:3px;padding:2px 6px;cursor:default}
+/* status badge */
+.status-row{max-width:1400px;margin-inline:auto;padding:8px 24px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--bdr);font-size:12px;color:var(--fg3)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid}
+.badge.done{background:var(--grn-bg);color:var(--grn);border-color:var(--grn)}
+.badge.wait{background:var(--warn-bg);color:var(--warn);border-color:var(--warn)}
+.badge.open{background:var(--acc-bg);color:var(--acc);border-color:var(--acc)}
+.badge.todo-b{background:var(--todo-bg);color:var(--todo);border-color:var(--todo)}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-inner">
+    <div class="brand">[EMPRESA] <span class="pill">Prep</span></div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/></svg>
+      <input id="q" type="search" placeholder="Search question, topic or keyword…" autocomplete="off">
+      <button class="clr" id="clr" style="display:none" onclick="clearQ()">✕</button>
+    </div>
+    <span id="count"></span>
+  </div>
+</div>
+
+<!-- ── STATUS DO PROCESSO ── edite as badges conforme o processo avança -->
+<div class="status-row">
+  <strong style="color:var(--fg2)">Processo:</strong>
+  <span class="badge done">✓ Contato recebido</span>
+  <span class="badge open">⏳ Screen agendada</span>
+  <span class="badge todo-b">◦ Técnica</span>
+  <span class="badge todo-b">◦ Proposta</span>
+  <!-- Classes disponíveis: done · wait · open · todo-b -->
+</div>
+
+<div class="filters" id="filters">
+  <button class="fb on" data-f="all">All</button>
+  <button class="fb" data-f="empresa">Company</button>
+  <button class="fb" data-f="prep">Prep</button>
+  <button class="fb" data-f="tech">Technical</button>
+  <button class="fb" data-f="situacional">Situational</button>
+  <button class="fb" data-f="comportamental">Behavioral</button>
+  <button class="fb" data-f="salario">Salary</button>
+  <button class="fb" data-f="abertas">Open Qs</button>
+</div>
+
+<div class="feed" id="feed"></div>
+
+<script>
+const ITEMS = [
+
+  // ════════════════════════════════════════════
+  // EMPRESA — preencher antes de qualquer call
+  // ════════════════════════════════════════════
+
+  { tag:'empresa', q:'Company overview — who they are',
+    body:`<div class="ht"><span>company</span><span>overview</span><span>background</span><span>history</span><span>founded</span><span>product</span><span>research</span></div>
+    <div class="box todo"><div class="box-lbl">📝 Preencher</div>
+    Resumo em 3–5 bullets: fundação, produto core, mercado, tamanho, diferenciais.
+    </div>
+    <div class="tbl-w"><table><tbody>
+      <tr><td style="width:120px;color:var(--fg3);font-size:12px">Founded</td><td>[ANO], [CIDADE/PAÍS]</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Product</td><td>[O QUE FAZEM]</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Scale</td><td>[TAMANHO, MERCADOS]</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Stack / tech</td><td>[PLATAFORMAS RELEVANTES]</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Differentiator</td><td>[O QUE OS TORNA ÚNICOS]</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Awards / signals</td><td>[PRÊMIOS, CERTIFICAÇÕES]</td></tr>
+    </tbody></table></div>` },
+
+  { tag:'empresa', q:'How the contact arrived — recruiter & channel',
+    body:`<div class="ht"><span>contact</span><span>recruiter</span><span>LinkedIn</span><span>channel</span><span>origin</span><span>who</span><span>reach out</span></div>
+    <div class="box todo"><div class="box-lbl">📝 Preencher</div>
+    De onde veio o contato? Quem mandou? Qual o cargo?
+    </div>
+    <div class="tbl-w"><table><tbody>
+      <tr><td style="width:120px;color:var(--fg3);font-size:12px">Pessoa</td><td>[NOME] — [CARGO] na [EMPRESA]</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Canal</td><td>[LinkedIn / Email / Referência / etc]</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Data</td><td>[DATA DO CONTATO]</td></tr>
+      <tr><td style="color:var(--fg3);font-size:12px">Mensagem inicial</td><td>[RESUMO DO Q DISSERAM]</td></tr>
+    </tbody></table>
+    <div class="tip"><strong>💡</strong> Se for recrutador de agência externa, pesquisar quem é o cliente real antes da call.</div></div>` },
+
+  { tag:'empresa', q:'Job description — role, requirements & link',
+    body:`<div class="ht"><span>JD</span><span>job description</span><span>requirements</span><span>role</span><span>responsibilities</span><span>must have</span><span>stack</span></div>
+    <div class="box todo"><div class="box-lbl">📝 Preencher</div>
+    Cole o link da vaga e os pontos principais da JD.
+    </div>
+    <p><strong>Link:</strong> <a href="#" style="color:var(--acc)">[URL DA VAGA]</a></p>
+    <div class="doc-h3">Role</div>
+    <p>[TÍTULO EXATO DA VAGA]</p>
+    <div class="doc-h3">Must-have requirements</div>
+    <ul>
+      <li>[REQUISITO 1]</li>
+      <li>[REQUISITO 2]</li>
+      <li>[REQUISITO 3]</li>
+    </ul>
+    <div class="doc-h3">Nice-to-have / differentiators</div>
+    <ul>
+      <li>[DIFERENCIAL 1]</li>
+      <li>[DIFERENCIAL 2]</li>
+    </ul>
+    <div class="doc-h3">Work model</div>
+    <p>[REMOTO / HÍBRIDO / PRESENCIAL — CIDADE — FUSO]</p>` },
+
+  { tag:'empresa', q:'Interview process — stages & what to expect',
+    body:`<div class="ht"><span>process</span><span>stages</span><span>rounds</span><span>technical</span><span>timeline</span><span>next steps</span><span>recruiter</span></div>
+    <div class="box todo"><div class="box-lbl">📝 Preencher — atualizar a cada etapa</div>
+    O que sabemos sobre o processo? Quantas etapas? Tem parte técnica?
+    </div>
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><div class="sb"><strong>Recruiter screen</strong> [DURAÇÃO, CANAL, COM QUEM]</div></div>
+      <div class="step"><div class="sn">2</div><div class="sb"><strong>[PRÓXIMA ETAPA]</strong> [DETALHES SE SOUBER]</div></div>
+      <div class="step"><div class="sn">3</div><div class="sb"><strong>[ETAPA 3]</strong> [DETALHES]</div></div>
+    </div>
+    <div class="box info"><div class="box-lbl">ℹ️ Parte técnica</div>[TEM TESTE? CASE? ENTREVISTA TÉCNICA? PREENCHER QUANDO SOUBER]</div>` },
+
+  { tag:'empresa', q:'Questions to ask — gather intel before revealing expectations',
+    body:`<div class="ht"><span>questions</span><span>ask</span><span>intel</span><span>team</span><span>salary</span><span>structure</span><span>timezone</span></div>
+    <div class="box warn"><div class="box-lbl">🎯 Strategy: deixa eles falarem primeiro</div>
+    Antes de mencionar qualquer número ou preferência, deixa o recrutador descrever a vaga, time, compensação e expectativas. Tudo que eles dizem melhora seu anchor.
+    </div>
+    <div class="doc-h3">Perguntas padrão — adaptar conforme o papel</div>
+    <ul>
+      <li>Can you tell me more about the team structure — who would I work with day-to-day?</li>
+      <li>What does a typical week look like in this role?</li>
+      <li>How is timezone overlap managed with the [US/UK/global] team?</li>
+      <li>What's the compensation structure — is it USD-based, contractor or employment?</li>
+      <li>What does the onboarding process look like for someone joining remotely?</li>
+      <li>What's the typical next step after this screen?</li>
+    </ul>
+    <div class="box todo"><div class="box-lbl">📝 Adicionar perguntas específicas para esta empresa</div>[PERGUNTAS SOBRE O PRODUTO, TECH STACK, CLIENTES ETC]</div>` },
+
+  // ════════════════════════════════════════════
+  // PREP — cards padrão para qualquer entrevista
+  // ════════════════════════════════════════════
+
+  { tag:'prep', q:'Tell me about yourself — opening 60–90 seconds',
+    body:`<div class="ht"><span>yourself</span><span>intro</span><span>opening</span><span>background</span><span>elevator</span><span>pitch</span><span>first question</span></div>
+    <div class="tip"><strong>Structure: Past → Present → Why here</strong></div>
+    <p class="ans" style="font-size:13px;white-space:pre-wrap">I've been working in ad operations for about 15 years, primarily on the agency and tech side in Brazil. I started in campaign management and trafficking, and over time moved into more complex, platform-heavy work — building programmatic setups in DV360 and CM360, running high-volume multi-channel campaigns for large brands like Unilever, and owning the full AdOps function at StormX.
+
+What I've built over those years is deep command of the Google Marketing Platform stack — not just executing, but integrating Floodlight, debugging discrepancies, managing pixels, and connecting the data layer to reporting in a way clients actually find useful.
+
+The reason I'm excited about this conversation is [ADAPTAR: o q atrai nessa empresa/vaga especificamente].</p>
+    <div class="box todo"><div class="box-lbl">📝 Personalizar o fechamento para esta empresa</div>Trocar o último parágrafo por algo específico: produto, stack, remote model, growth etc.</div>` },
+
+  { tag:'prep', q:'Why this company? — motivation & fit',
+    body:`<div class="ht"><span>why</span><span>motivation</span><span>fit</span><span>culture</span><span>career</span><span>interest</span><span>remote</span></div>
+    <div class="box todo"><div class="box-lbl">📝 Preencher com razões reais</div>
+    3 razões concretas, específicas para esta empresa. Evitar genéricos como "cultura incrível" ou "empresa líder".
+    </div>
+    <ul>
+      <li><strong>[RAZÃO 1]</strong> — [DETALHE ESPECÍFICO]</li>
+      <li><strong>[RAZÃO 2]</strong> — [DETALHE ESPECÍFICO]</li>
+      <li><strong>[RAZÃO 3]</strong> — [DETALHE ESPECÍFICO]</li>
+    </ul>
+    <div class="tip"><strong>💡</strong> Se você pesquisou algo específico — post recente, produto, case publicado — mencione. Mostra que o interesse é real.</div>` },
+
+  { tag:'prep', q:'Walk me through your AdOps experience — the overview',
+    body:`<div class="ht"><span>experience</span><span>background</span><span>adops</span><span>career</span><span>overview</span><span>15 years</span><span>opening</span></div>
+    <p style="font-size:13px;line-height:1.7">I have 15 years of experience in digital advertising operations, working primarily on the agency side in Brazil. My core stack is DV360 and CM360 — end-to-end campaign setup, trafficking, QA, pixel implementation, and discrepancy troubleshooting.</p>
+    <p style="font-size:13px;line-height:1.7">I've managed campaigns for large advertisers including Unilever Brazil — display, video, programmatic, and influencer-side tracking across multiple channels simultaneously. High-volume environments where accuracy and on-time launch are non-negotiable.</p>
+    <p style="font-size:13px;line-height:1.7">Beyond execution, I build internal processes — taxonomies, naming conventions, QA checklists — and work directly with clients to explain performance and troubleshoot issues.</p>
+    <div class="box todo"><div class="box-lbl">📝 Adaptar o fechamento</div>Adicionar uma linha conectando sua experiência ao que esta empresa valoriza especificamente.</div>` },
+
+  // ════════════════════════════════════════════
+  // TECHNICAL — preencher conforme a vaga pedir
+  // ════════════════════════════════════════════
+
+  { tag:'tech', q:'[Technical question 1] — ADD TOPIC',
+    body:`<div class="ht"><span>technical</span><span>platform</span><span>setup</span><span>troubleshoot</span><span>experience</span></div>
+    <div class="box todo"><div class="box-lbl">📝 Preencher</div>
+    Adicionar pergunta técnica relevante para esta vaga + resposta preparada.
+    </div>` },
+
+  { tag:'tech', q:'[Technical question 2] — ADD TOPIC',
+    body:`<div class="ht"><span>technical</span><span>platform</span><span>stack</span><span>hands-on</span></div>
+    <div class="box todo"><div class="box-lbl">📝 Preencher</div>
+    Adicionar pergunta técnica relevante para esta vaga + resposta preparada.
+    </div>` },
+
+  // ════════════════════════════════════════════
+  // SITUACIONAL
+  // ════════════════════════════════════════════
+
+  { tag:'situacional', q:'Tell me about a time you caught a major error before launch',
+    body:`<div class="ht"><span>error</span><span>pre-launch</span><span>QA</span><span>bug</span><span>catch</span><span>Unilever</span><span>fix</span></div>
+    <p style="font-size:13px;line-height:1.7">On a Unilever campaign, I was doing a final QA pass the evening before launch and noticed the Floodlight tag was firing on the confirmation page but not passing the transaction value — the revenue field was blank. The campaign was conversion-focused, and without that data, attribution would be broken from day one.</p>
+    <p style="font-size:13px;line-height:1.7">I flagged it immediately to the client's web team at around 7pm. We worked through the issue together — the developer had implemented the tag but hadn't wired the dynamic revenue variable. We verified the fix by midnight and the campaign launched correctly the next morning.</p>
+    <div class="tip"><strong>💡 Lesson stated:</strong> QA is not just "did the tag fire" but "is it firing with the right data." I now include data-layer validation as a standard step in my pre-launch checklist.</div>` },
+
+  { tag:'situacional', q:'How do you manage multiple campaigns and priorities simultaneously?',
+    body:`<div class="ht"><span>priority</span><span>manage</span><span>multiple</span><span>tracker</span><span>deadline</span><span>workflow</span><span>escalation</span></div>
+    <p style="font-size:13px;line-height:1.7">I work from a master trafficking tracker that lists every active campaign, its current status, next action required, and deadline. Each morning I prioritize based on go-live dates and client commitments — anything launching within 48 hours goes to the top.</p>
+    <p style="font-size:13px;line-height:1.7">For recurring tasks like pacing checks and reporting, I schedule fixed time blocks so they don't get displaced by reactive work. When a sudden issue comes in, I assess whether it blocks a launch or is tolerable until a scheduled slot, and communicate a realistic timeline immediately.</p>
+    <div class="tip"><strong>Key principle:</strong> Never absorb a risk silently. If something is at risk of being late, say so early with a plan — not at the last minute with an apology.</div>` },
+
+  { tag:'situacional', q:'[Situational question — ADD TOPIC]',
+    body:`<div class="ht"><span>situational</span><span>example</span><span>STAR</span><span>story</span></div>
+    <div class="box todo"><div class="box-lbl">📝 Preencher</div>
+    Adicionar pergunta situacional específica para esta vaga + resposta no formato STAR.
+    </div>` },
+
+  // ════════════════════════════════════════════
+  // COMPORTAMENTAL
+  // ════════════════════════════════════════════
+
+  { tag:'comportamental', q:'How do you work in a remote / async environment?',
+    body:`<div class="ht"><span>remote</span><span>async</span><span>timezone</span><span>communication</span><span>documentation</span><span>overlap</span><span>global</span></div>
+    <p style="font-size:13px;line-height:1.7">I've been working remotely for several years, so asynchronous communication is already my default. I document everything — decisions, campaign setups, QA findings — in a shared space so teammates in other timezones can pick up context without waiting for me to be online.</p>
+    <p style="font-size:13px;line-height:1.7">For time-sensitive issues, I flag them early with a clear status ("blocked on X, need Y by Z to stay on schedule") rather than surfacing them when they've already become a crisis.</p>
+    <p style="font-size:13px;line-height:1.7">My working hours in Brazil typically overlap with early CST / late EST — I'd anchor synchronous work (calls, collaborative reviews) in that window.</p>` },
+
+  { tag:'comportamental', q:'What do you consider your strongest technical skill?',
+    body:`<div class="ht"><span>strongest</span><span>skill</span><span>strength</span><span>expertise</span><span>CM360</span><span>DV360</span><span>integration</span></div>
+    <p style="font-size:13px;line-height:1.7">CM360 and DV360 integration — specifically how to structure a campaign so the ad server and DSP work together cleanly, and how to investigate when they don't.</p>
+    <p style="font-size:13px;line-height:1.7">A lot of practitioners use one or the other, but fewer have deep hands-on experience running both simultaneously and troubleshooting the gaps: impression discrepancies, Floodlight attribution, creative rotation, audience sharing.</p>
+    <p style="font-size:13px;line-height:1.7">That's where I've built the most specialized knowledge — and it's also where most campaign problems actually live.</p>` },
+
+  { tag:'comportamental', q:'[Behavioral question — ADD TOPIC]',
+    body:`<div class="ht"><span>behavioral</span><span>soft skills</span><span>leadership</span><span>growth</span></div>
+    <div class="box todo"><div class="box-lbl">📝 Preencher</div>
+    Adicionar pergunta comportamental específica para esta vaga + resposta preparada.
+    </div>` },
+
+  // ════════════════════════════════════════════
+  // SALÁRIO
+  // ════════════════════════════════════════════
+
+  { tag:'salario', q:'Salary expectation — what to say and how to handle it',
+    body:`<div class="ht"><span>salary</span><span>expectation</span><span>compensation</span><span>range</span><span>negotiate</span><span>anchor</span><span>USD</span></div>
+    <div class="box warn"><div class="box-lbl">🎯 Deixa eles falarem primeiro</div>
+    Antes de revelar qualquer número, perguntar sobre a estrutura: contractor ou CLT, USD ou BRL, benefícios incluídos.
+    </div>
+    <div class="box todo"><div class="box-lbl">📝 Definir anchor para esta empresa</div>
+    Preencher com o range pretendido e os cenários de resposta.
+    </div>
+    <div class="tbl-w"><table>
+      <thead><tr><th>Scenario</th><th>Response</th></tr></thead>
+      <tbody>
+        <tr><td>They ask first: "What are your expectations?"</td><td>[ANCHOR RANGE] — mas primeiro perguntar sobre a estrutura.</td></tr>
+        <tr><td>They offer below your floor</td><td>Counter com justificativa de experiência. [FLOOR] é o mínimo aceitável.</td></tr>
+        <tr><td>They offer at or above your target</td><td>Aceitar range, confirmar estrutura e datas.</td></tr>
+        <tr><td>No salary talk in screen 1</td><td>Normal — perguntar ao final: "Could you share the budgeted range for this role?"</td></tr>
+      </tbody>
+    </table></div>` },
+
+  // ════════════════════════════════════════════
+  // PERGUNTAS ABERTAS — preencher DURANTE/APÓS as calls
+  // ════════════════════════════════════════════
+
+  { tag:'abertas', q:'Open question from call 1 — [TOPIC]',
+    body:`<div class="ht"><span>open</span><span>call 1</span><span>unanswered</span><span>follow up</span><span>gap</span></div>
+    <div class="box todo"><div class="box-lbl">📝 Preencher após a call</div>
+    Pergunta que surgiu na entrevista e não estava coberta. Registrar aqui para preparar antes da próxima etapa.
+    </div>
+    <p><strong>Pergunta:</strong> [O QUE PERGUNTARAM / O QUE SURGIU]</p>
+    <p><strong>Como respondi:</strong> [O QUE DISSE]</p>
+    <p><strong>Melhorar para a próxima etapa:</strong> [RESPOSTA MAIS COMPLETA]</p>` },
+
+  { tag:'abertas', q:'Notes after call 1 — what went well / what to improve',
+    body:`<div class="ht"><span>notes</span><span>debrief</span><span>after</span><span>feedback</span><span>next steps</span><span>improve</span></div>
+    <div class="box todo"><div class="box-lbl">📝 Preencher logo após a call</div>
+    Enquanto está fresco: o que correu bem, o que ficou faltando, o que disseram sobre próximos passos.
+    </div>
+    <div class="doc-h3">O que foi bem</div>
+    <ul><li>[...]</li></ul>
+    <div class="doc-h3">O que melhorar</div>
+    <ul><li>[...]</li></ul>
+    <div class="doc-h3">O que disseram sobre próximos passos</div>
+    <p>[TIMELINE, QUEM RETORNA, O QUE ESPERAR]</p>
+    <div class="doc-h3">Sensação geral</div>
+    <p>[IMPRESSION: POSITIVA / NEUTRA / INCERTA — POR QUÊ]</p>` },
+
+];
+
+// ── render ──
+const tagLabel = {
+  empresa:'Company', prep:'Prep', tech:'Technical',
+  situacional:'Situational', comportamental:'Behavioral',
+  salario:'Salary', abertas:'Open Qs'
+};
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function hi(s,q){if(!q)return s;const r=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');return s.replace(r,'<mark>$1</mark>')}
+
+let activeFilter='all', searchQ='';
+
+function render(){
+  const feed=document.getElementById('feed');
+  const q=searchQ.trim().toLowerCase();
+  const filtered=ITEMS.filter(it=>{
+    const tagOk=activeFilter==='all'||it.tag===activeFilter;
+    const qOk=!q||it.q.toLowerCase().includes(q)||it.body.toLowerCase().includes(q);
+    return tagOk&&qOk;
+  });
+  document.getElementById('count').textContent=filtered.length+' card'+(filtered.length!==1?'s':'');
+  if(!filtered.length){feed.innerHTML='<div class="empty">No cards match.</div>';return;}
+  feed.innerHTML=filtered.map((it,i)=>{
+    const cls=`t-${it.tag}`;
+    const lbl=tagLabel[it.tag]||it.tag;
+    const isTodo=it.body.includes('class="box todo"');
+    return`<div class="card${isTodo?' todo-card':''}" id="c${i}">
+      <div class="ch" onclick="toggle('c${i}')">
+        <span class="ctag ${cls}">${lbl}</span>
+        <span class="cq">${hi(esc(it.q),q)}</span>
+        <svg class="chev" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+      </div>
+      <div class="cb">${it.body}</div>
+    </div>`;
+  }).join('');
+}
+
+function toggle(id){
+  const c=document.getElementById(id);
+  if(c)c.classList.toggle('open');
+}
+
+function clearQ(){
+  document.getElementById('q').value='';
+  searchQ='';
+  document.getElementById('clr').style.display='none';
+  render();
+}
+
+document.getElementById('q').addEventListener('input',e=>{
+  searchQ=e.target.value;
+  document.getElementById('clr').style.display=searchQ?'block':'none';
+  render();
+});
+
+document.getElementById('filters').addEventListener('click',e=>{
+  const btn=e.target.closest('.fb');
+  if(!btn)return;
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  activeFilter=btn.dataset.f;
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
