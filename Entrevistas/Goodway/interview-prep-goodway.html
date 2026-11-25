@@ -145,6 +145,12 @@ mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
 .ht{display:flex;flex-wrap:wrap;gap:4px;padding:8px 0 4px;border-top:1px solid var(--bdr);margin-top:10px}
 .ht::before{content:'🔍';font-size:11px;color:var(--fg3);margin-right:2px;align-self:center}
 .ht span{font-size:10px;background:var(--tag-bg);color:var(--fg3);border-radius:3px;padding:2px 6px;cursor:default}
+.status-row{max-width:1400px;margin-inline:auto;padding:8px 24px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--bdr);font-size:12px;color:var(--fg3)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid}
+.badge.done{background:var(--grn-bg);color:var(--grn);border-color:var(--grn)}
+.badge.wait{background:var(--warn-bg);color:var(--warn);border-color:var(--warn)}
+.badge.open{background:var(--acc-bg);color:var(--acc);border-color:var(--acc)}
+.badge.dead{background:var(--tag-bg);color:var(--fg3);border-color:var(--fg3)}
 </style>
 </head>
 <body>
@@ -159,6 +165,12 @@ mark{background:#FEF08A;color:#1A1916;border-radius:2px;padding:0 1px}
     </div>
     <span id="count"></span>
   </div>
+</div>
+
+<div class="status-row">
+  <strong style="color:var(--fg2)">Processo:</strong>
+  <span class="badge done">✓ Screen com Lauren Young</span>
+  <span class="badge dead">✗ Não avançou — Nov 25, 2025</span>
 </div>
 
 <div class="filters" id="filters">
